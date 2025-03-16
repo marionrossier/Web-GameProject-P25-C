@@ -1,0 +1,36 @@
+/*So that no contain goes out of his container*/
+* {
+    box-sizing: border-box ;
+}
+
+/*HEADER*/
+header h1{
+    background-image: url(../images/headerBackground.jpg);
+    color: white;
+    padding: 3em 0em 1em 1em;
+}
+header nav ul{
+    background-color: rgb(170, 170, 170);
+    padding: 1em 1em 1em 2em;
+    list-style: none;
+    display: flex;
+    gap : 1em;
+}
+/*MAIN*/
+
+/*#articles*/
+
+/*#articles header*/
+
+/*ASIDE*/
+
+/*FOOTER*/
+footer {
+    background-color: rgb(170, 170, 170);
+    display: flex;
+    justify-content: flex-end;
+}
+footer img {
+    width: 10em;
+    margin: 1em 1em 1em 1em; 
+}
