@@ -1,1 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,400i,700|Roboto+Slab:700');
+
+/*Start of default values*/
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*End of default values*/
+
+
+/*Grey italic line after the title in the headers*/ 
+#articles header p:first-of-type{
+    font-style: italic;
+    color: grey;
+    text-align: right;
+}
+
