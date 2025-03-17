@@ -24,23 +24,26 @@ a {
 header h1{
     background-image: url(../images/headerBackground.jpg);
     color: white;
-    padding: 4em 0em 1em 1em;
+    padding: 3em 30px 1em 30px;
     text-shadow: 0px 0px 15px white;
 }
 
 header nav ul{
     background-color: rgb(170, 170, 170);
-    padding: 1em 1em 1em 30px;
+    padding: 1em 30px 1em 30px;
     list-style: none;
     display: flex;
     gap : 1em;
+}
+
+header nav ul li:first-child{ 
+    display: none; /* ‼️ IMPORTANT, a ajuster pour la partie responsive*/
 }
 
 header nav ul li a{
     color: Black;
     text-decoration: none;
 }
-
 
 /*MAIN*/
 #articles {
@@ -61,11 +64,25 @@ header nav ul li a{
     padding: 0.5em 0em 1em 0em;
 }
 
-
-
-
-
 /*ASIDE*/
+
+aside {
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px grey;
+}
+aside h3{
+    background-color: rgb(0, 191, 255);
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 1em 20px 0.5em 20px;
+}
+
+aside ul{
+    padding: 1em 20px 1em 20px;
+    list-style: none;
+}
 
 /*FOOTER*/
 footer {
@@ -73,6 +90,7 @@ footer {
     display: flex;
     justify-content: flex-end;
 }
+
 footer img {
     width: 10em;
     margin: 1em 1em 1em 1em; 
