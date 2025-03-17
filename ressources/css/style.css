@@ -46,6 +46,12 @@ header nav ul li a{
 }
 
 /*MAIN*/
+
+main {
+    display: flex;
+    align-items: flex-start;
+}
+
 #articles {
     display: flex;
     gap: 1em;
