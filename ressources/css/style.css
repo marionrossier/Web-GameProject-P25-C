@@ -20,6 +20,22 @@ a {
 
 /*End of default values*/
 
+/*BODY shape in general*/
+body {
+    padding: 30px 200px 30px 200px; /*‼️ IMPORTANT, a ajuster pour la partie responsive*/
+    background-color: rgb(240, 240, 240);
+}
+
+header h1 {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+footer {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 /*HEADER*/
 header h1{
     background-image: url(../images/headerBackground.jpg);
@@ -30,14 +46,21 @@ header h1{
 
 header nav ul{
     background-color: rgb(170, 170, 170);
-    padding: 1em 30px 1em 30px;
+    padding: 10px 30px 10px 30px;
     list-style: none;
     display: flex;
     gap : 1em;
 }
 
-header nav ul li:first-child{ 
-    display: none; /* ‼️ IMPORTANT, a ajuster pour la partie responsive*/
+header nav [class="active"] a{
+    color: rgb(0, 191, 255);
+    font-weight: 700;
+    background-color: white;
+    padding: 10px 15px 10px 15px;
+}
+
+header nav ul li[class="hamburger"]{ 
+    display: none; /*‼️ IMPORTANT, a ajuster pour la partie responsive*/
 }
 
 header nav ul li a{
@@ -50,13 +73,14 @@ header nav ul li a{
 main {
     display: flex;
     align-items: flex-start;
+    background-color: white;
 }
 
 #articles {
     display: flex;
     gap: 1em;
     justify-content: space-between;
-    padding: 30px;
+    padding: 30px;  /*‼️ IMPORTANT, a ajuster pour la partie responsive*/
 }
 
 #articles header h2{
