@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,400i,700|Roboto+Slab:700');
 
 /*Start of default values*/
-
 * {
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box ;
@@ -11,15 +10,14 @@
 
 p {
     padding-bottom: 1em;
+    line-height: 1.5;
 }
 
 a {
     color: rgb(0, 191, 255);
     text-decoration: none;
 }
-
 /*End of default values*/
-
 
 /*HEADER*/
 header h1{
@@ -59,18 +57,53 @@ main {
     display: flex;
     gap: 1em;
     justify-content: space-between;
-    padding: 30px;
+    padding: 30px 30px 0;
 }
 
-#articles header h2{
+header h2{
     border-bottom: 1px solid rgb(170, 170, 170);
 }
 
-#articles header p:first-of-type{
+header p:first-of-type{
     font-style: italic;
     color: grey;
     text-align: right;
     padding: 0.5em 0em 1em 0em;
+}
+
+main h3{
+    padding-bottom: 1em;
+}
+
+#gameDescription, #gameFeatures {
+    list-style-type: none;
+}
+
+main li {
+    padding-bottom: 0.5em;
+}
+
+
+/*Tables*/
+table {
+    width: 75%;
+    margin: 0 auto;
+    padding-bottom: 1em;
+    text-align: left;
+}
+
+thead {
+    height: 2em;
+    background-color: rgb(240, 240, 240);
+}
+
+th, td{
+    padding: 0.5em 1em;
+    align-content: flex-start;
+}
+
+th:nth-child(4) {
+    min-width: 250px;
 }
 
 /*ASIDE*/
@@ -106,12 +139,6 @@ footer img {
     width: 10em;
     margin: 1em 1em 1em 1em; 
 }
-
-#gameDescription, #gameFeatures {
-    list-style-type: none;
-    padding-left: 0;
-}
-
 
 /*Responsive part Computer*/
 @media (min-width: 1025px) {
@@ -175,6 +202,7 @@ footer img {
         display: flex;
         justify-content: center;
     }
+
     header nav ul {
         width: 100%;
         padding : 10px 0;
@@ -188,6 +216,10 @@ footer img {
         width: 100vw;
         display: block;
         text-align: center;
+    }
+
+    aside {
+        margin-top: 0;
     }
 }
 
