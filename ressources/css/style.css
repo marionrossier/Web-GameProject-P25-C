@@ -107,6 +107,11 @@ footer img {
     margin: 1em 1em 1em 1em; 
 }
 
+#gameDescription, #gameFeatures {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 
 /*Responsive part Computer*/
 @media (min-width: 1025px) {
