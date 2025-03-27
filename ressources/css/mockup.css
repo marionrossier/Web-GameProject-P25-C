@@ -1,0 +1,67 @@
+/* Styles spécifiques à la page mockup.html */
+
+.screenshots {
+    margin-top: 2rem;
+    display: block !important; /* Forcer .screenshots à être un bloc */
+}
+
+#articles .screenshots h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+    display: block !important;
+    width: 100% !important;
+    clear: both !important;
+}
+
+#articles .screenshots > p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 2rem;
+    clear: both !important;
+}
+
+.screenshot-item {
+    margin-bottom: 2rem;
+}
+
+.screenshot-item h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+.screenshot-item img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.screenshot-item p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+    .screenshots {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        justify-content: start; /* Aligner les éléments à gauche */
+    }
+
+    .screenshot-item {
+        margin-bottom: 0;
+    }
+}
