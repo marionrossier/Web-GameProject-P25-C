@@ -97,14 +97,20 @@ main .Diagrams {
 
 /*Mockup*/
 .screenshot-item img {
-    max-width: 100%;
+    max-width: 300px;
+    min-width: 250px;
     height: auto;
     border-radius: 5px;
+    gap : 2em;
+}
+
+.screenshot-item {
+    max-width: 300px;
 }
 
 .screenshots {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 0 2em;
 }
 
