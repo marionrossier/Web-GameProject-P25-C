@@ -161,5 +161,19 @@ footer img {
     margin: 1em 1em 1em 1em;
 }
 
+#gameCanvas {
+    margin-bottom: 20px;
+    width: 1000px;
+    height: 700px;
+    border: 2px solid #333;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: none;
+}
+
+
+
+
+
 
 
