@@ -84,14 +84,13 @@ main li {
 /*Wireframe*/
 main .imageLeft {
     max-width : 50%;
-    height : auto;
     float: left;
     margin-right: 30px;
 }
 
 /*Flux*/
 main .Diagrams {
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
