@@ -84,33 +84,32 @@ main li {
 /*Wireframe*/
 main .imageLeft {
     max-width : 50%;
-    height : auto;
     float: left;
     margin-right: 30px;
 }
 
 /*Flux*/
 main .Diagrams {
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
 /*Mockup*/
 .screenshot-item img {
-    max-width: 300px;
-    min-width: 250px;
-    height: auto;
+    width: 300px;
     border-radius: 5px;
     gap : 2em;
 }
 
 .screenshot-item {
     max-width: 300px;
+    height: auto;
 }
 
 .screenshots {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     gap: 0 2em;
 }
 
