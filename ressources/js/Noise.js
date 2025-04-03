@@ -32,7 +32,7 @@ window.addEventListener("load", () => {
     // 🌲 Chargement de l’image des arbres
     const treeImg = new Image();
     treeImg.crossOrigin = "anonymous";
-    treeImg.src = "ressources/images/game/mouse.png"; // à modifier si une vraie image d’arbre est utilisée
+    treeImg.src = "ressources/images/game/tree.png"; // à modifier si une vraie image d’arbre est utilisée
 
     // 🧱 Représentation du labyrinthe (0 = mur, 1 = chemin)
     let maze = [];
@@ -195,13 +195,13 @@ window.addEventListener("load", () => {
         clearCanvas();
         drawMaze();
         drawTrees();
-        drawCursor();
 
         if (checkCollisionByColor()) {
             ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
         }
 
+        drawCursor(); // dessiné en dernier !
         checkVictory();
     }
 
