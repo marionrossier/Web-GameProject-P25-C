@@ -1,17 +1,14 @@
 class Main {
-    constructor(maptable) {
+    constructor(maptable, texturePack) {
 
         // Crée une instance de DrawMap
         this.gameMap = new DrawMap(maptable);
+        this.gameMap.generateImage(texturePack);
     }
 
-    run() {
-        // Génère l'image sur le canvas
-        this.gameMap.generateImage(textPack1);
-    }
 }
 
-const textPack1 = ["white", "green", "red", "black", "yellow"];
+const texturePack1 = ["white", "green", "red", "black", "yellow"];
 
 const mapTable1 = [
     0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1,
@@ -34,5 +31,4 @@ const mapTable1 = [
 ];
 
 // Déclenche l'exécution
-const app = new Main(mapTable1);
-app.run();
+const app = new Main(mapTable1, texturePack1);
