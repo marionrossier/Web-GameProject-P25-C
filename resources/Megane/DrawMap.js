@@ -26,19 +26,25 @@ class DrawMap {
         this.generateImage();
         this.decorImg.onload = () => {
             this.draw()
-            console.log("charged " + this.decorImg);
+            console.log("image charged ");
         };
         this.decorImg.onerror = () => {
-            console.error("❌ Erreur lors du chargement de l’image !");
+            console.error("Erreur lors du chargement de l’image");
         };
     }
 
     generateImage() {
+
+        //génère la map en fonction d'un tableau brute donné
+        //on utilise une variable index comme les tableau en java script n'ont pas vraiment 2 dimension,
+        //Ils n'en ont qu'une seule et on se sert d'index pour définir "Une grandeur de ligne"
         for (let y = 0; y < this.mapHeight; y++) {
             for (let x = 0; x < this.mapWidth; x++) {
                 const index = y * this.mapWidth + x;
                 const value = this.mapTable[index];
                 this.ctx.fillStyle = value >= 0 && value <= 4 ? this.textPack[value] : "purple";
+
+                //dessine le rectangle
                 this.ctx.fillRect(
                     x * this.pixelSize,
                     y * this.pixelSize,
@@ -48,6 +54,8 @@ class DrawMap {
             }
         }
 
+
+        //methode sensé placer les obstacles, mais de sproblèmes de chargement de l'image l'en empêche
         for (let i = 0; i < attempts; i++) {
             const x = Math.random() * (this.canvas.width - decorSize);
             const y = Math.random() * (this.canvas.height - decorSize);
@@ -62,7 +70,7 @@ class DrawMap {
                     this.decorPosition.push({ x, y });
                 }
             } catch (e) {
-                // ignore
+                // Cela signifie que l'obstacle est mis hors de la map, on ignore
             }
         }
 
@@ -70,11 +78,13 @@ class DrawMap {
     }
 
     draw() {
+        //afin de pouvoir affiché les différents objets
         this.drawDecor();
         console.log("✅ Décor dessiné !");
     }
 
     drawDecor() {
+        //affiche le décor
         this.decorPosition.forEach(pos => {
             this.ctx.drawImage(this.decorImg, pos.x, pos.y, decorSize, decorSize);
         });
@@ -82,6 +92,7 @@ class DrawMap {
 }
 
 function getRGBFromColorName(colorName) {
+    //traduis le texte en valeur chromatique
     const colorMap = {
         "white": [255, 255, 255],
         "black": [0, 0, 0],
