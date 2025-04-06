@@ -7,8 +7,10 @@ class Main {
 
 }
 
+//exemple de pack de texture
 const testTexturePack = ["white", "green", "red", "black", "yellow"];
 
+//exemple de map brute
 const testMap = [
     0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1,
     1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 2, 3, 4, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0,
