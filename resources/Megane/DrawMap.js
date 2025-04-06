@@ -1,34 +1,44 @@
+const WidthTable = [25, 1000];
+const HeightTable = [17, 700];
+const pixelSizeTable = [40, 1];
+
+const decorSize = 40;
+const attempts = 120;
+
 class DrawMap {
-    constructor(mapTable) {
+    constructor(mapTable, textPack, Size) {
         this.canvas = document.getElementById("gameCanvas");
         this.ctx = this.canvas.getContext("2d");
 
-        // Dimensions du canvas basées sur la taille de la carte
-        this.mapWidth = 25;
-        this.mapHeight = 17;
-        this.pixelSize = 40;
-
-        // Définir les dimensions du canvas
+        this.mapWidth = WidthTable[Size];
+        this.mapHeight = HeightTable[Size];
+        this.pixelSize = pixelSizeTable[Size];
         this.canvas.width = this.mapWidth * this.pixelSize;
         this.canvas.height = this.mapHeight * this.pixelSize;
 
-        // Attribuer la table de la carte
         this.mapTable = mapTable;
+        this.textPack = textPack;
+        this.decorPosition = [];
+
+        this.decorImg = new Image();
+        //this.decorImg.crossOrigin = "anonymous";
+        this.decorImg.src = "ressources/images/game/tree.png";
+        this.generateImage();
+        this.decorImg.onload = () => {
+            this.draw()
+            console.log("charged " + this.decorImg);
+        };
+        this.decorImg.onerror = () => {
+            console.error("❌ Erreur lors du chargement de l’image !");
+        };
     }
 
-    generateImage(textPack) {
-        // Parcourir la table et dessiner sur le canvas
-
-
+    generateImage() {
         for (let y = 0; y < this.mapHeight; y++) {
             for (let x = 0; x < this.mapWidth; x++) {
                 const index = y * this.mapWidth + x;
-                const value = this.mapTable[index];  // 0 = blanc, 1 = noir
-
-                // Choisir la couleur en fonction de la valeur de la table
-                this.ctx.fillStyle = value >= 0 && value <= 4 ? textPack[value] : "purple";
-
-                // Dessiner le carré correspondant à chaque pixel
+                const value = this.mapTable[index];
+                this.ctx.fillStyle = value >= 0 && value <= 4 ? this.textPack[value] : "purple";
                 this.ctx.fillRect(
                     x * this.pixelSize,
                     y * this.pixelSize,
@@ -37,5 +47,48 @@ class DrawMap {
                 );
             }
         }
+
+        for (let i = 0; i < attempts; i++) {
+            const x = Math.random() * (this.canvas.width - decorSize);
+            const y = Math.random() * (this.canvas.height - decorSize);
+
+            try {
+                const pixel = this.ctx.getImageData(x + decorSize / 2, y + decorSize / 2, 1, 1).data;
+                const [r, g, b] = pixel;
+                const targetColor = getRGBFromColorName(this.textPack[0]);
+                const isOnPath = (r === targetColor[0] && g === targetColor[1] && b === targetColor[2]);
+
+                if (!isOnPath) {
+                    this.decorPosition.push({ x, y });
+                }
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        this.draw();
     }
+
+    draw() {
+        this.drawDecor();
+        console.log("✅ Décor dessiné !");
+    }
+
+    drawDecor() {
+        this.decorPosition.forEach(pos => {
+            this.ctx.drawImage(this.decorImg, pos.x, pos.y, decorSize, decorSize);
+        });
+    }
+}
+
+function getRGBFromColorName(colorName) {
+    const colorMap = {
+        "white": [255, 255, 255],
+        "black": [0, 0, 0],
+        "red": [255, 0, 0],
+        "green": [0, 255, 0],
+        "blue": [0, 0, 255],
+        "yellow": [255, 255, 0],
+    };
+    return colorMap[colorName] || [0, 0, 0];
 }
