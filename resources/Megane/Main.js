@@ -2,13 +2,18 @@ class Main {
     constructor(maptable, texturePack, Size) {
 
         // Crée une instance de DrawMap
+        this.maptable = maptable;
         this.gameMap = new DrawMap(maptable, texturePack, Size);
     }
 
+    getMap(){
+        return this.maptable;
+    }
 }
 
 //exemple de pack de texture
 const testTexturePack = ["white", "green", "red", "black", "yellow"];
+const testText2 = ["black", "red", "green", "white", "yellow"];
 
 //exemple de map brute
 const testMap = [
