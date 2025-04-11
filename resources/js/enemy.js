@@ -44,36 +44,36 @@ class Enemy {
         }
     }
 
-    backtracking(map, x, y, path, visited) {
-        // If we reached the end
-        if (x === this.endX && y === this.endY) {
-            path.push([x, y]);
-            return true;
-        }
-
-        // If the position is safe and not visited
-        if ((this.wayIsSafe(map, x, y) === true) && (!visited.has(`${x},${y}`) === true)) {
-            visited.add(`${x},${y}`);
-            path.push([x, y]);
-
-            const directions = [
-                [0, -1], // up
-                [1, 0],  // right
-                [0, 1],  // down
-                [-1, 0]  // left
-            ];
-
-            // Explore all possible directions
-            for (const [dx, dy] of directions) {
-                if (this.backtracking(map, x + dx, y + dy, path, visited)) {
-                    return true; // Found a path
-                }
-            }
-
-            path.pop(); // Backtrack if no further path found
-        }
-        return false; // No path found
-    }
+    // backtracking(map, x, y, path, visited) {
+    //     // If we reached the end
+    //     if (x === this.endX && y === this.endY) {
+    //         path.push([x, y]);
+    //         return true;
+    //     }
+    //
+    //     // If the position is safe and not visited
+    //     if ((this.wayIsSafe(map, x, y) === true) && (!visited.has(`${x},${y}`) === true)) {
+    //         visited.add(`${x},${y}`);
+    //         path.push([x, y]);
+    //
+    //         const directions = [
+    //             [0, -1], // up
+    //             [1, 0],  // right
+    //             [0, 1],  // down
+    //             [-1, 0]  // left
+    //         ];
+    //
+    //         // Explore all possible directions
+    //         for (const [dx, dy] of directions) {
+    //             if (this.backtracking(map, x + dx, y + dy, path, visited)) {
+    //                 return true; // Found a path
+    //             }
+    //         }
+    //
+    //         path.pop(); // Backtrack if no further path found
+    //     }
+    //     return false; // No path found
+    // }
 
     wayIsSafe(map, x, y) {
         const inArray =
