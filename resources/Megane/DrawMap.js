@@ -21,8 +21,8 @@ class DrawMap {
         this.decorPosition = [];
 
         this.decorImg = new Image();
-        this.decorImg.crossOrigin = "anonymous";
-        this.decorImg.src = "/resources/images/game/tree.png";
+        //this.decorImg.crossOrigin = "anonymous";
+        //this.decorImg.src = "/resources/images/game/tree.png";
 
         this.generateImage();
         this.decorImg.onload = () => {
