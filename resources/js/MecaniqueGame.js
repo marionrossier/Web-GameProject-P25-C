@@ -11,7 +11,7 @@ let mousePosition = { x: 0, y: 0 };
 // Hitbox modifiable
 let hitbox = { width: 1, height: 1 };
 
-// 🔍 Fonction pour mettre à jour la position de la souris
+// Fonction pour mettre à jour la position de la souris
 function getMousePosition(event) {
     const rect = canvas.getBoundingClientRect();
     mousePosition.x = event.clientX - rect.left;
@@ -45,7 +45,7 @@ function touch() {
     const value = gameMap[cellY]?.[cellX];
 
 
-    // A définir ce qu'on veut que le switch case renvoie
+    // A définir ce qu'on veut que le switch case renvoie, pour l'instant c'est des log visible sur dev. tool
     switch (value) {
         case 0:
             console.log("Chemin sûr");
@@ -95,7 +95,7 @@ function draw() {
         }
 
         ctx.fillStyle = "yellow";
-        ctx.fillRect(mousePosition.x - 5, mousePosition.y - 5, 10, 10);
+        ctx.fillRect(mousePosition.x - 1, mousePosition.y - 1, 1, 1);
     }
 
     // dessine la hitbox autour de la souris
