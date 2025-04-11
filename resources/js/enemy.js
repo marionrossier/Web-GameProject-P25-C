@@ -1,7 +1,7 @@
 
 class Enemy {
-    constructor(enemiesValue, wayValue, color, velocity, startX, startY, endX, endY, currentX, currentY) {
-        this.enemiesValue = enemiesValue;
+    constructor(enemyValue, wayValue, color, velocity, startX, startY, endX, endY, currentX, currentY) {
+        this.enemiesValue = enemyValue;
         this.currentValue = wayValue
         this.color = color;
         this.startX = startX;
@@ -15,13 +15,13 @@ class Enemy {
 
     appearWithDelayAndMove(preApparitionColor) {
         const preAppColor = preApparitionColor
-        const enemiesColor = this.color;
+        const enemyColor = this.color;
         this.currentX = this.startX;
         this.currentY = this.startY;
         this.color = preApparitionColor;
 
         setTimeout(() => {
-            this.color = enemiesColor;
+            this.color = enemyColor;
         }, 1000);
         this.currentValue = this.enemiesValue;
         this.enemiesMove()
