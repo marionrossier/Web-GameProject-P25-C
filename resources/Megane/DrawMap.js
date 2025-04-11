@@ -21,8 +21,9 @@ class DrawMap {
         this.decorPosition = [];
 
         this.decorImg = new Image();
-        //this.decorImg.crossOrigin = "anonymous";
-        this.decorImg.src = "ressources/images/game/tree.png";
+        this.decorImg.crossOrigin = "anonymous";
+        this.decorImg.src = "/resources/images/game/tree.png";
+
         this.generateImage();
         this.decorImg.onload = () => {
             this.draw()
@@ -36,7 +37,7 @@ class DrawMap {
     generateImage() {
 
         //génère la map en fonction d'un tableau brute donné
-        //on utilise une variable index comme les tableau en java script n'ont pas vraiment 2 dimension,
+        //on utilise une variable index comme le tableau a qu'une dimension,
         //Ils n'en ont qu'une seule et on se sert d'index pour définir "Une grandeur de ligne"
         for (let y = 0; y < this.mapHeight; y++) {
             for (let x = 0; x < this.mapWidth; x++) {
@@ -55,7 +56,7 @@ class DrawMap {
         }
 
 
-        //methode sensé placer les obstacles, mais de sproblèmes de chargement de l'image l'en empêche
+        //methode sensé placer les obstacles, mais des problèmes de chargement de l'image l'en empêche
         for (let i = 0; i < attempts; i++) {
             const x = Math.random() * (this.canvas.width - decorSize);
             const y = Math.random() * (this.canvas.height - decorSize);
