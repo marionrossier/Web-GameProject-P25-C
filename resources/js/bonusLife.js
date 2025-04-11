@@ -13,7 +13,6 @@ class BonusLife {
         this.lifeValue = this.wayValue;
         this.color = this.wayColor;
     }
-
 }
 
 const life = new BonusLife(2,0,"red","white",2,3);
