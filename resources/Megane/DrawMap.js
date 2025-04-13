@@ -1,8 +1,8 @@
 const WidthTable = [25, 1000];
 const HeightTable = [17, 700];
-const pixelSizeTable = [40, 1];
+const pixelSizeTable = [16, 1]; //Taille de la tuille en pixel
 
-const decorSize = 40;
+const decorSize = 16; //Taille d'une tuille utilisé partout
 const attempts = 120;
 
 class DrawMap {
@@ -32,6 +32,14 @@ class DrawMap {
         this.decorImg.onerror = () => {
             console.error("Erreur lors du chargement de l’image");
         };
+
+        this.enemy = new Enemy(3, 0, "black", 1, 21, 2, 13, 5, this);
+        this.enemy.draw(this.ctx);
+        this.enemy.enemiesMove();
+
+        this.bonusLife = new Life(2, 0, "red", "white", 19, 7, this);
+        this.bonusLife.draw(this.ctx);
+
     }
 
     generateImage() {
