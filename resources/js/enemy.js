@@ -1,6 +1,6 @@
 
 class Enemy {
-    constructor(enemyValue, wayValue, color, velocity, startX, startY, endX, endY, currentX, currentY) {
+    constructor(enemyValue, wayValue, color, velocity, startX, startY, endX, endY, map) {
         this.enemiesValue = enemyValue;
         this.currentValue = wayValue
         this.color = color;
@@ -8,23 +8,10 @@ class Enemy {
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
-        this.currentX = currentX;
-        this.currentY = currentY;
+        this.currentX = startX;
+        this.currentY = startY;
         this.velocity = velocity;
-    }
-
-    appearWithDelayAndMove(preApparitionColor) {
-        const preAppColor = preApparitionColor
-        const enemyColor = this.color;
-        this.currentX = this.startX;
-        this.currentY = this.startY;
-        this.color = preApparitionColor;
-
-        setTimeout(() => {
-            this.color = enemyColor;
-        }, 1000);
-        this.currentValue = this.enemiesValue;
-        this.enemiesMove()
+        this.map = map;
     }
 
     enemiesMove(map) {
@@ -37,53 +24,36 @@ class Enemy {
     findPath(map) {
         const path = [];
         const visited = new Set();
-        if (this.backtracking(map, this.currentX, this.currentY, path, visited) === true) {
+        if (this.pathDefinition(map, this.currentX, this.currentY, path, visited) === true) {
             return path;
         } else {
             return null;
         }
     }
 
-    // backtracking(map, x, y, path, visited) {
-    //     // If we reached the end
-    //     if (x === this.endX && y === this.endY) {
-    //         path.push([x, y]);
-    //         return true;
-    //     }
-    //
-    //     // If the position is safe and not visited
-    //     if ((this.wayIsSafe(map, x, y) === true) && (!visited.has(`${x},${y}`) === true)) {
-    //         visited.add(`${x},${y}`);
-    //         path.push([x, y]);
-    //
-    //         const directions = [
-    //             [0, -1], // up
-    //             [1, 0],  // right
-    //             [0, 1],  // down
-    //             [-1, 0]  // left
-    //         ];
-    //
-    //         // Explore all possible directions
-    //         for (const [dx, dy] of directions) {
-    //             if (this.backtracking(map, x + dx, y + dy, path, visited)) {
-    //                 return true; // Found a path
-    //             }
-    //         }
-    //
-    //         path.pop(); // Backtrack if no further path found
-    //     }
-    //     return false; // No path found
-    // }
+    pathDefinition(map, x, y, path, visited) {
+        // Clear the path array
+        path.length = 0;
 
-    wayIsSafe(map, x, y) {
-        const inArray =
-            x >= 0 && x < map[0].length &&
-            y >= 0 && y < map.length;
+        // Add the straight-line path from start to end
+        const dx = this.endX - this.startX;
+        const dy = this.endY - this.startY;
+        const steps = Math.max(Math.abs(dx), Math.abs(dy));
 
-        const isPathOrLife =
-            map[y][x] === 0 ||
-            map[y][x] === 2;
-        return inArray && isPathOrLife;
+        for (let i = 0; i <= steps; i++) {
+            const intermediateX = Math.round(this.startX + (dx * i) / steps);
+            const intermediateY = Math.round(this.startY + (dy * i) / steps);
+            path.push([intermediateX, intermediateY]);
+        }
+
+        // Add the reverse path for the return trip
+        for (let i = steps - 1; i >= 0; i--) {
+            const intermediateX = Math.round(this.startX + (dx * i) / steps);
+            const intermediateY = Math.round(this.startY + (dy * i) / steps);
+            path.push([intermediateX, intermediateY]);
+        }
+
+        return true; // Path is always valid
     }
 
     enemiesMoveAlongPath(path) {
@@ -113,13 +83,8 @@ class Enemy {
         };
         move();
     }
-
-    //enemiesDie
+    draw(ctx) {
+        new enemySkin().draw(ctx, this.currentX, this.currentY);
+        this.enemiesMove()
+    }
 }
-
-const enemy = new Enemy(3, 0, "yellow", 1,
-    0, 0,
-    10, 10,
-    5, 5);
-
-export { Enemy, enemy };
