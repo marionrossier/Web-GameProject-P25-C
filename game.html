@@ -48,13 +48,39 @@
             </header>
             <p>Move your mouse through the maze without touching the edges. The game starts below!</p>
 
-            <div><button id="replayButton">🔁 Rejouer</button>
-                <canvas id="gameCanvas"></canvas>
+            <div id="gameWrapper" style="position: relative;">
+                <canvas id="gameCanvas" width="1000" height="700"></canvas>
                 <div id="message" style="margin-top:10px;font-weight:bold;font-size:18px;"></div>
+
+                <!-- Écrans superposés -->
+                <div id="startScreen" class="game-screen">
+                    <div>
+                        <h2>Welcome to Mouse Rush</h2>
+                        <button id="startButton">Start Game</button>
+                        <button id="gameRules">Game Rules</button>
+                        <button id="gameStat">Result</button>
+                    </div>
+                </div>
+
+                <div id="endScreen" class="game-screen">
+                    <div>
+                        <h2>🎉 Level Complete!</h2>
+                        <button onclick="showScreen('startScreen')" id="backToMenuFromEnd">Back to Menu</button>
+                        <button onclick="showScreen('startGame')" id="goToNextLevel">Back to Menu</button>
+                    </div>
+                </div>
+
+                <div id="gameOverScreen" class="game-screen">
+                    <div>
+                        <h2>💀 Game Over</h2>
+                        <button onclick="showScreen('startScreen')" id="backToMenuFromGameOver">Back to Menu</button>
+                    </div>
+                </div>
             </div>
         </article>
     </section>
 </main>
+
 
 <footer>
     <img id="logo" src="resources/images/WebSite/logo.png" alt="Logo">
