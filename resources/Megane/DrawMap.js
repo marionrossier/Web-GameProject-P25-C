@@ -1,4 +1,6 @@
 const WidthTable = [25, 1000];
+
+//prout
 const HeightTable = [17, 700];
 const pixelSizeTable = [16, 1]; //Taille de la tuille en pixel
 
@@ -22,11 +24,11 @@ class DrawMap {
 
         this.decorImg = new Image();
         //this.decorImg.crossOrigin = "anonymous";
-        //this.decorImg.src = "/resources/images/game/tree.png";
+        this.decorImg.src = "/resources/images/game/tree.png";
 
-        this.generateImage();
         this.decorImg.onload = () => {
-            this.draw()
+            this.generateImage();
+            this.placeDecor();
             console.log("image charged ");
         };
         this.decorImg.onerror = () => {
@@ -62,8 +64,9 @@ class DrawMap {
                 );
             }
         }
+    }
 
-
+    placeDecor(){
         //methode sensé placer les obstacles, mais des problèmes de chargement de l'image l'en empêche
         for (let i = 0; i < attempts; i++) {
             const x = Math.random() * (this.canvas.width - decorSize);
@@ -82,14 +85,15 @@ class DrawMap {
                 // Cela signifie que l'obstacle est mis hors de la map, on ignore
             }
         }
-
-        this.draw();
     }
 
     draw() {
+        //redessine l'image
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.generateImage();
         //afin de pouvoir affiché les différents objets
         this.drawDecor();
-        console.log("✅ Décor dessiné !");
+        console.log("Décor dessiné !");
     }
 
     drawDecor() {
