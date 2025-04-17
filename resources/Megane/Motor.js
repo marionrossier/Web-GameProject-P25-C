@@ -6,16 +6,29 @@ class Motor {
         this.maptable = maptable;
         this.texturePack = texturePack;
         this.Size = Size;
-        //on crée une drawmap pour afficher la map
+
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        this.ctx = ctx;
+        this.canvas = canvas;
+
+        this.mouseController = new MouseController(
+            canvas,
+            maptable,
+            Size,
+            null, // ← pas de onWin pour l’instant
+            ctx
+        );
+
         this.gameMap = new DrawMap(maptable, texturePack, Size);
 
-        this.interval = 1000 / 24; // 24 FPS
+        this.interval = 1000 / 24;
         this.timerState = null;
         this.count = 0;
         this.gameState = 0;
 
         this.gameStart();
-
     }
 
     gameStart(){
@@ -49,10 +62,11 @@ class Motor {
         //a appeler ici toute les métode necessaire au fonctionnement du jeux
         //appel gestion collion
         //appel game Over si necessaire
-        this.testGameOver();
+
         this.gameMap.draw();
         //appel draw ennemies
-        //appel draw souris
+        this.mouseController.touch();
+        this.mouseController.drawMouse();
         this.count++;
     }
 
