@@ -1,8 +1,10 @@
 const WidthTable = [25, 1000];
-const HeightTable = [17, 700];
-const pixelSizeTable = [40, 1];
 
-const decorSize = 40;
+//prout
+const HeightTable = [17, 700];
+const pixelSizeTable = [16, 1]; //Taille de la tuille en pixel
+
+const decorSize = 16; //Taille d'une tuille utilisé partout
 const attempts = 120;
 
 class DrawMap {
@@ -22,16 +24,24 @@ class DrawMap {
 
         this.decorImg = new Image();
         //this.decorImg.crossOrigin = "anonymous";
-        //this.decorImg.src = "/resources/images/game/tree.png";
+        this.decorImg.src = "/resources/images/game/tree.png";
 
-        this.generateImage();
         this.decorImg.onload = () => {
-            this.draw()
+            this.generateImage();
+            this.placeDecor();
             console.log("image charged ");
         };
         this.decorImg.onerror = () => {
             console.error("Erreur lors du chargement de l’image");
         };
+
+        this.enemy = new Enemy(3, 0, "black", 1, 21, 2, 13, 5, this);
+        this.enemy.draw(this.ctx);
+        this.enemy.enemiesMove();
+
+        this.bonusLife = new Life(2, 0, "red", "white", 19, 7, this);
+        this.bonusLife.draw(this.ctx);
+
     }
 
     generateImage() {
@@ -54,8 +64,9 @@ class DrawMap {
                 );
             }
         }
+    }
 
-
+    placeDecor(){
         //methode sensé placer les obstacles, mais des problèmes de chargement de l'image l'en empêche
         for (let i = 0; i < attempts; i++) {
             const x = Math.random() * (this.canvas.width - decorSize);
@@ -74,14 +85,15 @@ class DrawMap {
                 // Cela signifie que l'obstacle est mis hors de la map, on ignore
             }
         }
-
-        this.draw();
     }
 
     draw() {
+        //redessine l'image
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.generateImage();
         //afin de pouvoir affiché les différents objets
         this.drawDecor();
-        console.log("✅ Décor dessiné !");
+        console.log("Décor dessiné !");
     }
 
     drawDecor() {

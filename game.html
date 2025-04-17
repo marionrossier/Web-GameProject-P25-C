@@ -16,7 +16,7 @@
         <!-- Hamburger -->
         <ul>
             <li class="hamburger">
-                <img src="resources/images/hamburger_icon.svg">
+                <img src="resources/images/WebSite/hamburger_icon.svg">
             </li>
             <li>
                 <a href="description.html">Description</a>
@@ -48,20 +48,64 @@
             </header>
             <p>Move your mouse through the maze without touching the edges. The game starts below!</p>
 
-            <div><button id="replayButton">🔁 Rejouer</button>
-                <canvas id="gameCanvas"></canvas>
+            <div id="gameWrapper" style="position: relative;">
+                <canvas id="gameCanvas" width="1000" height="700"></canvas>
                 <div id="message" style="margin-top:10px;font-weight:bold;font-size:18px;"></div>
+
+                <!-- Écrans superposés -->
+                <div id="startScreen" class="game-screen">
+                    <div>
+                        <h2>Welcome to Mouse Rush</h2>
+                        <button id="startButton">Start Game</button>
+                        <button id="gameRules">Game Rules</button>
+                        <button id="gameStat">Result</button>
+                    </div>
+                </div>
+
+                <div id="endScreen" class="game-screen">
+                    <div>
+                        <h2>🎉 Level Complete!</h2>
+                        <button onclick="showScreen('startScreen')" id="backToMenuFromEnd">Back to Menu</button>
+                        <button onclick="showScreen('startGame')" id="goToNextLevel">Back to Menu</button>
+                    </div>
+                </div>
+
+                <div id="gameOverScreen" class="game-screen">
+                    <div>
+                        <h2>💀 Game Over</h2>
+                        <button onclick="showScreen('startScreen')" id="backToMenuFromGameOver">Back to Menu</button>
+                    </div>
+                </div>
             </div>
         </article>
     </section>
 </main>
 
+
 <footer>
-    <img id="logo" src="resources/images/logo.png" alt="Logo">
+    <img id="logo" src="resources/images/WebSite/logo.png" alt="Logo">
 </footer>
+
+<script src="resources/js/worlds/world.js"></script>
+<script src="resources/js/worlds/autumn/autumnOutsideSkin.js"></script>
+<script src="resources/js/worlds/autumn/autumnTreeSkin.js"></script>
+<script src="resources/js/worlds/autumn/autumnWaySkin.js"></script>
+<script src="resources/js/worlds/summer/summerOutsideSkin.js"></script>
+<script src="resources/js/worlds/summer/summerTreeSkin.js"></script>
+<script src="resources/js/worlds/summer/summerWaySkin.js"></script>
+<script src="resources/js/worlds/winter/winterOutsideSkin.js"></script>
+<script src="resources/js/worlds/winter/winterTreeSkin.js"></script>
+<script src="resources/js/worlds/winter/winterWaySkin.js"></script>
+
+<script src="resources/js/enemy.js"></script>
+<script src="resources/js/skins/enemySkin.js"></script>
+<script src="resources/js/life.js"></script>
+<script src="resources/js/skins/lifeSkin.js"></script>
+<script src="resources/js/skins/cursorSkin.js"></script>
 
 <script src="resources/Megane/DrawMap.js"></script>
 <script src="resources/Megane/RandomMap.js"></script>
+<script src="resources/Megane/Motor.js"></script>
 <script src="resources/Megane/Main.js"></script>
 
 </body>
