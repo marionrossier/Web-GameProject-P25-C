@@ -1,15 +1,23 @@
-class Main {
-    constructor(maptable, texturePack, Size) {
 
-        // Crée une instance de DrawMap
-        this.maptable = maptable;
-        this.gameMap = new DrawMap(maptable, texturePack, Size);
-    }
 
-    getMap(){
-        return this.maptable;
+const map = new RandomMap();
+const generated = map.generateMaze();
+
+/*
+tableInLoglog(generated);
+
+function tableInLoglog(table) {
+    for (let i = 0; i < HEIGHT; i++) {
+        let row = "";
+        for (let j = 0; j < WIDTH; j++) {
+            row += table[i * WIDTH + j] + " ";
+        }
+        console.log(row);
     }
 }
+
+*/
+
 
 //exemple de pack de texture
 const testTexturePack = ["white", "green", "red", "black", "yellow"];
@@ -37,12 +45,7 @@ const testMap = [
 ];
 
 
-const map = new RandomMap();
-const generated = map.generateMaze();
-tableInLoglog(generated);
-
-
-
+const app = new Motor(testMap, testTexturePack, 0);
 
 // Déclenche l'exécution
 /*main doit etre donné :
@@ -51,14 +54,3 @@ tableInLoglog(generated);
     -et size    ( a mettre a 0 si le tableau est en 25 sur 17 avec 40 SizePixel
                 et a mettre a 1 si le tableau est en 1000 sur 700 avec 1 SizePixel) */
 
-const app = new Main(testMap, testTexturePack, 0);
-
-function tableInLoglog(table) {
-    for (let i = 0; i < HEIGHT; i++) {
-        let row = "";
-        for (let j = 0; j < WIDTH; j++) {
-            row += table[i * WIDTH + j] + " ";
-        }
-        console.log(row);
-    }
-}
