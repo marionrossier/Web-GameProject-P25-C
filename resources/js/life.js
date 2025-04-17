@@ -1,21 +1,18 @@
 
 class Life {
-    constructor(lifeValue, wayValue, color, wayColor, positionX, positionY, map) {
-        this.lifeValue = lifeValue;
-        this.color = color;
+    constructor(wayValue, positionX, positionY, map) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.wayValue = wayValue;
-        this.wayColor = wayColor;
         this.map = map;
+        this.lifeSkin = new lifeSkin();
     }
 
     endLife(){
-        this.lifeValue = this.wayValue;
-        this.color = this.wayColor;
+        this.map[this.positionY][this.positionX] = this.wayValue;
     }
 
-    draw(ctx) {
-        new lifeSkin().draw(ctx, this.positionX, this.positionY);
+    draw() {
+        this.lifeSkin.draw(this.positionX, this.positionY);
     }
 }

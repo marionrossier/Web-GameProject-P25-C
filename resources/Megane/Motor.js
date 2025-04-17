@@ -1,21 +1,42 @@
-//test en l'appelant dans ton main et dans ton la page html
-
-
 class Motor {
-    constructor(maptable, texturePack, Size) {
-        this.maptable = maptable;
+    constructor(cursorSkin, mapTable, texturePack, gameEntities, Size) {
+        this.mapTable = mapTable;
         this.texturePack = texturePack;
         this.Size = Size;
-        //on crée une drawmap pour afficher la map
-        this.gameMap = new DrawMap(maptable, texturePack, Size);
+        this.cursorSkin = cursorSkin;
 
-        this.interval = 1000 / 24; // 24 FPS
+        const canvas = document.getElementById("gameCanvas");
+        this.ctx = canvas.getContext("2d");
+
+        this.canvas = canvas;
+
+        this.cursor = new Cursor(
+            cursorSkin,
+            canvas,
+            mapTable,
+            Size,
+            null, // ← pas de onWin pour l’instant
+            this.ctx
+        );
+
+        this.gameEntities = gameEntities;
+        for (const entityType in this.gameEntities) {
+            for (const entity in this.gameEntities[entityType]) {
+                this.gameEntities[entityType][entity].draw();
+            }
+        }
+        for (const enemy in this.gameEntities.enemies) {
+            this.gameEntities.enemies[enemy].enemiesMove();
+        }
+
+        this.gameMap = new DrawMap(mapTable, texturePack, gameEntities, Size);
+
+        this.interval = 1000 / 24;
         this.timerState = null;
         this.count = 0;
         this.gameState = 0;
 
         this.gameStart();
-
     }
 
     gameStart(){
@@ -26,14 +47,14 @@ class Motor {
         this.gameState = 1;
     }
 
-    changeMap(maptable, texturePack, Size){
-        this.maptable = maptable;
+    changeMap(mapTable, texturePack, Size) {
+        this.mapTable = mapTable;
         this.texturePack = texturePack;
         this.Size = Size;
     }
 
     getMap() {
-        return this.maptable;
+        return this.mapTable;
         //redonne la map quand appelé
     }
 
@@ -49,10 +70,16 @@ class Motor {
         //a appeler ici toute les métode necessaire au fonctionnement du jeux
         //appel gestion collion
         //appel game Over si necessaire
-        this.testGameOver();
+
         this.gameMap.draw();
-        //appel draw ennemies
-        //appel draw souris
+        this.gameEntities = gameEntities;
+        for (const entityType in this.gameEntities) {
+            for (const entity in this.gameEntities[entityType]) {
+                this.gameEntities[entityType][entity].draw();
+            }
+        }
+        this.cursor.touch();
+        this.cursor.drawMouse();
         this.count++;
     }
 
@@ -83,7 +110,6 @@ class Motor {
     }
 
     buttonRestart() {
-
         const map = new RandomMap();
         const generated = map.generateMaze();
         this.changeMap(generated, this.texturePack, this.Size);

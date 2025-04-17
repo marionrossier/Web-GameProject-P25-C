@@ -1,4 +1,4 @@
-class waySkin {
+class winterWaySkin {
     constructor(skin) {
         this.image = new Image();
         this.image.src = "resources/images/game/Ground.png";

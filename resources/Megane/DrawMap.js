@@ -1,14 +1,13 @@
 const WidthTable = [25, 1000];
 
-//prout
 const HeightTable = [17, 700];
-const pixelSizeTable = [16, 1]; //Taille de la tuille en pixel
+const pixelSizeTable = [16, 1];
 
-const decorSize = 16; //Taille d'une tuille utilisé partout
+const decorSize = 16;
 const attempts = 120;
 
 class DrawMap {
-    constructor(mapTable, textPack, Size) {
+    constructor(mapTable, textPack, gameEntities, Size) {
         this.canvas = document.getElementById("gameCanvas");
         this.ctx = this.canvas.getContext("2d");
 
@@ -21,6 +20,7 @@ class DrawMap {
         this.mapTable = mapTable;
         this.textPack = textPack;
         this.decorPosition = [];
+        this.lives = gameEntities.lives;
 
         this.decorImg = new Image();
         //this.decorImg.crossOrigin = "anonymous";
@@ -34,14 +34,6 @@ class DrawMap {
         this.decorImg.onerror = () => {
             console.error("Erreur lors du chargement de l’image");
         };
-
-        this.enemy = new Enemy(3, 0, "black", 1, 21, 2, 13, 5, this);
-        this.enemy.draw(this.ctx);
-        this.enemy.enemiesMove();
-
-        this.bonusLife = new Life(2, 0, "red", "white", 19, 7, this);
-        this.bonusLife.draw(this.ctx);
-
     }
 
     generateImage() {
@@ -63,11 +55,17 @@ class DrawMap {
                     this.pixelSize
                 );
             }
+
+            for (const life in this.lives) {
+                this.lives[life].draw();
+
+                const index = this.lives[life].positionY * this.mapWidth + this.lives[life].positionX;
+                this.mapTable[index] = 2;
+            }
         }
     }
 
     placeDecor(){
-        //methode sensé placer les obstacles, mais des problèmes de chargement de l'image l'en empêche
         for (let i = 0; i < attempts; i++) {
             const x = Math.random() * (this.canvas.width - decorSize);
             const y = Math.random() * (this.canvas.height - decorSize);
