@@ -1,5 +1,7 @@
-class MouseController {
-    constructor(canvas, maptable, size, onWinCallback, ctx) {
+class Cursor {
+    constructor(skin, canvas, maptable, size, onWinCallback, ctx) {
+        this.skin = skin;
+        this.cursorSkin = new cursorSkin(this.skin);
         this.canvas = canvas;
         this.ctx = ctx;
         this.maptable = maptable;
@@ -26,7 +28,15 @@ class MouseController {
         const cellY = Math.floor(this.mousePosition.y / cellSize);
         const index = cellY * mapWidth + cellX;
 
-        const value = this.maptable[index];
+        let value = this.maptable[index];
+
+        for (const enemy in gameEntities.enemies) {
+            const enemyEntity = gameEntities.enemies[enemy];
+            if (enemyEntity.currentX === cellX && enemyEntity.currentY === cellY) {
+                value = 3;
+                break;
+            }
+        }
 
         if (value === undefined) {
             console.log("Souris hors des limites de la map");
@@ -43,22 +53,27 @@ class MouseController {
             case 2:
                 console.log("Vie !");
                 this.maptable[index] = 0;
+                //TODO: modifier pour qu'une fois touché, la vie disparaisse
                 break;
             case 3:
                 console.log("Ennemi !");
+                //TODO: modifier pour qu'une fois touché, le jeu s'arrête, on meurt ou recommence
                 break;
             case 4:
                 console.log("Arrivée !");
+                //TODO: modifier pour qu'une fois touché, on passe au niveau suivant, ou a l'affichage de fin avec scores
                 break;
         }
     }
 
     drawMouse() {
 
-        this.ctx.fillStyle = "red";
-        this.ctx.beginPath();
-        this.ctx.arc(this.mousePosition.x, this.mousePosition.y, 5, 0, Math.PI * 2);
-        this.ctx.fill();
+        // this.ctx.fillStyle = "red";
+        // this.ctx.beginPath();
+        //this.ctx.arc(this.mousePosition.x, this.mousePosition.y, 5, 0, Math.PI * 2);
+        //this.ctx.fill();
+
+        this.cursorSkin.draw(this.mousePosition.x,this.mousePosition.y)
 
         this.ctx.strokeStyle = "black";
         this.ctx.strokeRect(

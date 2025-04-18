@@ -1,12 +1,19 @@
 class enemySkin {
     constructor() {
+        const canvas = document.getElementById("gameCanvas");
+        this.ctx = canvas.getContext("2d");
         this.image = new Image();
         this.image.src = "resources/images/game/Characters.png";
+
+        this.imageLoaded = false;
+        this.image.onload = () => {
+            this.imageLoaded = true;
+        };
     }
 
-    draw(ctx, x, y) {
-        this.image.onload = () => {
-            ctx.drawImage(
+    draw(x, y) {
+        if (this.imageLoaded) {
+            this.ctx.drawImage(
                 this.image, // Image source
                 16 * 16, // Image source x 16
                 16 * 16, // Image source y 16
@@ -17,6 +24,6 @@ class enemySkin {
                 16, // Destination width
                 16 // Destination height
             );
-        };
+        }
     }
 }

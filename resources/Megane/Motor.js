@@ -1,27 +1,35 @@
-//test en l'appelant dans ton main et dans ton la page html
-
-
 class Motor {
-    constructor(maptable, texturePack, Size) {
-        this.maptable = maptable;
+    constructor(cursorSkin, mapTable, texturePack, gameEntities, Size) {
+        this.mapTable = mapTable;
         this.texturePack = texturePack;
         this.Size = Size;
+        this.cursorSkin = cursorSkin;
 
         const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
+        this.ctx = canvas.getContext("2d");
 
-        this.ctx = ctx;
         this.canvas = canvas;
 
-        this.mouseController = new MouseController(
+        this.cursor = new Cursor(
+            cursorSkin,
             canvas,
-            maptable,
+            mapTable,
             Size,
             null, // ← pas de onWin pour l’instant
-            ctx
+            this.ctx
         );
 
-        this.gameMap = new DrawMap(maptable, texturePack, Size);
+        this.gameEntities = gameEntities;
+        for (const entityType in this.gameEntities) {
+            for (const entity in this.gameEntities[entityType]) {
+                this.gameEntities[entityType][entity].draw();
+            }
+        }
+        for (const enemy in this.gameEntities.enemies) {
+            this.gameEntities.enemies[enemy].enemiesMove();
+        }
+
+        this.gameMap = new DrawMap(mapTable, texturePack, gameEntities, Size);
 
         this.interval = 1000 / 24;
         this.timerState = null;
@@ -39,14 +47,14 @@ class Motor {
         this.gameState = 1;
     }
 
-    changeMap(maptable, texturePack, Size){
-        this.maptable = maptable;
+    changeMap(mapTable, texturePack, Size) {
+        this.mapTable = mapTable;
         this.texturePack = texturePack;
         this.Size = Size;
     }
 
     getMap() {
-        return this.maptable;
+        return this.mapTable;
         //redonne la map quand appelé
     }
 
@@ -64,9 +72,14 @@ class Motor {
         //appel game Over si necessaire
 
         this.gameMap.draw();
-        //appel draw ennemies
-        this.mouseController.touch();
-        this.mouseController.drawMouse();
+        this.gameEntities = gameEntities;
+        for (const entityType in this.gameEntities) {
+            for (const entity in this.gameEntities[entityType]) {
+                this.gameEntities[entityType][entity].draw();
+            }
+        }
+        this.cursor.touch();
+        this.cursor.drawMouse();
         this.count++;
     }
 
@@ -97,7 +110,6 @@ class Motor {
     }
 
     buttonRestart() {
-
         const map = new RandomMap();
         const generated = map.generateMaze();
         this.changeMap(generated, this.texturePack, this.Size);
