@@ -4,6 +4,10 @@ class Motor {
         this.texturePack = texturePack;
         this.Size = Size;
         this.cursorSkin = cursorSkin;
+        this.lives = 2; // Nombre initial de vies
+        this.heartImage = new Image();
+        this.heartImage.src = "resources/images/game/Heart.png"; // Chemin vers votre sprite
+
 
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
@@ -36,14 +40,15 @@ class Motor {
         this.count = 0;
         this.gameState = 0;
 
+        this.timerDisplay = document.getElementById("timerDisplay"); //pour afficher le timer
+
         this.gameStart();
     }
 
     gameStart(){
         console.log("start")
         this.gameMap.draw();
-        this.startTimer()
-
+        this.startTimer();
         this.gameState = 1;
     }
 
@@ -66,6 +71,12 @@ class Motor {
     tick() {
         if (this.count % 24 === 0){
             console.log("timer tick");
+
+            // Affichage temps écoulé
+            if (this.timerDisplay) {
+                const secondsElapsed = this.count / 24;
+                this.timerDisplay.textContent = `${secondsElapsed} s`;
+            }
         }
         //a appeler ici toute les métode necessaire au fonctionnement du jeux
         //appel gestion collion
@@ -78,6 +89,7 @@ class Motor {
                 this.gameEntities[entityType][entity].draw();
             }
         }
+        this.drawLives();
         this.cursor.touch();
         this.cursor.drawMouse();
         this.count++;
@@ -113,6 +125,37 @@ class Motor {
         const map = new RandomMap();
         const generated = map.generateMaze();
         this.changeMap(generated, this.texturePack, this.Size);
+    }
+
+    drawLives() {
+        const heartSize = 10; // Taille des cœurs (en pixels)
+        const padding = 1; // Espacement entre les cœurs et le bord
+
+        for (let i = 0; i < this.lives; i++) {
+            this.ctx.drawImage(
+                this.heartImage,
+                padding + i * (heartSize + padding), // Position X
+                padding, // Position Y
+                heartSize, // Largeur
+                heartSize // Hauteur
+            );
+        }
+    }
+
+    loseLife() {
+        if (this.lives > 0) {
+            this.lives--; // Réduit le nombre de vies
+            console.log(`Vies restantes : ${this.lives}`);
+        }
+
+        if (this.lives === 0) {
+            this.gameOver(); // Arrête le jeu si plus de vies
+        }
+    }
+
+    gainLife() {
+        this.lives++; // Augmente le nombre de vies
+        console.log(`Vies restantes : ${this.lives}`);
     }
 }
 
