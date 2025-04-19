@@ -1,17 +1,16 @@
 
 class Enemy {
-    constructor(enemyValue, wayValue, color, velocity, startX, startY, endX, endY, map) {
-        this.enemiesValue = enemyValue;
-        this.currentValue = wayValue
-        this.color = color;
-        this.startX = startX;
-        this.startY = startY;
+    constructor(velocity, startX, startY, endX, endY, map) {
+        this.startX = this.currentX = startX;
+        this.startY = this.currentY = startY;
         this.endX = endX;
         this.endY = endY;
-        this.currentX = startX;
-        this.currentY = startY;
         this.velocity = velocity;
         this.map = map;
+        this.enemySkin = new enemySkin();
+
+        this.enemiesMove()
+
     }
 
     enemiesMove(map) {
@@ -53,38 +52,39 @@ class Enemy {
             path.push([intermediateX, intermediateY]);
         }
 
-        return true; // Path is always valid
+        return true;
     }
 
     enemiesMoveAlongPath(path) {
         let step = 0;
+        let progress = 0; // Progression entre deux points (0 à 1)
         let forward = true;
+
         const move = () => {
-            if (forward) {
-                if (step < path.length) {
-                    this.currentX = path[step][0];
-                    this.currentY = path[step][1];
-                    step++;
-                } else {
-                    step--;
-                    forward = false;
-                }
-            } else {
-                if (step >= 0) {
-                    this.currentX = path[step][0];
-                    this.currentY = path[step][1];
-                    step--;
-                } else {
-                    step++;
-                    forward = true;
+            if (path.length > 1) {
+                const [startX, startY] = path[step];
+                const [endX, endY] = path[step + (forward ? 1 : -1)];
+
+                this.currentX = startX + (endX - startX) * progress;
+                this.currentY = startY + (endY - startY) * progress;
+
+                progress += this.velocity / 100;
+
+                if (progress >= 1) {
+                    progress = 0;
+                    step += forward ? 1 : -1;
+
+                    if (step === path.length - 1 || step === 0) {
+                        forward = !forward;
+                    }
                 }
             }
-            setTimeout(move, 1000 / this.velocity);
+            setTimeout(move, 1000 / 60);
         };
         move();
     }
-    draw(ctx) {
-        new enemySkin().draw(ctx, this.currentX, this.currentY);
-        this.enemiesMove()
+
+    draw() {
+        this.enemySkin.draw(this.currentX, this.currentY);
     }
 }

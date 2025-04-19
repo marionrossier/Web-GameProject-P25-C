@@ -44,7 +44,6 @@ function touch() {
 
     const value = gameMap[cellY]?.[cellX];
 
-
     // A définir ce qu'on veut que le switch case renvoie, pour l'instant c'est des log visible sur dev. tool
     switch (value) {
         case 0:
