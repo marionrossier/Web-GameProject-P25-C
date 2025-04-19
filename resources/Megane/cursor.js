@@ -67,14 +67,9 @@ class Cursor {
     }
 
     drawMouse() {
-
-        // this.ctx.fillStyle = "red";
-        // this.ctx.beginPath();
-        //this.ctx.arc(this.mousePosition.x, this.mousePosition.y, 5, 0, Math.PI * 2);
-        //this.ctx.fill();
-
         this.cursorSkin.draw(this.mousePosition.x,this.mousePosition.y)
 
+        //TODO : a retirer une fois ok.
         this.ctx.strokeStyle = "black";
         this.ctx.strokeRect(
             this.mousePosition.x - this.hitbox.width / 2,
