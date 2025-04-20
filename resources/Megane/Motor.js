@@ -141,22 +141,6 @@ class Motor {
             );
         }
     }
-
-    loseLife() {
-        if (this.lives > 0) {
-            this.lives--; // Réduit le nombre de vies
-            console.log(`Vies restantes : ${this.lives}`);
-        }
-
-        if (this.lives === 0) {
-            this.gameOver(); // Arrête le jeu si plus de vies
-        }
-    }
-
-    gainLife() {
-        this.lives++; // Augmente le nombre de vies
-        console.log(`Vies restantes : ${this.lives}`);
-    }
 }
 
 

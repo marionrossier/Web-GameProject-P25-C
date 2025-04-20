@@ -49,18 +49,18 @@ class Cursor {
                 break;
             case 1:
                 console.log("Mur !");
-                motor.loseLife();
+                this.loseLife();
                 break;
             case 2:
                 console.log("Vie !");
-                motor.gainLife();
+                this.gainLife();
                 this.maptable[index] = 0;
                 //TODO: modifier pour qu'une fois touché, la vie disparaisse
                 break;
             case 3:
                 console.log("Ennemi !");
                 //TODO: modifier pour qu'une fois touché, le jeu s'arrête, on meurt ou recommence
-                motor.loseLife();
+                this.loseLife();
                 break;
             case 4:
                 console.log("Arrivée !");
@@ -85,5 +85,21 @@ class Cursor {
             this.hitbox.width,
             this.hitbox.height
         );
+    }
+
+    loseLife() {
+        if (this.lives > 0) {
+            this.lives--; // Réduit le nombre de vies
+            console.log(`Vies restantes : ${this.lives}`);
+        }
+
+        if (this.lives === 0) {
+            this.gameOver(); // Arrête le jeu si plus de vies
+        }
+    }
+
+    gainLife() {
+        this.lives++; // Augmente le nombre de vies
+        console.log(`Vies restantes : ${this.lives}`);
     }
 }
