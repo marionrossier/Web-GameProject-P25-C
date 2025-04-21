@@ -1,5 +1,3 @@
-
-
 const map = new RandomMap();
 const generated = map.generateMaze();
 
@@ -45,8 +43,8 @@ const testMap = [
 
 const gameEntities = {
     enemies: {
-        enemy1 : new Enemy(1, 21, 2, 13, 5, this),
-        enemy2 : new Enemy(2, 2, 15, 16, 2, this)
+        enemy1 : new Enemy(1, 21, 2, 21, 2, this, 0,  20, 20),
+        enemy2 : new Enemy(2, 2, 15, 16, 2, this, 0, 20, 20)
     },
     lives:{
         life1 : new Life(0, 19, 7, this)

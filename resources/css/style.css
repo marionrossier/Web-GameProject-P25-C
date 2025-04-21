@@ -176,6 +176,17 @@ footer img {
     cursor: none;
 }
 
+#timerDisplay {
+    position: relative;
+    top: 0px; /* Distance depuis le haut */
+    left: 50%; /* Centre horizontalement */
+    transform: translateX(-50%); /* Ajustement pour centrer */
+    z-index: 100; /* Assure qu'il est au-dessus des autres éléments */
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
 
 
 
