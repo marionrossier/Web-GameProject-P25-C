@@ -1,13 +1,15 @@
-
 class Enemy {
-    constructor(velocity, startX, startY, endX, endY, map) {
+    constructor(velocity, startX, startY, endX, endY, map, size, hitboxWidth, hitboxHeight ) {
         this.startX = this.currentX = startX;
         this.startY = this.currentY = startY;
         this.endX = endX;
         this.endY = endY;
         this.velocity = velocity;
         this.map = map;
+        this.size = size;
         this.enemySkin = new enemySkin();
+        this.hitboxWidth = hitboxWidth;
+        this.hitboxHeight = hitboxHeight;
 
         this.enemiesMove()
 
@@ -86,5 +88,18 @@ class Enemy {
 
     draw() {
         this.enemySkin.draw(this.currentX, this.currentY);
+    }
+
+    getHitbox() {
+        const cellSize = pixelSizeTable[this.size];
+        const posX = this.currentX * cellSize;
+        const posY = this.currentY * cellSize;
+
+        return {
+            x: posX - this.hitboxWidth / 2,
+            y: posY - this.hitboxHeight / 2,
+            width: this.hitboxWidth,
+            height: this.hitboxHeight
+        };
     }
 }

@@ -96,6 +96,7 @@ class Motor {
         this.cursor.touch();
         this.cursor.drawMouse();
 
+
         // Affichage du score en bas à gauche
         this.ctx.font = "10px Arial"; // Police et taille du texte
         this.ctx.fillStyle = "cyan"; // Couleur du texte
@@ -171,7 +172,3 @@ class Motor {
         }
     }
 }
-
-
-
-
