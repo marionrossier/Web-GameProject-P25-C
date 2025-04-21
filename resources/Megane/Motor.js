@@ -163,9 +163,7 @@ class Motor {
 
     handleLevelComplete() {
         console.log("Niveau terminé !");
-        const elapsedTime = this.scoreTimer / 24; // Temps écoulé pour le score
-        const levelScore = Math.max(1000 - Math.floor(elapsedTime * 10), 0); // Calcul du score pour le niveau
-        this.displayedScore += levelScore; // Ajoute le score calculé au score affiché
+        this.displayedScore += Math.max(1000 - Math.floor(this.scoreTimer / 24 * 10), 0); // Ajoute le score calculé au score affiché
         this.scoreTimer = 0; // Remise à zéro du timer pour le score
         this.gameState = "won"; // Change l'état du jeu
         if (this.scoreDisplay) {
