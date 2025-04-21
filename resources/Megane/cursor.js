@@ -30,9 +30,20 @@ class Cursor {
 
         let value = this.maptable[index];
 
-        for (const enemy in gameEntities.enemies) {
-            const enemyEntity = gameEntities.enemies[enemy];
-            if (enemyEntity.currentX === cellX && enemyEntity.currentY === cellY) {
+        for (const key in gameEntities.enemies) {
+            const enemy = gameEntities.enemies[key];
+            const enemyHitbox = enemy.getHitbox();
+
+            const cursorHitbox = {
+                x: this.mousePosition.x - this.hitbox.width / 2,
+                y: this.mousePosition.y - this.hitbox.height / 2,
+                width: this.hitbox.width,
+                height: this.hitbox.height
+            };
+
+            const overlap = this.rectsOverlap(cursorHitbox, enemyHitbox);
+
+            if (overlap) {
                 value = 3;
                 break;
             }
@@ -101,5 +112,14 @@ class Cursor {
     gainLife() {
         this.lives++; // Augmente le nombre de vies
         console.log(`Vies restantes : ${this.lives}`);
+    }
+
+    rectsOverlap(a, b) {
+        return (
+            a.x < b.x + b.width &&
+            a.x + a.width > b.x &&
+            a.y < b.y + b.height &&
+            a.y + a.height > b.y
+        );
     }
 }
