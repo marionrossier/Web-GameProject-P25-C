@@ -19,7 +19,7 @@ class DrawMap {
 
         this.mapTable = mapTable;
         this.textPack = textPack;
-        this.decorPosition = [];
+        this.decorListe = [];
         this.lives = gameEntities.lives;
 
         this.decorImg = new Image();
@@ -29,6 +29,7 @@ class DrawMap {
         this.decorImg.onload = () => {
             this.generateImage();
             this.placeDecor();
+            this.draw();
             console.log("image charged ");
         };
         this.decorImg.onerror = () => {
@@ -77,7 +78,9 @@ class DrawMap {
                 const isOnPath = (r === targetColor[0] && g === targetColor[1] && b === targetColor[2]);
 
                 if (!isOnPath) {
-                    this.decorPosition.push({ x, y });
+                    const temp = new Decor(x, y, this.decorImg, decorSize);
+                    console.log("Décor créé :", temp);
+                    this.decorListe.push(temp);
                 }
             } catch (e) {
                 // Cela signifie que l'obstacle est mis hors de la map, on ignore
@@ -96,8 +99,8 @@ class DrawMap {
 
     drawDecor() {
         //affiche le décor
-        this.decorPosition.forEach(pos => {
-            this.ctx.drawImage(this.decorImg, pos.x, pos.y, decorSize, decorSize);
+        this.decorListe.forEach(element => {
+            element.draw(this.ctx);
         });
     }
 }
