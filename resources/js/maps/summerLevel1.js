@@ -1,9 +1,6 @@
 const map = new RandomMap();
 const generated = map.generateMaze();
 
-//World skin !
-const worldSkin = 1;
-
 //exemple de map brute
 const summerLever1 = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //0
@@ -33,5 +30,8 @@ const gameEntities = {
         life1 : new Life(0, 22, 12, this)
     },
 };
+
+//World skin !
+const worldSkin = 1;
 
 const app = new Motor(2, summerLever1, worldSkin, gameEntities, 0);

@@ -22,17 +22,18 @@ class DrawMap {
         this.decorListe = [];
         this.lives = gameEntities.lives;
 
-        this.decorImg = new Image();
+        this.treeImg = new Image();
         //this.decorImg.crossOrigin = "anonymous";
-        this.decorImg.src = "/resources/images/game/tree.png";
 
-        this.decorImg.onload = () => {
+        this.treeImg.src = "/resources/images/game/tree.png";
+
+        this.treeImg.onload = () => {
             this.generateImage();
             this.placeDecor();
             this.draw();
             console.log("image charged ");
         };
-        this.decorImg.onerror = () => {
+        this.treeImg.onerror = () => {
             console.error("Erreur lors du chargement de l’image");
         };
     }
@@ -71,7 +72,7 @@ class DrawMap {
                 const isOnPath = (r === targetColor[0] && g === targetColor[1] && b === targetColor[2]);
 
                 if (!isOnPath) {
-                    const temp = new Decor(x, y, this.decorImg, decorSize);
+                    const temp = new Decor(x, y, this.treeImg, decorSize);
                     console.log("Décor créé :", temp);
                     this.decorListe.push(temp);
                 }
