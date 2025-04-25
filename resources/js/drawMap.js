@@ -56,13 +56,6 @@ class DrawMap {
                     this.pixelSize
                 );
             }
-
-            for (const life in this.lives) {
-                this.lives[life].draw();
-
-                const index = this.lives[life].positionY * this.mapWidth + this.lives[life].positionX;
-                this.mapTable[index] = 2;
-            }
         }
     }
 
