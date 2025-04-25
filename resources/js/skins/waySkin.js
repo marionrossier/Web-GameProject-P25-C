@@ -1,9 +1,9 @@
-class CursorSkin {
+class WaySkin {
     constructor(skinNbr) {
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
         this.image = new Image();
-        this.image.src = "resources/images/game/Characters.png";
+        this.image.src = "resources/images/game/Ground.png";
         this.selectSkin(skinNbr);
 
         this.imageLoaded = false;
@@ -12,7 +12,7 @@ class CursorSkin {
         };
     }
 
-    draw(x, y) {
+    drawCenter(ctx, x, y) {
         if (this.imageLoaded) {
             this.ctx.drawImage(
                 this.image, // Image source
@@ -20,38 +20,26 @@ class CursorSkin {
                 this.skinY * 16, // Image source y
                 16, // Image source width
                 16, // Image source height
-                x-8, // Destination x
-                y-8, // Destination y
+                x * 16, // Destination x
+                y * 16, // Destination y
                 16, // Destination width
                 16 // Destination height
             );
         }
     }
 
-    selectSkin (skinNbr){
+    selectSkin(skinNbr) {
         switch (skinNbr) {
-            case 1: //chauve bleu
-                this.skinX = 0;
-                this.skinY = 2;
+            case 1: //summer
+                this.skinX = 1;
+                this.skinY = 1;
                 break;
-            case 2: //lunette et smoking cravate rouge
-                this.skinX = 16;
-                this.skinY = 4;
+            case 2: //autumn
+                this.skinX = 1;
+                this.skinY = 1;
                 break;
-            case 3: //sportif rouge
-                this.skinX = 0;
-                this.skinY = 12;
-                break;
-            case 4: //père noel bleu
-                this.skinX = 16;
-                this.skinY = 8;
-                break;
-            case 5: // ninja vert
-                this.skinX = 0;
-                this.skinY = 26;
-                break;
-            case 6: // astronaute
-                this.skinX = 16;
+            case 3: //winter
+                this.skinX = 1;
                 this.skinY = 10;
                 break;
         }

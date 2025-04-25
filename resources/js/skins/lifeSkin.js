@@ -1,4 +1,4 @@
-class lifeSkin {
+class LifeSkin {
     constructor() {
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");

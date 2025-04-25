@@ -5,7 +5,7 @@ class Life {
         this.positionY = positionY;
         this.wayValue = wayValue;
         this.map = map;
-        this.lifeSkin = new lifeSkin();
+        this.lifeSkin = new LifeSkin();
     }
 
     endLife(){

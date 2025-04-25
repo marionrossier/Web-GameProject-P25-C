@@ -34,8 +34,10 @@ const gameEntities = {
 
     },
 };
+world = 3;
 
-//World skin !
-const worldSkin = 3;
+outsideSkin = new OutsideSkin(world);
+waySkin = new WaySkin(world);
+treeSkin = new TreeSkin(world);
 
-const app = new Motor(2, winterLevel1, worldSkin, gameEntities, 0);
+const app = new Motor(2, winterLevel1, outsideSkin, waySkin, treeSkin, gameEntities, 0);

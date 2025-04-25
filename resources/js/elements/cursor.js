@@ -1,7 +1,7 @@
 class Cursor {
     constructor(skin, canvas, maptable, size, onWinCallback, ctx) {
         this.skin = skin;
-        this.cursorSkin = new cursorSkin(this.skin);
+        this.cursorSkin = new CursorSkin(this.skin);
         this.canvas = canvas;
         this.ctx = ctx;
         this.maptable = maptable;
