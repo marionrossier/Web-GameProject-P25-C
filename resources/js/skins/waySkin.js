@@ -1,20 +1,18 @@
 class WaySkin {
     constructor(skinNbr) {
-        const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
         this.image = new Image();
         this.image.src = "resources/images/game/Ground.png";
-        this.selectSkin(skinNbr);
-
         this.imageLoaded = false;
+
         this.image.onload = () => {
             this.imageLoaded = true;
         };
+        this.selectSkin(skinNbr);
     }
 
     drawCenter(ctx, x, y) {
         if (this.imageLoaded) {
-            this.ctx.drawImage(
+            ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
                 this.skinY * 16, // Image source y

@@ -1,20 +1,18 @@
 class OutsideSkin {
     constructor(skinNbr) {
-        const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
         this.image = new Image();
         this.image.src = "resources/images/game/Ground.png";
-        this.selectSkin(skinNbr);
-
         this.imageLoaded = false;
+
         this.image.onload = () => {
             this.imageLoaded = true;
         };
+        this.selectSkin(skinNbr);
     }
 
-    draw(x, y) {
+    draw(ctx, x, y) {
         if (this.imageLoaded) {
-            this.ctx.drawImage(
+            ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
                 this.skinY * 16, // Image source y
@@ -30,15 +28,15 @@ class OutsideSkin {
 
     selectSkin(skinNbr) {
         switch (skinNbr) {
-            case 1: //summer
+            case 1: // summer
                 this.skinX = 5;
-                this.skinY = 1;
+                this.skinY = 0;
                 break;
-            case 2: //autumn
+            case 2: // autumn
                 this.skinX = 5;
-                this.skinY = 6;
+                this.skinY = 5;
                 break;
-            case 3: //winter
+            case 3: // winter
                 this.skinX = 5;
                 this.skinY = 10;
                 break;

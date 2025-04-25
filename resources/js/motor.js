@@ -1,7 +1,9 @@
 class Motor {
-    constructor(cursorSkin, mapTable, texturePack, gameEntities, Size) {
+    constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
         this.mapTable = mapTable;
-        this.texturePack = texturePack;
+        this.outsideSkin = outsideSkin;
+        this.waySkin = waySkin;
+        this.treeSkin = treeSkin;
         this.size = Size;
         this.cursorSkin = cursorSkin;
         this.lives = 2; // Nombre initial de vies
@@ -33,7 +35,7 @@ class Motor {
             this.gameEntities.enemies[enemy].enemiesMove();
         }
 
-        this.gameMap = new DrawMap(mapTable, texturePack, gameEntities, Size);
+        this.gameMap = new DrawMap(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size);
 
         this.interval = 1000 / 24;
         this.timerState = null;
@@ -54,9 +56,11 @@ class Motor {
         this.gameState = 1;
     }
 
-    changeMap(mapTable, texturePack, Size) {
+    changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
         this.mapTable = mapTable;
-        this.texturePack = texturePack;
+        this.outsideSkin = outsideSkin;
+        this.waySkin = waySkin;
+        this.treeSkin = treeSkin;
         this.size = Size;
     }
 
@@ -92,6 +96,7 @@ class Motor {
                 this.gameEntities[entityType][entity].draw();
             }
         }
+
         this.drawLives();
         this.cursor.touch();
         this.cursor.drawMouse();
@@ -135,7 +140,7 @@ class Motor {
     buttonRestart() {
         const map = new RandomMap();
         const generated = map.generateMaze();
-        this.changeMap(generated, this.texturePack, this.size);
+        this.changeMap(generated, this.outsideSkin, this.waySkin, this.treeSkin, this.size);
     }
 
     drawLives() {

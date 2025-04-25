@@ -13,9 +13,14 @@ class Cursor {
 
         this.canvas.addEventListener("mousemove", (e) => {
             const rect = this.canvas.getBoundingClientRect();
-            this.mousePosition.x = e.clientX - rect.left;
-            this.mousePosition.y = e.clientY - rect.top;
+
+            const scaleX = this.canvas.width / rect.width;
+            const scaleY = this.canvas.height / rect.height;
+
+            this.mousePosition.x = (e.clientX - rect.left) * scaleX;
+            this.mousePosition.y = (e.clientY - rect.top) * scaleY;
         });
+
     }
 
 
@@ -81,9 +86,8 @@ class Cursor {
     }
 
     drawMouse() {
-        this.cursorSkin.draw(this.mousePosition.x,this.mousePosition.y)
+        this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
 
-        //TODO : a retirer une fois ok.
         this.ctx.strokeStyle = "black";
         this.ctx.strokeRect(
             this.mousePosition.x - this.hitbox.width / 2,
