@@ -43,8 +43,8 @@ const mapTable = [
 
 const gameEntities = {
     enemies: {
-        enemy1 : new Enemy(1, 21, 2, 21, 2, this, 0,  20, 20),
-        enemy2 : new Enemy(2, 2, 15, 16, 2, this, 0, 20, 20)
+        enemy1 : new Enemy(1, 21, 2, 21, 2, this, 0),
+        enemy2 : new Enemy(2, 2, 15, 16, 2, this, 0)
     },
     lives:{
         life1 : new Life(0, 19, 7, this)

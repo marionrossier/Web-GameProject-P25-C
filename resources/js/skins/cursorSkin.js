@@ -2,6 +2,7 @@ class CursorSkin {
     constructor(skinNbr) {
         this.image = new Image();
         this.image.src = "resources/images/game/Characters.png";
+        this.spriteSize = 16;
         this.selectSkin(skinNbr);
 
         this.imageLoaded = false;

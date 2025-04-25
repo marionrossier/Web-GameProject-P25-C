@@ -25,8 +25,8 @@ const winterLevel1 = [
 
 const gameEntities = {
     enemies: {
-        enemy1 : new Enemy(1, 7, 2, 21, 14, this, 0,  20, 20),
-        enemy2 : new Enemy(2, 2, 7, 21, 10, this, 0,  20, 20)
+        enemy1 : new Enemy(1, 7, 2, 21, 14, this, 0),
+        enemy2 : new Enemy(2, 2, 7, 21, 10, this, 0)
     },
     lives:{
         life1 : new Life(0, 11, 5, this),

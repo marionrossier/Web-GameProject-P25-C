@@ -24,7 +24,7 @@ const summerLever1 = [
 
 const gameEntities = {
     enemies: {
-        enemy1 : new Enemy(1, 2, 2, 21, 14, this, 0,  20, 20),
+        enemy1 : new Enemy(1, 2, 2, 21, 14, this, 0),
     },
     lives:{
         life1 : new Life(0, 22, 12, this)

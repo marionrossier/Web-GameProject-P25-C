@@ -25,8 +25,8 @@ const autumnLevel1 = [
 
 const gameEntities = {
     enemies: {
-        enemy1 : new Enemy(1, 8, 15, 19, 2, this, 0,  20, 20),
-        enemy2 : new Enemy(1, 23, 15, 10, 2, this, 0,  20, 20)
+        enemy1 : new Enemy(1, 8, 15, 19, 2, this, 0),
+        enemy2 : new Enemy(1, 23, 15, 10, 2, this, 0)
     },
     lives:{
         life1 : new Life(0, 13 , 4, this)

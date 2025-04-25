@@ -14,7 +14,10 @@ class Cursor {
             x: 0 * cellSize + cellSize / 2,
             y: 14 * cellSize + cellSize / 2
         };
-        this.hitbox = { width: 10, height: 10 };
+        this.hitbox = {
+            width: this.cursorSkin.spriteSize,
+            height: this.cursorSkin.spriteSize
+        };
 
         this.canvas.addEventListener("mousemove", (e) => {
             const rect = this.canvas.getBoundingClientRect();
@@ -32,32 +35,49 @@ class Cursor {
     touch() {
         const cellSize = pixelSizeTable[this.size];
         const mapWidth = WidthTable[this.size];
-        const mapHeight = HeightTable[this.size];
 
         const cellX = Math.floor(this.mousePosition.x / cellSize);
         const cellY = Math.floor(this.mousePosition.y / cellSize);
         const index = cellY * mapWidth + cellX;
 
-        let value = this.maptable[index];
+        const cursorHitbox = {
+            x: this.mousePosition.x - this.hitbox.width / 2,
+            y: this.mousePosition.y - this.hitbox.height / 2,
+            width: this.hitbox.width,
+            height: this.hitbox.height
+        };
 
+        // Enemy collision detection
         for (const key in gameEntities.enemies) {
             const enemy = gameEntities.enemies[key];
             const enemyHitbox = enemy.getHitbox();
 
-            const cursorHitbox = {
-                x: this.mousePosition.x - this.hitbox.width / 2,
-                y: this.mousePosition.y - this.hitbox.height / 2,
-                width: this.hitbox.width,
-                height: this.hitbox.height
-            };
-
-            const overlap = this.rectsOverlap(cursorHitbox, enemyHitbox);
-
-            if (overlap) {
-                value = 3;
-                break;
+            if (this.rectsOverlap(cursorHitbox, enemyHitbox)) {
+                console.log("Collision avec ennemi !");
+                this.loseLife();
+                return;
             }
         }
+
+        // Life collision detection
+        for (const key in gameEntities.lives) {
+            const life = gameEntities.lives[key];
+            const lifeHitbox = {
+                x: life.positionX * cellSize,
+                y: life.positionY * cellSize,
+                width: life.hitboxWidth,
+                height: life.hitboxHeight
+            };
+
+            if (this.rectsOverlap(cursorHitbox, lifeHitbox)) {
+                console.log("Récupération de vie !");
+                delete gameEntities.lives[key];
+                this.gainLife();
+                return; // Pareil, on sort après avoir ramassé la vie
+            }
+        }
+
+        let value = this.maptable[index];
 
         if (value === undefined) {
             console.log("Souris hors des limites de la map");
@@ -70,17 +90,6 @@ class Cursor {
                 break;
             case 1:
                 console.log("Mur !");
-                this.loseLife();
-                break;
-            case 2:
-                console.log("Vie !");
-                this.gainLife();
-                this.maptable[index] = 0;
-                //TODO: modifier pour qu'une fois touché, la vie disparaisse
-                break;
-            case 3:
-                console.log("Ennemi !");
-                //TODO: modifier pour qu'une fois touché, le jeu s'arrête, on meurt ou recommence
                 this.loseLife();
                 break;
             case 4:
@@ -114,7 +123,7 @@ class Cursor {
     }
 
     gainLife() {
-        this.lives++; // Augmente le nombre de vies
+        this.motor.lives++; // Augmente le nombre de vies
         console.log(`Vies restantes : ${this.motor.lives}`);
     }
 

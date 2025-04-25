@@ -1,5 +1,5 @@
 class Enemy {
-    constructor(velocity, startX, startY, endX, endY, map, size, hitboxWidth, hitboxHeight ) {
+    constructor(velocity, startX, startY, endX, endY, map, size) {
         this.startX = this.currentX = startX;
         this.startY = this.currentY = startY;
         this.endX = endX;
@@ -8,8 +8,8 @@ class Enemy {
         this.map = map;
         this.size = size;
         this.enemySkin = new EnemySkin();
-        this.hitboxWidth = hitboxWidth;
-        this.hitboxHeight = hitboxHeight;
+        this.hitboxWidth = 25;
+        this.hitboxHeight = 25;
 
         this.enemiesMove()
 
