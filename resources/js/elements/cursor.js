@@ -1,5 +1,5 @@
 class Cursor {
-    constructor(skin, canvas, maptable, size, onWinCallback, ctx) {
+    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
         this.canvas = canvas;
@@ -7,8 +7,13 @@ class Cursor {
         this.maptable = maptable;
         this.size = size;
         this.onWin = onWinCallback;
+        this.motor = motor;
 
-        this.mousePosition = { x: 0, y: 0 };
+        const cellSize = pixelSizeTable[this.size];
+        this.mousePosition = {
+            x: 0 * cellSize + cellSize / 2,
+            y: 14 * cellSize + cellSize / 2
+        };
         this.hitbox = { width: 10, height: 10 };
 
         this.canvas.addEventListener("mousemove", (e) => {
@@ -98,19 +103,19 @@ class Cursor {
     }
 
     loseLife() {
-        if (this.lives > 0) {
-            this.lives--; // Réduit le nombre de vies
-            console.log(`Vies restantes : ${this.lives}`);
+        if (this.motor.lives > 0) {
+            this.motor.lives--; // Réduit le nombre de vies
+            console.log(`Vies restantes : ${this.motor.lives}`);
         }
 
-        if (this.lives === 0) {
-            this.gameOver(); // Arrête le jeu si plus de vies
+        if (this.motor.lives === 0) {
+            this.motor.gameOver(); // Arrête le jeu si plus de vies
         }
     }
 
     gainLife() {
         this.lives++; // Augmente le nombre de vies
-        console.log(`Vies restantes : ${this.lives}`);
+        console.log(`Vies restantes : ${this.motor.lives}`);
     }
 
     rectsOverlap(a, b) {

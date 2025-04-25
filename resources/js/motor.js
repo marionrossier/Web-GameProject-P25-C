@@ -22,7 +22,8 @@ class Motor {
             this.mapTable,
             this.size,
             null, // ← pas de onWin pour l’instant
-            this.ctx
+            this.ctx,
+            this
         );
 
         this.gameEntities = gameEntities;
