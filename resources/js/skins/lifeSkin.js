@@ -1,4 +1,4 @@
-class lifeSkin {
+class LifeSkin {
     constructor() {
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
@@ -19,10 +19,10 @@ class lifeSkin {
                 0, // Image source y
                 16, // Image source width
                 16, // Image source height
-                x * 16, // Destination x
-                y * 16, // Destination y
-                16, // Destination width
-                16 // Destination height
+                x * 16+2, // Destination x
+                y * 16+2, // Destination y
+                12, // Destination width
+                12 // Destination height
             );
         }
     }
