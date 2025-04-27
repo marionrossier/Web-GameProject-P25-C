@@ -18,10 +18,10 @@ function tableInLoglog(table) {
 
 
 //exemple de pack de texture
-const testTexturePack = ["white", "green", "red", "black", "yellow"];
+const testworldSkin = ["white", "green", "red", "black", "yellow"];
 
 //exemple de map brute
-const testMap = [
+const mapTable = [
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 4,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1,
@@ -43,15 +43,21 @@ const testMap = [
 
 const gameEntities = {
     enemies: {
-        enemy1 : new Enemy(1, 21, 2, 21, 2, this, 0,  20, 20),
-        enemy2 : new Enemy(2, 2, 15, 16, 2, this, 0, 20, 20)
+        enemy1 : new Enemy(1, 21, 2, 21, 2, this, 0),
+        enemy2 : new Enemy(2, 2, 15, 16, 2, this, 0)
     },
     lives:{
         life1 : new Life(0, 19, 7, this)
     },
 };
 
-const app = new Motor(2, testMap, testTexturePack, gameEntities, 0);
+world = 1;
+
+outsideSkin = new OutsideSkin(world);
+waySkin = new WaySkin(world);
+treeSkin = new TreeSkin(world);
+
+const app = new Motor(2, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, 0);
 
 // Déclenche l'exécution
 /*main doit etre donné :

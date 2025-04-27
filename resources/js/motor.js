@@ -1,8 +1,10 @@
 class Motor {
-    constructor(cursorSkin, mapTable, texturePack, gameEntities, Size) {
+    constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
         this.mapTable = mapTable;
-        this.texturePack = texturePack;
-        this.Size = Size;
+        this.outsideSkin = outsideSkin;
+        this.waySkin = waySkin;
+        this.treeSkin = treeSkin;
+        this.size = Size;
         this.cursorSkin = cursorSkin;
         this.lives = 2; // Nombre initial de vies
         this.heartImage = new Image();
@@ -14,12 +16,13 @@ class Motor {
         this.canvas = canvas;
 
         this.cursor = new Cursor(
-            cursorSkin,
+            this.cursorSkin,
             canvas,
-            mapTable,
-            Size,
+            this.mapTable,
+            this.size,
             null, // ← pas de onWin pour l’instant
-            this.ctx
+            this.ctx,
+            this
         );
 
         this.gameEntities = gameEntities;
@@ -32,7 +35,7 @@ class Motor {
             this.gameEntities.enemies[enemy].enemiesMove();
         }
 
-        this.gameMap = new DrawMap(mapTable, texturePack, gameEntities, Size);
+        this.gameMap = new DrawMap(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size);
 
         this.interval = 1000 / 24;
         this.timerState = null;
@@ -53,10 +56,12 @@ class Motor {
         this.gameState = 1;
     }
 
-    changeMap(mapTable, texturePack, Size) {
+    changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
         this.mapTable = mapTable;
-        this.texturePack = texturePack;
-        this.Size = Size;
+        this.outsideSkin = outsideSkin;
+        this.waySkin = waySkin;
+        this.treeSkin = treeSkin;
+        this.size = Size;
     }
 
     getMap() {
@@ -88,6 +93,7 @@ class Motor {
                 this.gameEntities[entityType][entity].draw();
             }
         }
+
         this.drawLives();
         this.cursor.touch();
         this.cursor.drawMouse();
@@ -131,7 +137,7 @@ class Motor {
     buttonRestart() {
         const map = new RandomMap();
         const generated = map.generateMaze();
-        this.changeMap(generated, this.texturePack, this.Size);
+        this.changeMap(generated, this.outsideSkin, this.waySkin, this.treeSkin, this.size);
     }
 
     drawLives() {
