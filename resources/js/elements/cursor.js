@@ -8,6 +8,9 @@ class Cursor {
         this.size = size;
         this.onWin = onWinCallback;
         this.motor = motor;
+        this.invulnerableUntil = 0;
+        this.isVisible = true;
+
 
         const cellSize = pixelSizeTable[this.size];
         this.mousePosition = {
@@ -94,31 +97,55 @@ class Cursor {
                 break;
             case 4:
                 console.log("Arrivée !");
+                this.motor.score.handleLevelComplete();
                 //TODO: modifier pour qu'une fois touché, on passe au niveau suivant, ou a l'affichage de fin avec scores
                 break;
         }
     }
 
     drawMouse() {
-        this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
+        const now = Date.now();
 
-        this.ctx.strokeStyle = "black";
-        this.ctx.strokeRect(
-            this.mousePosition.x - this.hitbox.width / 2,
-            this.mousePosition.y - this.hitbox.height / 2,
-            this.hitbox.width,
-            this.hitbox.height
-        );
+        // Pendant l'invulnérabilité, on fait clignoter
+        if (now < this.invulnerableUntil) {
+            // Toutes les 100 ms, on inverse la visibilité
+            if (Math.floor(now / 100) % 2 === 0) {
+                this.isVisible = true;
+            } else {
+                this.isVisible = false;
+            }
+        } else {
+            this.isVisible = true; // Hors invulnérabilité, toujours visible
+        }
+
+        if  (this.isVisible) {
+            this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
+
+            this.ctx.strokeStyle = "black";
+            this.ctx.strokeRect(
+                this.mousePosition.x - this.hitbox.width / 2,
+                this.mousePosition.y - this.hitbox.height / 2,
+                this.hitbox.width,
+                this.hitbox.height
+            );
+        }
     }
 
+
     loseLife() {
+        const now = Date.now();
+        if (now < this.invulnerableUntil) {
+            // Encore invulnérable, donc on ignore
+            return;
+        }
         if (this.motor.lives > 0) {
-            this.motor.lives--; // Réduit le nombre de vies
+            this.motor.lives--;
             console.log(`Vies restantes : ${this.motor.lives}`);
+            this.invulnerableUntil = now + 2000; // 2 secondes d'invulnérabilité
         }
 
         if (this.motor.lives === 0) {
-            this.motor.gameOver(); // Arrête le jeu si plus de vies
+            this.motor.gameOver();
         }
     }
 
