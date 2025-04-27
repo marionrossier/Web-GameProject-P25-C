@@ -10,7 +10,6 @@ class Motor {
         this.heartImage = new Image();
         this.heartImage.src = "resources/images/game/Heart.png"; // Chemin vers votre sprite
 
-
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
 
@@ -51,7 +50,7 @@ class Motor {
     }
 
     gameStart(){
-        console.log("start")
+        console.log("start");
         this.gameMap.draw();
         this.startTimer();
         this.gameState = 1;
@@ -86,12 +85,9 @@ class Motor {
             }
             this.calculateScore(); // Mise à jour du score
         }
-        //a appeler ici toute les métode necessaire au fonctionnement du jeux
-        //appel gestion collion
-        //appel game Over si necessaire
 
         this.gameMap.draw();
-        this.gameEntities = gameEntities;
+        // Correction : Utiliser this.gameEntities au lieu de gameEntities
         for (const entityType in this.gameEntities) {
             for (const entity in this.gameEntities[entityType]) {
                 this.gameEntities[entityType][entity].draw();
@@ -101,7 +97,6 @@ class Motor {
         this.drawLives();
         this.cursor.touch();
         this.cursor.drawMouse();
-
 
         // Affichage du score en bas à gauche
         this.ctx.font = "10px Arial"; // Police et taille du texte
@@ -115,7 +110,7 @@ class Motor {
     startTimer() {
         if (this.timerState === null) {
             console.log("début de partie");
-            this.count =0;
+            this.count = 0;
             this.timerState = setInterval(() => this.tick(), this.interval);
         }
     }
@@ -130,9 +125,10 @@ class Motor {
 
     testGameOver(){
         if (this.count >= 240) {
-            this.gameOver()
+            this.gameOver();
         }
     }
+
     gameOver(){
         this.stopTimer();
         this.gameState = 0;
@@ -160,7 +156,7 @@ class Motor {
     }
 
     calculateScore() {
-        const elapsedTime = this.scoreTimer / 24; // Temps écoulé pour le score
+        const elapsedTime = this.count / 24; // Correction : Utiliser this.count au lieu de this.scoreTimer
         const levelScore = Math.max(1000 - Math.floor(elapsedTime * 10), 0); // Calcul du score pour le niveau
         this.calculatedScore = levelScore; // Met à jour le score calculé
         if (this.scoreDisplay) {
@@ -170,8 +166,8 @@ class Motor {
 
     handleLevelComplete() {
         console.log("Niveau terminé !");
-        this.displayedScore += Math.max(1000 - Math.floor(this.scoreTimer / 24 * 10), 0); // Ajoute le score calculé au score affiché
-        this.scoreTimer = 0; // Remise à zéro du timer pour le score
+        this.displayedScore += Math.max(1000 - Math.floor(this.count / 24 * 10), 0); // Correction : Utiliser this.count
+        this.count = 0; // Remise à zéro du timer pour le score
         this.gameState = "won"; // Change l'état du jeu
         if (this.scoreDisplay) {
             this.scoreDisplay.textContent = `Score: ${this.displayedScore}`;
