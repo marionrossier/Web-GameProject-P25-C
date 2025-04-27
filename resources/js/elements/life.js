@@ -5,11 +5,9 @@ class Life {
         this.positionY = positionY;
         this.wayValue = wayValue;
         this.map = map;
-        this.lifeSkin = new lifeSkin();
-    }
-
-    endLife(){
-        this.map[this.positionY][this.positionX] = this.wayValue;
+        this.lifeSkin = new LifeSkin();
+        this.hitboxWidth = 25;
+        this.hitboxHeight = 25;
     }
 
     draw() {

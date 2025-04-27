@@ -1,4 +1,4 @@
-class enemySkin {
+class EnemySkin {
     constructor() {
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
