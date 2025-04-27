@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    // Stocker la taille initiale du canvas (taille du menu)
+    const initialCanvasWidth = canvas.width;
+    const initialCanvasHeight = canvas.height;
+    console.log(`Initial canvas size: ${initialCanvasWidth}x${initialCanvasHeight}`);
+
     const logoImage = new Image();
     logoImage.src = "resources/images/WebSite/logo.png";
 
@@ -165,6 +170,18 @@ document.addEventListener("DOMContentLoaded", () => {
             render();
             return;
         }
+        if (typeof DrawMap === "undefined") {
+            console.error("DrawMap class is not defined. Ensure DrawMap.js is loaded.");
+            currentScreen = "menu";
+            render();
+            return;
+        }
+        if (typeof Decor === "undefined") {
+            console.error("Decor class is not defined. Ensure Decor.js is loaded.");
+            currentScreen = "menu";
+            render();
+            return;
+        }
 
         try {
             console.log("Initializing game entities...");
@@ -215,7 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
             currentScreen = "play";
             app.gameStart();
             console.log("Game started successfully");
-            // Pas besoin d'appeler render() ici, car Motor gère son propre rendu via setInterval
         } catch (error) {
             console.error("Error starting game:", error);
             currentScreen = "menu";
@@ -227,26 +243,32 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Rendering screen:", currentScreen);
         if (currentScreen === "menu") {
             if (app) {
-                app.stopTimer(); // Arrêter le timer de Motor si on revient au menu
+                app.stopTimer();
+            }
+            // Restaurer la taille initiale du canvas lorsqu'on revient au menu
+            if (canvas.width !== initialCanvasWidth || canvas.height !== initialCanvasHeight) {
+                canvas.width = initialCanvasWidth;
+                canvas.height = initialCanvasHeight;
+                // Recalculer la position du bouton "Back" après le redimensionnement
+                backButton.x = canvas.width - 20 - 40;
+                console.log(`Canvas size restored to ${initialCanvasWidth}x${initialCanvasHeight}`);
             }
             drawMainMenu();
         } else if (currentScreen === "play") {
-            // Motor gère son propre rendu via setInterval, donc on n'a rien à faire ici
-            // On dessine juste le bouton "Back"
             drawButton(backButton);
         } else if (currentScreen === "rules") {
             if (app) {
-                app.stopTimer(); // Arrêter le timer de Motor
+                app.stopTimer();
             }
             drawScreen("Game Rules not loaded");
         } else if (currentScreen === "stats") {
             if (app) {
-                app.stopTimer(); // Arrêter le timer de Motor
+                app.stopTimer();
             }
             drawScreen("Results: Score 0, Time 0s");
         } else if (currentScreen === "gameOver") {
             if (app) {
-                app.stopTimer(); // Arrêter le timer de Motor
+                app.stopTimer();
             }
             drawScreen();
         }
