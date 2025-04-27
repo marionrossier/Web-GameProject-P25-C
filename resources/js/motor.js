@@ -44,7 +44,6 @@ class Motor {
 
         this.timerDisplay = document.getElementById("timerDisplay");
         this.score = new Score();
-        this.gameStart();
     }
 
     gameStart(){
