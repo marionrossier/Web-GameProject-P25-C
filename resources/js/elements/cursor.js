@@ -106,7 +106,7 @@ class Cursor {
             case 4:
                 console.log("Arrivée !");
                 this.motor.score.handleLevelComplete();
-                //TODO: modifier pour qu'une fois touché, on passe au niveau suivant, ou a l'affichage de fin avec scores
+                this.onWin();
                 break;
         }
     }

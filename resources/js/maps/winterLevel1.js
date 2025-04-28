@@ -1,8 +1,4 @@
-const map = new RandomMap();
-const generated = map.generateMaze();
-
-//exemple de map brute
-const winterLevel1 = [
+const winterLevel1Map = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //0
     1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 4, //1
     1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, //2
@@ -23,7 +19,7 @@ const winterLevel1 = [
 ];//0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 = X
 
 
-const gameEntities = {
+const winterLevel1Entities = {
     enemies: {
         enemy1 : new Enemy(1, 7, 2, 21, 14, this, 0),
         enemy2 : new Enemy(2, 2, 7, 21, 10, this, 0)
@@ -34,10 +30,4 @@ const gameEntities = {
 
     },
 };
-world = 3;
-
-outsideSkin = new OutsideSkin(world);
-waySkin = new WaySkin(world);
-treeSkin = new TreeSkin(world);
-
-const app = new Motor(2, winterLevel1, outsideSkin, waySkin, treeSkin, gameEntities, 0);
+const winterLevel1World = 3;
