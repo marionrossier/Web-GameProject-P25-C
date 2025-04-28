@@ -9,6 +9,7 @@ class Motor {
         this.lives = 2; // Nombre initial de vies
         this.heartImage = new Image();
         this.heartImage.src = "resources/images/game/Heart.png";
+        this.gameEntities = gameEntities;
 
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
@@ -22,7 +23,8 @@ class Motor {
             this.size,
             null, // TODO : ← pas de onWin pour l’instant
             this.ctx,
-            this
+            this,
+            this.gameEntities
         );
 
         this.gameEntities = gameEntities;

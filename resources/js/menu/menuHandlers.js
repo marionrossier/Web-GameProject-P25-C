@@ -6,7 +6,9 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
     if ((currentScreen === "play" || currentScreen === "rules" || currentScreen === "stats") &&
         x >= backButton.x && x <= backButton.x + backButton.width &&
         y >= backButton.y && y <= backButton.y + backButton.height) {
-        if (currentScreen === "play" && app) app.stopTimer();
+        if (currentScreen === "play" && app) {
+            app.stopTimer();
+        }
         currentScreen = "menu";
         renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
         return;
@@ -18,9 +20,10 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                 y >= button.y && y <= button.y + button.height) {
                 currentScreen = button.id;
                 if (button.id === "play") {
-                    startGame(canvas, ctx);
+                    startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                } else {
+                    renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
-                renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
             }
         });
     } else if (currentScreen === "gameOver") {
@@ -28,11 +31,11 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
             if (x >= button.x && x <= button.x + button.width &&
                 y >= button.y && y <= button.y + button.height) {
                 if (button.id === "continue") {
-                    startGame(canvas, ctx);
+                    startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
                 } else if (button.id === "menu") {
                     currentScreen = "menu";
+                    renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
-                renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
             }
         });
     }

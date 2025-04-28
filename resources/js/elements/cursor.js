@@ -1,5 +1,5 @@
 class Cursor {
-    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor) {
+    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
         this.canvas = canvas;
@@ -10,6 +10,9 @@ class Cursor {
         this.motor = motor;
         this.invulnerableUntil = 0;
         this.isVisible = true;
+        this.gameEntities = gameEntities;
+        this.isActive = false; // Bloque la souris au début du jeu.
+
 
 
         const cellSize = pixelSizeTable[this.size];
@@ -23,8 +26,9 @@ class Cursor {
         };
 
         this.canvas.addEventListener("mousemove", (e) => {
-            const rect = this.canvas.getBoundingClientRect();
+            if (!this.isActive) return;
 
+            const rect = this.canvas.getBoundingClientRect();
             const scaleX = this.canvas.width / rect.width;
             const scaleY = this.canvas.height / rect.height;
 
@@ -32,6 +36,10 @@ class Cursor {
             this.mousePosition.y = (e.clientY - rect.top) * scaleY;
         });
 
+        // Dès qu'on clique une fois sur le canvas, active le suivi souris
+        this.canvas.addEventListener("click", () => {
+            this.isActive = true;
+        });
     }
 
 
@@ -51,8 +59,8 @@ class Cursor {
         };
 
         // Enemy collision detection
-        for (const key in gameEntities.enemies) {
-            const enemy = gameEntities.enemies[key];
+        for (const key in this.gameEntities.enemies) {
+            const enemy = this.gameEntities.enemies[key];
             const enemyHitbox = enemy.getHitbox();
 
             if (this.rectsOverlap(cursorHitbox, enemyHitbox)) {
@@ -63,8 +71,8 @@ class Cursor {
         }
 
         // Life collision detection
-        for (const key in gameEntities.lives) {
-            const life = gameEntities.lives[key];
+        for (const key in this.gameEntities.lives) {
+            const life = this.gameEntities.lives[key];
             const lifeHitbox = {
                 x: life.positionX * cellSize,
                 y: life.positionY * cellSize,
@@ -74,9 +82,9 @@ class Cursor {
 
             if (this.rectsOverlap(cursorHitbox, lifeHitbox)) {
                 console.log("Récupération de vie !");
-                delete gameEntities.lives[key];
+                delete this.gameEntities.lives[key];
                 this.gainLife();
-                return; // Pareil, on sort après avoir ramassé la vie
+                return;
             }
         }
 
