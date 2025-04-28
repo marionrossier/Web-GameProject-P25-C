@@ -106,7 +106,6 @@ class Cursor {
             case 4:
                 console.log("Arrivée !");
                 this.motor.score.handleLevelComplete();
-                this.onWin();
                 break;
         }
     }

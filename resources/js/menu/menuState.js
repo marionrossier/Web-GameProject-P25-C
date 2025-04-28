@@ -2,7 +2,6 @@ currentScreen = "menu";
 currentLevel = 1;
 app = null;
 
-
 function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app) {
     console.log("Rendering screen:", currentScreen);
 
