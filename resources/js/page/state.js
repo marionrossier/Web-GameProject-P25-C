@@ -24,8 +24,7 @@ const startButton = document.getElementById("startButton");
 startButton.addEventListener("click", () => {
     gameState = "playing";
     showScreen(null);
-    startGame();
-    //canvas, ctx, heartImage, backButtonImage, instructionsImage, gameEntities
+    startGame(canvas, ctx, heartImage(), backButtonImage(), instructionsImage());
 });
 
 // 🎯 Quand le joueur gagne

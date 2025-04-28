@@ -7,8 +7,6 @@ class Motor {
         this.size = Size;
         this.cursorSkin = cursorSkin;
         this.lives = 2; // Nombre initial de vies
-        this.heartImage = new Image();
-        this.heartImage.src = "resources/images/game/Heart.png";
         this.gameEntities = gameEntities;
 
         const canvas = document.getElementById("gameCanvas");
@@ -76,12 +74,11 @@ class Motor {
         if (this.timer % 24 === 0){
             console.log("timer tick");
 
-            // Affichage temps écoulé
             if (this.timerDisplay) {
                 const secondsElapsed = this.timer / 24;
                 this.timerDisplay.textContent = `${secondsElapsed} s`;
             }
-            this.score.calculateScore(this.timer/24); // Mise à jour du score
+            this.score.calculateScore(this.timer/24);
         }
 
         this.gameMap.draw();
@@ -143,7 +140,7 @@ class Motor {
 
         for (let i = 0; i < this.lives; i++) {
             this.ctx.drawImage(
-                this.heartImage,
+                heartImage,
                 padding + i * (heartSize + padding), // Position X
                 padding, // Position Y
                 heartSize, // Largeur

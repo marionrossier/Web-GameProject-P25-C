@@ -1,4 +1,4 @@
-const initialCanvasWidth = 1000; // Peut aussi récupérer automatiquement depuis canvas si besoin
+const initialCanvasWidth = 1000;
 const initialCanvasHeight = 700;
 
 const menuButtons = [
@@ -20,3 +20,21 @@ const gameOverButtons = [
     { id: "continue", text: "Continue", x: 400, y: 400, width: 200, height: 60 },
     { id: "menu", text: "Menu", x: 400, y: 480, width: 200, height: 60 }
 ];
+
+function heartImage (){
+    const heartImage = new Image();
+    heartImage.src = "resources/images/game/Heart.png";
+    return heartImage;
+}
+
+function backButtonImage (){
+    const backButtonImage = new Image();
+    backButtonImage.src = "resources/images/Menu/rollback-picto.png";
+    return backButtonImage;
+}
+
+function instructionsImage (){
+    const instructionsImage = new Image();
+    instructionsImage.src = "resources/images/WebSite/mockup/Instructions.png";
+    return instructionsImage;
+}

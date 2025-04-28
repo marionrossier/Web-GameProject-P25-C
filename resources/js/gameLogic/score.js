@@ -1,11 +1,11 @@
 class Score {
     constructor() {
-        this.currentScore = 1000; // Score utilisé pour les calculs
+        this.currentScore = 1000;
         this.totalScore =0;
     }
 
-    calculateScore(elapsedTime) { //TODO : POUR CHATGPT : je conserve le nom de cette méthode ainsi.
-        this.currentScore = Math.max(1000 - Math.floor(elapsedTime * 10), 0); // Met à jour le score calculé
+    calculateScore(elapsedTime) {
+        this.currentScore = Math.max(1000 - Math.floor(elapsedTime * 10), 0);
     }
 
     handleLevelComplete() {

@@ -33,10 +33,8 @@ class Enemy {
     }
 
     pathDefinition(map, x, y, path, visited) {
-        // Clear the path array
         path.length = 0;
 
-        // Add the straight-line path from start to end
         const dx = this.endX - this.startX;
         const dy = this.endY - this.startY;
         const steps = Math.max(Math.abs(dx), Math.abs(dy));

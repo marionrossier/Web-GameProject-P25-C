@@ -18,7 +18,7 @@ function getLevelData(level) {
                 gameEntities: winterLevel1Entities,
                 world: winterLevel1World
             };
-            //TODO : Créer les maps restantes !
+            //TODO : Créer les maps restantes ! Bien garder les noms comme ci-dessous!
         // case 4:
         //     return {
         //         map: summerLevel2Map,
