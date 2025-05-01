@@ -16,7 +16,7 @@
         <!-- Hamburger -->
         <ul>
             <li class="hamburger">
-                <img src="resources/images/WebSite/hamburger_icon.svg">
+                <img src="resources/images/WebSite/hamburger_icon.svg" alt="Menu">
             </li>
             <li>
                 <a href="description.html">Description</a>
@@ -47,42 +47,12 @@
                 <p>By Eric, the 01.04.2025</p>
             </header>
             <p>Move your mouse through the maze without touching the edges. The game starts below!</p>
-
             <div id="gameWrapper" style="position: relative;">
-                <div id="timerDisplay">0 s</div>
                 <canvas id="gameCanvas" width="1000" height="700"></canvas>
-                <div id="message" style="margin-top:10px;font-weight:bold;font-size:18px;"></div>
-
-                <!-- Écrans superposés -->
-                <div id="startScreen" class="game-screen">
-                    <div>
-                        <h2>Welcome to Mouse Rush</h2>
-                        <button id="startButton">Start Game</button>
-                        <button id="gameRules">Game Rules</button>
-                        <button id="gameStat">Result</button>
-                    </div>
-                </div>
-
-                <div id="endScreen" class="game-screen">
-                    <div>
-                        <h2>🎉 Level Complete!</h2>
-                        <button onclick="showScreen('startScreen')" id="backToMenuFromEnd">Back to Menu</button>
-                        <button onclick="showScreen('startGame')" id="goToNextLevel">Back to Menu</button>
-                    </div>
-                </div>
-
-                <div id="gameOverScreen" class="game-screen">
-                    <div>
-                        <h2>💀 Game Over</h2>
-                        <button onclick="showScreen('startScreen')" id="backToMenuFromGameOver">Back to Menu</button>
-                    </div>
-                </div>
             </div>
         </article>
     </section>
 </main>
-
-
 <footer>
     <img id="logo" src="resources/images/WebSite/logo.png" alt="Logo">
 </footer>
@@ -104,9 +74,20 @@
 <script src="resources/js/drawMap.js"></script>
 <script src="resources/js/maps/randomMap.js"></script>
 
+
+<script src="resources/js/gameLogic/score.js"></script>
 <script src="resources/js/motor.js"></script>
+
 <script src="resources/js/script.js"></script>
 <script src="resources/js/maps/summerLevel1.js"></script>
 
+<script src="resources/js/menu/menuConstants.js"></script>
+<script src="resources/js/menu/menuDraw.js"></script>
+<script src="resources/js/menu/menuState.js"></script>
+<script src="resources/js/menu/menuStartGame.js"></script>
+<script src="resources/js/menu/menuHandlers.js"></script>
+<script src="resources/js/maps/gameMapManager.js"></script>
+<script src="resources/js/menu/cursorDisplayManager.js"></script>
+<script src="resources/js/menu/menu.js"></script>
 </body>
 </html>

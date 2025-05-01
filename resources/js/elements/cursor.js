@@ -1,5 +1,5 @@
 class Cursor {
-    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor) {
+    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
         this.canvas = canvas;
@@ -8,6 +8,12 @@ class Cursor {
         this.size = size;
         this.onWin = onWinCallback;
         this.motor = motor;
+        this.invulnerableUntil = 0;
+        this.isVisible = true;
+        this.gameEntities = gameEntities;
+        this.isActive = false; // Bloque la souris au début du jeu.
+
+
 
         const cellSize = pixelSizeTable[this.size];
         this.mousePosition = {
@@ -20,8 +26,9 @@ class Cursor {
         };
 
         this.canvas.addEventListener("mousemove", (e) => {
-            const rect = this.canvas.getBoundingClientRect();
+            if (!this.isActive) return;
 
+            const rect = this.canvas.getBoundingClientRect();
             const scaleX = this.canvas.width / rect.width;
             const scaleY = this.canvas.height / rect.height;
 
@@ -29,6 +36,10 @@ class Cursor {
             this.mousePosition.y = (e.clientY - rect.top) * scaleY;
         });
 
+        // Dès qu'on clique une fois sur le canvas, active le suivi souris
+        this.canvas.addEventListener("click", () => {
+            this.isActive = true;
+        });
     }
 
 
@@ -48,8 +59,8 @@ class Cursor {
         };
 
         // Enemy collision detection
-        for (const key in gameEntities.enemies) {
-            const enemy = gameEntities.enemies[key];
+        for (const key in this.gameEntities.enemies) {
+            const enemy = this.gameEntities.enemies[key];
             const enemyHitbox = enemy.getHitbox();
 
             if (this.rectsOverlap(cursorHitbox, enemyHitbox)) {
@@ -60,8 +71,8 @@ class Cursor {
         }
 
         // Life collision detection
-        for (const key in gameEntities.lives) {
-            const life = gameEntities.lives[key];
+        for (const key in this.gameEntities.lives) {
+            const life = this.gameEntities.lives[key];
             const lifeHitbox = {
                 x: life.positionX * cellSize,
                 y: life.positionY * cellSize,
@@ -71,9 +82,9 @@ class Cursor {
 
             if (this.rectsOverlap(cursorHitbox, lifeHitbox)) {
                 console.log("Récupération de vie !");
-                delete gameEntities.lives[key];
+                delete this.gameEntities.lives[key];
                 this.gainLife();
-                return; // Pareil, on sort après avoir ramassé la vie
+                return;
             }
         }
 
@@ -94,31 +105,54 @@ class Cursor {
                 break;
             case 4:
                 console.log("Arrivée !");
-                //TODO: modifier pour qu'une fois touché, on passe au niveau suivant, ou a l'affichage de fin avec scores
+                this.motor.score.handleLevelComplete();
                 break;
         }
     }
 
     drawMouse() {
-        this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
+        const now = Date.now();
 
-        this.ctx.strokeStyle = "black";
-        this.ctx.strokeRect(
-            this.mousePosition.x - this.hitbox.width / 2,
-            this.mousePosition.y - this.hitbox.height / 2,
-            this.hitbox.width,
-            this.hitbox.height
-        );
+        // Pendant l'invulnérabilité, on fait clignoter
+        if (now < this.invulnerableUntil) {
+            // Toutes les 100 ms, on inverse la visibilité
+            if (Math.floor(now / 100) % 2 === 0) {
+                this.isVisible = true;
+            } else {
+                this.isVisible = false;
+            }
+        } else {
+            this.isVisible = true; // Hors invulnérabilité, toujours visible
+        }
+
+        if  (this.isVisible) {
+            this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
+
+            this.ctx.strokeStyle = "black";
+            this.ctx.strokeRect(
+                this.mousePosition.x - this.hitbox.width / 2,
+                this.mousePosition.y - this.hitbox.height / 2,
+                this.hitbox.width,
+                this.hitbox.height
+            );
+        }
     }
 
+
     loseLife() {
+        const now = Date.now();
+        if (now < this.invulnerableUntil) {
+            // Encore invulnérable, donc on ignore
+            return;
+        }
         if (this.motor.lives > 0) {
-            this.motor.lives--; // Réduit le nombre de vies
+            this.motor.lives--;
             console.log(`Vies restantes : ${this.motor.lives}`);
+            this.invulnerableUntil = now + 2000; // 2 secondes d'invulnérabilité
         }
 
         if (this.motor.lives === 0) {
-            this.motor.gameOver(); // Arrête le jeu si plus de vies
+            this.motor.gameOver();
         }
     }
 

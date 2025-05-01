@@ -23,8 +23,8 @@ showScreen(startScreen);
 const startButton = document.getElementById("startButton");
 startButton.addEventListener("click", () => {
     gameState = "playing";
-    showScreen(null); // on cache tous les écrans
-    startGame(); // à toi de définir cette fonction pour initialiser le moteur
+    showScreen(null);
+    startGame(canvas, ctx, heartImage(), backButtonImage(), instructionsImage());
 });
 
 // 🎯 Quand le joueur gagne

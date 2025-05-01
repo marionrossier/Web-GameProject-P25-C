@@ -57,7 +57,7 @@ outsideSkin = new OutsideSkin(world);
 waySkin = new WaySkin(world);
 treeSkin = new TreeSkin(world);
 
-const app = new Motor(2, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, 0);
+let app = new Motor(2, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, 0);
 
 // Déclenche l'exécution
 /*main doit etre donné :

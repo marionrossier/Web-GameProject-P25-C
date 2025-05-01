@@ -1,8 +1,4 @@
-const map = new RandomMap();
-const generated = map.generateMaze();
-
-//exemple de map brute
-const summerLever1 = [
+const summerLevel1Map  = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //0
     1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 4, //1
     1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, //2
@@ -22,7 +18,7 @@ const summerLever1 = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1  //16 = Y
 ];//0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 = X
 
-const gameEntities = {
+const summerLevel1Entities  = {
     enemies: {
         enemy1 : new Enemy(1, 2, 2, 21, 14, this, 0),
     },
@@ -31,10 +27,4 @@ const gameEntities = {
     },
 };
 
-world = 1;
-
-outsideSkin = new OutsideSkin(world);
-waySkin = new WaySkin(world);
-treeSkin = new TreeSkin(world);
-
-const app = new Motor(2, summerLever1, outsideSkin, waySkin, treeSkin, gameEntities, 0);
+const summerLevel1World = 1;
