@@ -18,43 +18,42 @@ function getLevelData(level) {
                 gameEntities: winterLevel1Entities,
                 world: winterLevel1World
             };
-            //TODO : Créer les maps restantes ! Bien garder les noms comme ci-dessous!
-        // case 4:
-        //     return {
-        //         map: summerLevel2Map,
-        //         gameEntities: summerLevel2Entities,
-        //         world: summerLevel2World
-        //     };
-        // case 5:
-        //     return {
-        //         map: autumnLevel2Map,
-        //         gameEntities: autumnLevel2Entities,
-        //         world: autumnLevel2World
-        //     };
-        // case 6:
-        //     return {
-        //         map: winterLevel2Map,
-        //         gameEntities: winterLevel2Entities,
-        //         world: winterLevel2World
-        //     };
-        // case 7:
-        //     return {
-        //         map: summerLevel3Map,
-        //         gameEntities: summerLevel3Entities,
-        //         world: summerLevel3World
-        //     };
-        // case 8:
-        //     return {
-        //         map: autumnLevel3Map,
-        //         gameEntities: autumnLevel3Entities,
-        //         world: autumnLevel3World
-        //     };
-        // case 9:
-        //     return {
-        //         map: winterLevel3Map,
-        //         gameEntities: winterLevel3Entities,
-        //         world: winterLevel3World
-        //     };
+        case 4:
+            return {
+                map: summerLevel2Map,
+                gameEntities: summerLevel2Entities,
+                world: summerLevel2World
+            };
+        case 5:
+            return {
+                map: autumnLevel2Map,
+                gameEntities: autumnLevel2Entities,
+                world: autumnLevel2World
+            };
+        case 6:
+            return {
+                map: winterLevel2Map,
+                gameEntities: winterLevel2Entities,
+                world: winterLevel2World
+            };
+        case 7:
+            return {
+                map: summerLevel3Map,
+                gameEntities: summerLevel3Entities,
+                world: summerLevel3World
+            };
+        case 8:
+            return {
+                map: autumnLevel3Map,
+                gameEntities: autumnLevel3Entities,
+                world: autumnLevel3World
+            };
+        case 9:
+            return {
+                map: winterLevel3Map,
+                gameEntities: winterLevel3Entities,
+                world: winterLevel3World
+            };
         default:
             console.error("Level not found:", level);
             return null;

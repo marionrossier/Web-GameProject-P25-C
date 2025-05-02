@@ -1,4 +1,4 @@
-const winterLevel1Map = [
+const winterLevel2Map = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //0
     1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 4, //1
     1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, //2
@@ -19,14 +19,15 @@ const winterLevel1Map = [
 ];//0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 = X
 
 
-const winterLevel1Entities = {
+const winterLevel2Entities = {
     enemies: {
-        enemy1 : new Enemy(1, 7, 2, 21, 14, this, 0),
-        enemy2 : new Enemy(2, 2, 7, 21, 10, this, 0),
-        enemy3 : new Enemy(1, 7, 2, 21, 14, this, 0)
+        enemy1 : new Enemy(1, 3, 4, 7, 3, this, 0),
+        enemy2 : new Enemy(2, 17, 12, 14, 15, this, 0),
+        enemy3 : new Enemy(3, 0, 1, 2, 0, this, 0),
+        enemy4 : new Enemy(1, 12, 15, 18, 7, this, 0)
     },
     lives:{
         life1 : new Life(0, 11, 5, this),
     },
 };
-const winterLevel1World = 3;
+const winterLevel2World = 3;

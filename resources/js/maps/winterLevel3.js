@@ -1,4 +1,4 @@
-const winterLevel1Map = [
+const winterLevel3Map = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, //0
     1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 4, //1
     1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, //2
@@ -19,14 +19,19 @@ const winterLevel1Map = [
 ];//0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 = X
 
 
-const winterLevel1Entities = {
+const winterLevel3Entities = {
     enemies: {
-        enemy1 : new Enemy(1, 7, 2, 21, 14, this, 0),
-        enemy2 : new Enemy(2, 2, 7, 21, 10, this, 0),
-        enemy3 : new Enemy(1, 7, 2, 21, 14, this, 0)
+        enemy1 : new Enemy(1, 15, 2, 20, 8, this, 0),
+        enemy2 : new Enemy(2, 2, 14, 5, 4, this, 0),
+        enemy3 : new Enemy(3, 21, 11, 10, 16, this, 0),
+        enemy4 : new Enemy(1, 9, 4, 3, 5, this, 0),
+        enemy5 : new Enemy(2, 18, 6, 13, 19, this, 0),
+        enemy6 : new Enemy(3, 13, 1, 22, 12, this, 0),
+        enemy7 : new Enemy(1, 6, 15, 12, 3, this, 0),
     },
     lives:{
         life1 : new Life(0, 11, 5, this),
+        life2 : new Life(0, 22, 10, this)
     },
 };
-const winterLevel1World = 3;
+const winterLevel3World = 3;
