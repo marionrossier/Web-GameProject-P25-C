@@ -4,6 +4,7 @@ class CursorSkin {
         this.image.src = "resources/images/game/Characters.png";
         this.spriteSize = 16;
         this.selectSkin(skinNbr);
+        this.updateDirection("down")
 
         this.imageLoaded = false;
         this.image.onload = () => {
@@ -16,7 +17,7 @@ class CursorSkin {
             ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
-                this.skinY * 16, // Image source y
+                this.baseY * 16, // Image source y
                 16, // Image source width
                 16, // Image source height
                 x-8, // Destination x
@@ -30,29 +31,49 @@ class CursorSkin {
     selectSkin (skinNbr){
         switch (skinNbr) {
             case 1: //chauve bleu
-                this.skinX = 0;
-                this.skinY = 2;
+                this.baseX = 0;
+                this.baseY = 2;
                 break;
             case 2: //lunette et smoking cravate rouge
-                this.skinX = 16;
-                this.skinY = 4;
+                this.baseX = 16;
+                this.baseY = 4;
                 break;
             case 3: //sportif rouge
-                this.skinX = 0;
-                this.skinY = 12;
+                this.baseX = 0;
+                this.baseY = 12;
                 break;
             case 4: //père noel bleu
-                this.skinX = 16;
-                this.skinY = 8;
+                this.baseX = 16;
+                this.baseY = 8;
                 break;
             case 5: // ninja vert
-                this.skinX = 0;
-                this.skinY = 26;
+                this.baseX = 0;
+                this.baseY = 26;
                 break;
             case 6: // astronaute
-                this.skinX = 16;
-                this.skinY = 10;
+                this.baseX = 16;
+                this.baseY = 10;
+                break;
+        }
+        this.skinX = this.baseX;
+        this.skinY = this.baseY * 16;
+    }
+
+    updateDirection(direction) {
+        switch (direction) {
+            case "up":
+                this.skinX = this.baseX + 4; // ligne de sprites vers le haut
+                break;
+            case "down":
+                this.skinX = this.baseX; // ligne de face
+                break;
+            case "left":
+                this.skinX = this.baseX + 6; // ligne de gauche
+                break;
+            case "right":
+                this.skinX = this.baseX + 2; // ligne de droite OK
                 break;
         }
     }
+
 }

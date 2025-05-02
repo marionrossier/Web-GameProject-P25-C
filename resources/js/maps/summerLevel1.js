@@ -20,7 +20,7 @@ const summerLevel1Map  = [
 
 const summerLevel1Entities  = {
     enemies: {
-        enemy1 : new Enemy(1, 2, 2, 21, 14, this, 0),
+        enemy1 : new Enemy(1, 2, 2, 21, 14, this, 0)
     },
     lives:{
         life1 : new Life(0, 22, 12, this)

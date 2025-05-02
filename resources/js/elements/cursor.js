@@ -12,14 +12,16 @@ class Cursor {
         this.isVisible = true;
         this.gameEntities = gameEntities;
         this.isActive = false; // Bloque la souris au début du jeu.
-
-
-
         const cellSize = pixelSizeTable[this.size];
+
+
         this.mousePosition = {
             x: 0 * cellSize + cellSize / 2,
             y: 14 * cellSize + cellSize / 2
         };
+        this.lastDirection = "down"; // valeur par défaut
+        this.prevMousePosition = { x: this.mousePosition.x, y: this.mousePosition.y };
+
         this.hitbox = {
             width: this.cursorSkin.spriteSize,
             height: this.cursorSkin.spriteSize
@@ -34,6 +36,20 @@ class Cursor {
 
             this.mousePosition.x = (e.clientX - rect.left) * scaleX;
             this.mousePosition.y = (e.clientY - rect.top) * scaleY;
+
+            //pour changer le skin du cursor selon sa direction
+            const deltaX = this.mousePosition.x - this.prevMousePosition.x;
+            const deltaY = this.mousePosition.y - this.prevMousePosition.y;
+
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                this.lastDirection = deltaX > 0 ? "right" : "left";
+            } else {
+                this.lastDirection = deltaY > 0 ? "down" : "up";
+            }
+
+            this.prevMousePosition = { x: this.mousePosition.x, y: this.mousePosition.y };
+            this.cursorSkin.updateDirection(this.lastDirection);
+
         });
 
         // Dès qu'on clique une fois sur le canvas, active le suivi souris
@@ -127,14 +143,6 @@ class Cursor {
 
         if  (this.isVisible) {
             this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
-
-            this.ctx.strokeStyle = "black";
-            this.ctx.strokeRect(
-                this.mousePosition.x - this.hitbox.width / 2,
-                this.mousePosition.y - this.hitbox.height / 2,
-                this.hitbox.width,
-                this.hitbox.height
-            );
         }
     }
 
