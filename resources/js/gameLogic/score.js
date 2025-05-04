@@ -9,7 +9,7 @@ class Score {
     }
 
     handleLevelComplete() {
-        console.log("Niveau terminé !");
+        console.log("endLevel");
         this.totalScore += this.currentScore;
     }
 

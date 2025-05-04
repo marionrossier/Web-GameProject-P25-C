@@ -7,6 +7,10 @@ console.log("Starting game...");
         return;
     }
 
+    // Références aux éléments audio
+    const menuMusic = document.getElementById("menuMusic");
+    const gameMusic = document.getElementById("gameMusic");
+
     try {
         window.pixelSizeTable = { 2: 32 };
         window.WidthTable = { 2: 20 };
@@ -22,12 +26,18 @@ console.log("Starting game...");
         const cursorSkinNumber = 1;
         const onWinCallback = () => {
             console.log("Player wins!");
-            let currentScreen = "stats";
+            currentScreen = "stats";
+            app.screenTransitions.disableInterception();
+            gameMusic.pause();
+            gameMusic.currentTime = 0;
             renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
         };
         const onGameOverCallback = () => {
             console.log("Game Over triggered!");
-            let currentScreen = "gameOver";
+            currentScreen = "gameOver";
+            app.screenTransitions.disableInterception();
+            gameMusic.pause();
+            gameMusic.currentTime = 0;
             renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
         };
         const cursor = new Cursor(cursorSkinNumber, canvas, levelData.map, 2, onWinCallback, ctx,
@@ -38,9 +48,21 @@ console.log("Starting game...");
         currentScreen = "play";
         console.log("Game started successfully");
 
+        menuMusic.pause();
+        menuMusic.currentTime = 0;
+        gameMusic.play().catch((error) => {
+            console.error("Erreur lors de la lecture de la musique du jeu :", error);
+        });
+
     } catch (error) {
         console.error("Error while starting the game:", error);
         currentScreen = "menu";
+        if (app) app.screenTransitions.disableInterception();
+        gameMusic.pause();
+        gameMusic.currentTime = 0;
+        menuMusic.play().catch((error) => {
+            console.error("Erreur lors de la lecture de la musique du menu :", error);
+        });
         renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
     }
 }
