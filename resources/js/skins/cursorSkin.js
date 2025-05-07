@@ -20,10 +20,10 @@ class CursorSkin {
                 this.baseY * 16, // Image source y
                 16, // Image source width
                 16, // Image source height
-                x-8, // Destination x
-                y-8, // Destination y
-                16, // Destination width
-                16 // Destination height
+                x-6, // Destination x
+                y-6, // Destination y
+                12, // Destination width
+                12 // Destination height
             );
         }
     }
