@@ -50,6 +50,16 @@
             <div id="gameWrapper" style="position: relative;">
                 <canvas id="gameCanvas" width="1000" height="700"></canvas>
             </div>
+
+            <!-- Ajout des éléments audio pour les musiques -->
+            <audio id="menuMusic" loop>
+                <source src="resources/audio/Menu_Theme.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+            <audio id="gameMusic" loop>
+                <source src="resources/audio/Forest_Theme.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
         </article>
     </section>
 </main>
@@ -74,7 +84,7 @@
 <script src="resources/js/drawMap.js"></script>
 <script src="resources/js/maps/randomMap.js"></script>
 
-
+<script src="resources/js/ingameState.js"></script>
 <script src="resources/js/gameLogic/score.js"></script>
 <script src="resources/js/motor.js"></script>
 
