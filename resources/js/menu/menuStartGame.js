@@ -1,5 +1,5 @@
 function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) {
-console.log("Starting game...");
+    console.log("Starting game...");
 
     const levelData = getLevelData(currentLevel);
     if (!levelData) {
@@ -21,7 +21,7 @@ console.log("Starting game...");
         const waySkin = new WaySkin(levelData.world);
         const treeSkin = new TreeSkin(levelData.world);
 
-        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities, 0);
+        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities);
         console.log("Creating Cursor instance...");
         const cursorSkinNumber = 1;
         const onWinCallback = () => {
