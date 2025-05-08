@@ -8,6 +8,7 @@ class Motor {
         this.cursorSkin = cursorSkin;
         this.lives = 2; // Nombre initial de vies
         this.gameEntities = gameEntities;
+        //this.screenTransitions = new IngameState(this);
 
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
@@ -51,6 +52,7 @@ class Motor {
         this.gameMap.draw();
         this.startTimer();
         this.gameState = 1;
+        //this.screenTransitions.enableInterception();
     }
 
     changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
@@ -66,11 +68,12 @@ class Motor {
     }
 
     getTime(){
-        //retourne le nombre de seconde écoulé (enlever le /24 si on veut les frame)
+        //retourne le nombre de secondes écoulé (enlever le /24 si on veut les frame)
         return this.timer/24;
     }
 
     tick() {
+
         if (this.timer % 24 === 0){
             console.log("timer tick");
 
@@ -80,6 +83,8 @@ class Motor {
             }
             this.score.calculateScore(this.timer/24);
         }
+
+        //this.screenTransitions.analyzeLastMessage();
 
         this.gameMap.draw();
         for (const entityType in this.gameEntities) {
@@ -124,6 +129,9 @@ class Motor {
     }
 
     gameOver(){
+        console.log("gameOver");
+        //this.screenTransitions.analyzeLastMessage();
+        //this.screenTransitions.disableInterception();
         this.stopTimer();
         this.gameState = 0;
     }
