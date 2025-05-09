@@ -120,9 +120,10 @@ class Cursor {
                 this.loseLife();
                 break;
             case 4:
-                console.log("Arrivée !");
-                this.motor.score.handleLevelComplete();
+                this.motor.endLevel();
                 break;
+            case 5:
+                this.motor.endGame();
         }
     }
 

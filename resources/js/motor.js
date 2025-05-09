@@ -8,7 +8,7 @@ class Motor {
         this.cursorSkin = cursorSkin;
         this.lives = 2; // Nombre initial de vies
         this.gameEntities = gameEntities;
-        this.screenTransitions = new IngameState(this);
+        this.screenTransitions = new ingameState(this);
 
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
@@ -130,6 +130,22 @@ class Motor {
 
     gameOver(){
         console.log("gameOver");
+        this.screenTransitions.analyzeLastMessage();
+        this.screenTransitions.disableInterception();
+        this.stopTimer();
+        this.gameState = 0;
+    }
+
+    endLevel(){
+        console.log("endLevel");
+        this.screenTransitions.analyzeLastMessage();
+        this.screenTransitions.disableInterception();
+        this.stopTimer();
+        this.gameState = 0;
+    }
+
+    endGame(){
+        console.log("endGame");
         this.screenTransitions.analyzeLastMessage();
         this.screenTransitions.disableInterception();
         this.stopTimer();
