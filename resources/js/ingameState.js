@@ -1,5 +1,3 @@
-// Gestion des transitions d'écran dans le jeu
-
 class ingameState {
     constructor(motor) {
         this.motor = motor; // Référence à l'instance de Motor pour accéder à gameState

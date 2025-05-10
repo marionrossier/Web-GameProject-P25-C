@@ -20,7 +20,12 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                 y >= button.y && y <= button.y + button.height) {
                 currentScreen = button.id;
                 if (button.id === "play") {
-                    startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                    // Au lieu de lancer directement le jeu
+                    // startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+
+                    // Afficher l'écran de configuration du joueur
+                    const setupScreen = new playerSetupScreen();
+                    setupScreen.show();
                 } else {
                     renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
@@ -31,6 +36,8 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
             if (x >= button.x && x <= button.x + button.width &&
                 y >= button.y && y <= button.y + button.height) {
                 if (button.id === "continue") {
+                    // Ici aussi, on pourrait vouloir passer par l'écran de configuration
+                    // Mais si vous voulez garder le comportement actuel pour "continue", laissez comme ça
                     startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
                 } else if (button.id === "menu") {
                     currentScreen = "menu";

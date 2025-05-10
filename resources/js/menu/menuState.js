@@ -13,7 +13,6 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
     if (currentScreen === "menu") {
         if (app) {
             app.stopTimer();
-            // app.screenTransitions.disableInterception(); // Désactiver l'interception
         }
         canvas.width = initialCanvasWidth;
         canvas.height = initialCanvasHeight;
