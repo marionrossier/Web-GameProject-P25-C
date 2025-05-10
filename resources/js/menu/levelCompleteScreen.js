@@ -14,7 +14,6 @@ class levelCompleteScreen {
 
         // IMPORTANT: S'assurer que le canvas a les bonnes dimensions
         if (this.canvas.width !== 1000 || this.canvas.height !== 700) {
-            console.log(`Correction des dimensions du canvas: ${this.canvas.width}x${this.canvas.height} -> 1000x700`);
             this.canvas.width = 1000;
             this.canvas.height = 700;
         }
@@ -28,8 +27,6 @@ class levelCompleteScreen {
 
         // Chargement des images
         this.heartImage = window.heartImage ? window.heartImage : heartImage();
-
-        console.log(`Dimensions finales du canvas: ${this.canvas.width}x${this.canvas.height}`);
     }
 
     // Afficher l'écran de fin de niveau
@@ -165,14 +162,11 @@ class levelCompleteScreen {
             this.levelCompleteButtons.forEach(button => {
                 if (x >= button.x && x <= button.x + button.width &&
                     y >= button.y && y <= button.y + button.height) {
-
-                    console.log(`Button clicked: ${button.id}`);
                     this.clearEventListeners();
 
                     if (button.id === "nextLevel") {
                         // Incrémenter le niveau
                         window.currentLevel++;
-                        console.log(`Passage au niveau ${window.currentLevel}`);
 
                         // Démarrer le niveau suivant
                         window.currentScreen = "play";

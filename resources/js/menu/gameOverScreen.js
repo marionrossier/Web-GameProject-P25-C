@@ -24,8 +24,6 @@ class gameOverScreen {
 
         // Chargement des images comme dans menuConstants.js
         this.heartImage = window.heartImage ? window.heartImage : heartImage();
-
-        console.log(`Dimensions du canvas: ${this.canvas.width}x${this.canvas.height}`);
     }
 
     // Afficher l'écran Game Over
@@ -46,13 +44,8 @@ class gameOverScreen {
         // Jouer la musique du menu si disponible
         const menuMusic = document.getElementById("menuMusic");
         if (menuMusic) {
-            menuMusic.play().catch(error => {
-                console.error("Erreur lors de la lecture de la musique du menu:", error);
-            });
+            menuMusic.play();
         }
-
-        // S'assurer que le canvas a les bonnes dimensions
-        console.log(`Canvas actuel: ${this.canvas.width}x${this.canvas.height}`);
 
         // Nettoyer les écouteurs d'événements précédents
         this.clearEventListeners();
@@ -144,8 +137,6 @@ class gameOverScreen {
             this.gameOverButtons.forEach(button => {
                 if (x >= button.x && x <= button.x + button.width &&
                     y >= button.y && y <= button.y + button.height) {
-
-                    console.log(`Button clicked: ${button.id}`);
                     this.clearEventListeners();
 
                     if (button.id === "retry") {
@@ -169,7 +160,6 @@ class gameOverScreen {
         if (this.activeListener) {
             this.canvas.removeEventListener("click", this.activeListener);
             this.activeListener = null;
-            console.log("Écouteur de clics supprimé");
         }
     }
 }

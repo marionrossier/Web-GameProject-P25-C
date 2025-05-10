@@ -10,7 +10,6 @@ class gameCompleteScreen {
 
         // IMPORTANT: S'assurer que le canvas a les bonnes dimensions
         if (this.canvas.width !== 1000 || this.canvas.height !== 700) {
-            console.log(`Correction des dimensions du canvas: ${this.canvas.width}x${this.canvas.height} -> 1000x700`);
             this.canvas.width = 1000;
             this.canvas.height = 700;
         }
@@ -23,15 +22,11 @@ class gameCompleteScreen {
 
         // Chargement des images
         this.heartImage = window.heartImage ? window.heartImage : heartImage();
-
-        console.log(`Dimensions du canvas: ${this.canvas.width}x${this.canvas.height}`);
     }
 
     // Afficher l'écran de fin de jeu
     show() {
-        console.log("Affichage de l'écran de fin de jeu");
 
-        // Stopper le jeu
         this.motor.stopTimer();
         this.motor.gameState = 0;
 
@@ -42,12 +37,9 @@ class gameCompleteScreen {
             gameMusic.currentTime = 0;
         }
 
-        // Jouer une musique festive ou la musique du menu
         const menuMusic = document.getElementById("menuMusic");
         if (menuMusic) {
-            menuMusic.play().catch(error => {
-                console.error("Erreur lors de la lecture de la musique:", error);
-            });
+            menuMusic.play();
         }
 
         // Forcer le style de curseur normal
@@ -63,7 +55,6 @@ class gameCompleteScreen {
         this.addClickListener();
     }
 
-    // Dessiner l'écran de fin de jeu
     draw() {
         // Effacer le canvas
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -212,7 +203,6 @@ class gameCompleteScreen {
         if (this.activeListener) {
             this.canvas.removeEventListener("click", this.activeListener);
             this.activeListener = null;
-            console.log("Écouteur de clics supprimé");
         }
     }
 }

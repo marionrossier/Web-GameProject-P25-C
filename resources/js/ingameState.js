@@ -11,7 +11,6 @@ class ingameState {
         if (canvas) {
             this.originalWidth = canvas.width;
             this.originalHeight = canvas.height;
-            this.originalConsoleLog(`Dimensions originales du canvas sauvegardées: ${this.originalWidth}x${this.originalHeight}`);
         }
     }
 
@@ -31,7 +30,6 @@ class ingameState {
         if (!this.isIntercepting) {
             this.isIntercepting = true;
             this.listenToConsole(); // Appliquer le proxy
-            this.originalConsoleLog("Interception de console.log activée");
         }
     }
 
@@ -41,7 +39,6 @@ class ingameState {
             this.isIntercepting = false;
             this.lastMessage = null; // Réinitialiser pour éviter les interférences
             console.log = this.originalConsoleLog; // Restaurer console.log original
-            this.originalConsoleLog("Interception de console.log désactivée");
         }
     }
 
@@ -69,7 +66,6 @@ class ingameState {
         if (canvas && this.originalWidth && this.originalHeight) {
             // Vérifier si la taille a changé
             if (canvas.width !== this.originalWidth || canvas.height !== this.originalHeight) {
-                this.originalConsoleLog(`Rétablissement de la taille du canvas: ${this.originalWidth}x${this.originalHeight}`);
 
                 // Restaurer les dimensions originales
                 canvas.width = this.originalWidth;
@@ -79,8 +75,6 @@ class ingameState {
     }
 
     drawGameOverScreen() {
-        this.originalConsoleLog("DrawGameOverScreen");
-
         // S'assurer que le canvas a la bonne taille avant d'afficher l'écran Game Over
         this.preserveCanvasSize();
 
@@ -99,8 +93,6 @@ class ingameState {
 // Utiliser exactement la même logique que drawGameOverScreen
 
     drawEndLevelScreen() {
-        this.originalConsoleLog("DrawEndLevelScreen");
-
         // Vérifier si la classe levelCompleteScreen est disponible
         if (typeof window.levelCompleteScreen === 'function') {
             // Créer une instance de la classe levelCompleteScreen
@@ -115,12 +107,9 @@ class ingameState {
     // Remplacer la méthode drawEndGameScreen dans ingameState.js
 
     drawEndGameScreen() {
-        this.originalConsoleLog("DrawEndGameScreen");
-
         // S'assurer que le canvas a les bonnes dimensions
         const canvas = document.getElementById("gameCanvas");
         if (canvas.width !== 1000 || canvas.height !== 700) {
-            this.originalConsoleLog(`Correction des dimensions du canvas: ${canvas.width}x${canvas.height} -> 1000x700`);
             canvas.width = 1000;
             canvas.height = 700;
         }
