@@ -52,7 +52,7 @@ class Motor {
         this.gameMap.draw();
         this.startTimer();
         this.gameState = 1;
-        this.screenTransitions.enableInterception();
+        // this.screenTransitions.enableInterception();
     }
 
     changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
@@ -84,7 +84,7 @@ class Motor {
             this.score.calculateScore(this.timer/24);
         }
 
-        this.screenTransitions.analyzeLastMessage();
+        // this.screenTransitions.analyzeLastMessage();
 
         this.gameMap.draw();
         for (const entityType in this.gameEntities) {
@@ -122,34 +122,26 @@ class Motor {
         }
     }
 
-    testGameOver(){
-        if (this.timer >= 240) {
-            this.gameOver();
-        }
-    }
 
     gameOver(){
-        console.log("gameOver");
-        this.screenTransitions.analyzeLastMessage();
-        this.screenTransitions.disableInterception();
         this.stopTimer();
         this.gameState = 0;
+        // this.screenTransitions.disableInterception();
+        this.screenTransitions.drawGameOverScreen();
     }
 
     endLevel(){
-        console.log("endLevel");
-        this.screenTransitions.analyzeLastMessage();
-        this.screenTransitions.disableInterception();
         this.stopTimer();
         this.gameState = 0;
+        // this.screenTransitions.disableInterception();
+        this.screenTransitions.drawEndLevelScreen();
     }
 
     endGame(){
-        console.log("endGame");
-        this.screenTransitions.analyzeLastMessage();
-        this.screenTransitions.disableInterception();
         this.stopTimer();
         this.gameState = 0;
+        // this.screenTransitions.disableInterception();
+        this.screenTransitions.drawEndGameScreen();
     }
 
     buttonRestart() {
