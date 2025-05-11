@@ -19,12 +19,9 @@ class gameCompleteScreen {
             { id: "restart", text: "Play Again", x: 400, y: 450, width: 200, height: 60 },
             { id: "menu", text: "Menu", x: 400, y: 530, width: 200, height: 60 }
         ];
-
-        // Chargement des images
         this.heartImage = window.heartImage ? window.heartImage : heartImage();
     }
 
-    // Afficher l'écran de fin de jeu
     show() {
 
         this.motor.stopTimer();
@@ -168,22 +165,14 @@ class gameCompleteScreen {
             const scaleY = this.canvas.height / rect.height;
             const x = (event.clientX - rect.left) * scaleX;
             const y = (event.clientY - rect.top) * scaleY;
-
-            console.log(`Click at: ${x}, ${y}`);
-
             // Vérifier les clics sur les boutons
             this.gameCompleteButtons.forEach(button => {
                 if (x >= button.x && x <= button.x + button.width &&
                     y >= button.y && y <= button.y + button.height) {
-
-                    console.log(`Button clicked: ${button.id}`);
                     this.clearEventListeners();
 
                     if (button.id === "restart") {
-                        // Réinitialiser le niveau à 1
                         window.currentLevel = 1;
-
-                        // Redémarrer le jeu
                         window.currentScreen = "play";
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
@@ -197,8 +186,6 @@ class gameCompleteScreen {
 
         this.canvas.addEventListener("click", this.activeListener);
     }
-
-    // Nettoyer les écouteurs d'événements
     clearEventListeners() {
         if (this.activeListener) {
             this.canvas.removeEventListener("click", this.activeListener);
@@ -206,6 +193,4 @@ class gameCompleteScreen {
         }
     }
 }
-
-// Rendre la classe disponible globalement
 window.gameCompleteScreen = gameCompleteScreen;

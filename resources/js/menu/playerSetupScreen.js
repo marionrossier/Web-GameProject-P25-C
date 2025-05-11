@@ -85,10 +85,21 @@ class playerSetupScreen {
         this.draw();
     }
 
+    // startGame() {
+    //     this.playerData.save();
+    //     this.hide();
+    //     startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
+    // }
+
     startGame() {
         this.playerData.save();
         this.hide();
-        startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
+
+        // Récupérer le canvas et contexte originaux
+        const originalCanvas = document.getElementById("gameCanvas");
+        const originalCtx = originalCanvas.getContext("2d");
+
+        startGame(originalCanvas, originalCtx, heartImage, backButtonImage, instructionsImage);
     }
 }
 

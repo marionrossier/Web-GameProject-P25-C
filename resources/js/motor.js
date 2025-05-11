@@ -73,7 +73,7 @@ class Motor {
     }
 
     tick() {
-
+        console.trace("tick called"); // Voir d'où vient l'appel
         if (this.timer % 24 === 0){
             console.log("timer tick");
 
@@ -84,7 +84,6 @@ class Motor {
             this.score.calculateScore(this.timer/24);
         }
 
-        // this.screenTransitions.analyzeLastMessage();
 
         this.gameMap.draw();
         for (const entityType in this.gameEntities) {
@@ -126,21 +125,18 @@ class Motor {
     gameOver(){
         this.stopTimer();
         this.gameState = 0;
-        // this.screenTransitions.disableInterception();
         this.screenTransitions.drawGameOverScreen();
     }
 
     endLevel(){
         this.stopTimer();
         this.gameState = 0;
-        // this.screenTransitions.disableInterception();
         this.screenTransitions.drawEndLevelScreen();
     }
 
     endGame(){
         this.stopTimer();
         this.gameState = 0;
-        // this.screenTransitions.disableInterception();
         this.screenTransitions.drawEndGameScreen();
     }
 
@@ -164,4 +160,5 @@ class Motor {
             );
         }
     }
+
 }

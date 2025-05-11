@@ -1,3 +1,6 @@
+// Variable pour suivre si le formulaire a déjà été complété
+let playerSetupCompleted = false;
+
 function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, instructionsImage) {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -20,12 +23,14 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                 y >= button.y && y <= button.y + button.height) {
                 currentScreen = button.id;
                 if (button.id === "play") {
-                    // Au lieu de lancer directement le jeu
-                    // startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
-
-                    // Afficher l'écran de configuration du joueur
-                    const setupScreen = new playerSetupScreen();
-                    setupScreen.show();
+                    // N'afficher le formulaire que si pas encore complété
+                    if (!playerSetupCompleted) {
+                        const setupScreen = new playerSetupScreen();
+                        setupScreen.show();
+                        playerSetupCompleted = true;
+                    } else {
+                        startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                    }
                 } else {
                     renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
@@ -36,8 +41,6 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
             if (x >= button.x && x <= button.x + button.width &&
                 y >= button.y && y <= button.y + button.height) {
                 if (button.id === "continue") {
-                    // Ici aussi, on pourrait vouloir passer par l'écran de configuration
-                    // Mais si vous voulez garder le comportement actuel pour "continue", laissez comme ça
                     startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
                 } else if (button.id === "menu") {
                     currentScreen = "menu";

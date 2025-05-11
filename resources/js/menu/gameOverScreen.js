@@ -1,6 +1,3 @@
-// Function de debug pour vérifier le chargement du script
-console.log("Script gameOverScreen.js chargé avec succès!");
-
 class gameOverScreen {
     constructor(motor) {
         this.motor = motor;
@@ -28,9 +25,7 @@ class gameOverScreen {
 
     // Afficher l'écran Game Over
     show() {
-        console.log("Affichage de l'écran Game Over");
-
-        // Stopper le jeu
+                // Stopper le jeu
         this.motor.stopTimer();
         this.motor.gameState = 0;
 
@@ -130,8 +125,6 @@ class gameOverScreen {
             const scaleY = this.canvas.height / rect.height;
             const x = (event.clientX - rect.left) * scaleX;
             const y = (event.clientY - rect.top) * scaleY;
-
-            console.log(`Click at: ${x}, ${y}`);
 
             // Vérifier les clics sur les boutons
             this.gameOverButtons.forEach(button => {
