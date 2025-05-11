@@ -1,6 +1,5 @@
 function updateCursorStyle(currentScreen, canvas) {
     if (!canvas) {
-        console.error("Canvas not found in updateCursorStyle");
         return;
     }
 
