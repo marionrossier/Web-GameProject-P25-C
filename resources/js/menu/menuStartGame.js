@@ -1,9 +1,17 @@
 function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) {
-    console.log("Starting game...");
 
+    // S'assurer que currentLevel est défini
+    if (typeof currentLevel === 'undefined') {
+        currentLevel = 1;
+    }
+
+    // Obtenir les données du niveau
     const levelData = getLevelData(currentLevel);
     if (!levelData) {
-        console.error("Invalid level data");
+
+        // En cas d'échec, revenir au menu
+        currentScreen = "menu";
+        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage);
         return;
     }
 
@@ -12,42 +20,42 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
     const gameMusic = document.getElementById("gameMusic");
 
     try {
+        // Forcer les dimensions du canvas à 1000x700
+        if (canvas.width !== 1000 || canvas.height !== 700) {
+            canvas.width = 1000;
+            canvas.height = 700;
+        }
+
+        // Définir les paramètres globaux
         window.pixelSizeTable = { 2: 32 };
         window.WidthTable = { 2: 20 };
         window.HeightTable = { 2: 20 };
 
-        console.log("Setting skins...");
         const outsideSkin = new OutsideSkin(levelData.world);
         const waySkin = new WaySkin(levelData.world);
         const treeSkin = new TreeSkin(levelData.world);
 
-        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities);
-        console.log("Creating Cursor instance...");
+        // Créer le moteur de jeu pour ce niveau
+        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities, 0);
         const cursorSkinNumber = 1;
+
+        // Callback en cas de victoire
         const onWinCallback = () => {
-            console.log("Player wins!");
+            // Garder ces lignes pour la compatibilité avec le code existant
             currentScreen = "stats";
-            app.screenTransitions.disableInterception();
+            // app.screenTransitions.disableInterception();
             gameMusic.pause();
             gameMusic.currentTime = 0;
             renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
         };
-        const onGameOverCallback = () => {
-            console.log("Game Over triggered!");
-            currentScreen = "gameOver";
-            app.screenTransitions.disableInterception();
-            gameMusic.pause();
-            gameMusic.currentTime = 0;
-            renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
-        };
+      
+        // Créer le curseur du joueur
         const cursor = new Cursor(cursorSkinNumber, canvas, levelData.map, 2, onWinCallback, ctx,
             app, levelData.gameEntities);
-        console.log("Creating Motor...");
-
         app.gameStart();
         currentScreen = "play";
-        console.log("Game started successfully");
 
+        // Gestion de la musique
         menuMusic.pause();
         menuMusic.currentTime = 0;
         gameMusic.play().catch((error) => {
@@ -55,14 +63,19 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
         });
 
     } catch (error) {
-        console.error("Error while starting the game:", error);
         currentScreen = "menu";
-        if (app) app.screenTransitions.disableInterception();
+
+        // Nettoyage
+        // if (app) app.screenTransitions.disableInterception();
         gameMusic.pause();
         gameMusic.currentTime = 0;
+
+        // Relancer la musique du menu
         menuMusic.play().catch((error) => {
             console.error("Erreur lors de la lecture de la musique du menu :", error);
         });
+
+        // Afficher le menu
         renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
     }
 }

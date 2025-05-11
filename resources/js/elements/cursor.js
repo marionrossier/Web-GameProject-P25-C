@@ -120,9 +120,11 @@ class Cursor {
                 this.loseLife();
                 break;
             case 4:
-                console.log("Arrivée !");
-                this.motor.score.handleLevelComplete();
+                this.motor.endLevel();
                 break;
+            case 5:
+                this.motor.endGame();
+                window.currentLevel = 1;
         }
     }
 
@@ -161,6 +163,7 @@ class Cursor {
 
         if (this.motor.lives === 0) {
             this.motor.gameOver();
+            window.currentLevel = 1;
         }
     }
 

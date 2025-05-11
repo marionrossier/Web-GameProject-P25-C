@@ -8,7 +8,7 @@ class Motor {
         this.cursorSkin = cursorSkin;
         this.lives = 2; // Nombre initial de vies
         this.gameEntities = gameEntities;
-        this.screenTransitions = new IngameState(this);
+        this.screenTransitions = new ingameState(this);
 
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
@@ -52,7 +52,7 @@ class Motor {
         this.gameMap.draw();
         this.startTimer();
         this.gameState = 1;
-        this.screenTransitions.enableInterception();
+        // this.screenTransitions.enableInterception();
     }
 
     changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
@@ -73,7 +73,7 @@ class Motor {
     }
 
     tick() {
-
+        console.trace("tick called"); // Voir d'où vient l'appel
         if (this.timer % 24 === 0){
             console.log("timer tick");
 
@@ -84,7 +84,6 @@ class Motor {
             this.score.calculateScore(this.timer/24);
         }
 
-        this.screenTransitions.analyzeLastMessage();
 
         this.gameMap.draw();
         for (const entityType in this.gameEntities) {
@@ -122,18 +121,23 @@ class Motor {
         }
     }
 
-    testGameOver(){
-        if (this.timer >= 240) {
-            this.gameOver();
-        }
-    }
 
     gameOver(){
-        console.log("gameOver");
-        this.screenTransitions.analyzeLastMessage();
-        this.screenTransitions.disableInterception();
         this.stopTimer();
         this.gameState = 0;
+        this.screenTransitions.drawGameOverScreen();
+    }
+
+    endLevel(){
+        this.stopTimer();
+        this.gameState = 0;
+        this.screenTransitions.drawEndLevelScreen();
+    }
+
+    endGame(){
+        this.stopTimer();
+        this.gameState = 0;
+        this.screenTransitions.drawEndGameScreen();
     }
 
     buttonRestart() {
@@ -156,4 +160,5 @@ class Motor {
             );
         }
     }
+
 }
