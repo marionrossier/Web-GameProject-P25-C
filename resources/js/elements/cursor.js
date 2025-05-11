@@ -124,6 +124,7 @@ class Cursor {
                 break;
             case 5:
                 this.motor.endGame();
+                window.currentLevel = 1;
         }
     }
 
@@ -162,6 +163,7 @@ class Cursor {
 
         if (this.motor.lives === 0) {
             this.motor.gameOver();
+            window.currentLevel = 1;
         }
     }
 
