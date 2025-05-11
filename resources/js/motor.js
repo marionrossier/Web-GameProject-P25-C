@@ -68,7 +68,7 @@ class Motor {
     }
 
     getTime(){
-        //retourne le nombre de secondes écoulé (enlever le /24 si on veut les frame)
+        //retourne le nombre de seconde écoulé (enlever le /24 si on veut les frame)
         return this.timer/24;
     }
 

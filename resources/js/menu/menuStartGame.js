@@ -48,7 +48,7 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
             gameMusic.currentTime = 0;
             renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
         };
-      
+
         // Créer le curseur du joueur
         const cursor = new Cursor(cursorSkinNumber, canvas, levelData.map, 2, onWinCallback, ctx,
             app, levelData.gameEntities);
