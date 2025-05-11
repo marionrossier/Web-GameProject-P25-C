@@ -1,122 +1,253 @@
 class playerSetupUi {
     constructor(canvas, ctx) {
         this.canvas = canvas;
-        this.ctx = ctx;
+        this.ctx = this.canvas.getContext("2d");
 
         this.nameInput = this.createNameInput();
-        this.startButton = { x: 400, y: 550, width: 200, height: 50 };
-        this.backButton = { x: 20, y: 20, width: 100, height: 40 };
-        this.uploadButton = { x: 425, y: 350, width: 150, height: 150 };
+
+        // Boutons avec le même style que gameOverScreen
+        this.startButton = { x: 400, y: 600, width: 200, height: 60 };
+        this.uploadButton = { x: 425, y: 380, width: 150, height: 150 };
+
+        // Charger les images une seule fois
+        this.heartImage = this.loadHeartImage();
+
+        // Propriétés réutilisables
+        this.fonts = {
+            title: "48px Arial",
+            subtitle: "36px Arial",
+            label: "32px Arial",
+            text: "24px Arial",
+            button: "20px Arial",
+            small: "16px Arial"
+        };
+
+        this.colors = {
+            background: "rgb(60, 60, 60)",
+            primary: "#ff5722",
+            text: "white",
+            textSecondary: "#aaaaaa",
+            disabled: "#666666",
+            border: "#888888"
+        };
+    }
+
+    loadHeartImage() {
+        if (window.heartImage) return window.heartImage;
+        if (typeof heartImage === 'function') return heartImage();
+
+        const img = new Image();
+        img.src = "resources/images/game/Heart.png";
+        return img;
     }
 
     createNameInput() {
         const input = document.createElement("input");
         input.type = "text";
-        input.placeholder = "Entrez votre nom";
-        input.style.position = "absolute";
-        input.style.fontSize = "24px";
-        input.style.padding = "10px";
-        input.style.width = "300px";
-        input.style.borderRadius = "5px";
-        input.style.border = "2px solid #333";
-        input.style.textAlign = "center";
+        input.placeholder = "Enter your name";
+
+        const styles = {
+            position: "absolute",
+            fontSize: "24px",
+            padding: "10px",
+            width: "300px",
+            height: "40px",
+            borderRadius: "5px",
+            border: `3px solid ${this.colors?.primary || '#ff5722'}`,
+            textAlign: "center",
+            backgroundColor: "rgba(0, 0, 26, 0.8)",
+            color: "white",
+            fontFamily: "Arial, sans-serif",
+            outline: "none",
+            zIndex: "1000",
+            boxSizing: "border-box"
+        };
+
+        Object.assign(input.style, styles);
         return input;
     }
 
+    positionInput() {
+        // Utiliser le gameWrapper comme référence
+        const gameWrapper = document.getElementById('gameWrapper');
+        if (!gameWrapper) {
+            console.error('gameWrapper not found');
+            return;
+        }
+
+        // Position relative au gameWrapper
+        const inputWidth = 300;
+        const centerX = (this.canvas.width - inputWidth) / 2;
+        const inputY = 280; // Position Y dans le canvas
+
+        // Calculer la position par rapport au wrapper
+        this.nameInput.style.position = "absolute";
+        this.nameInput.style.left = `${centerX}px`;
+        this.nameInput.style.top = `${inputY}px`;
+    }
+
     show() {
-        const rect = this.canvas.getBoundingClientRect();
-        this.nameInput.style.left = rect.left + (this.canvas.width / 2 - 150) + "px";
-        this.nameInput.style.top = rect.top + 200 + "px";
-        document.body.appendChild(this.nameInput);
-        this.nameInput.focus();
+        const gameWrapper = document.getElementById('gameWrapper');
+        if (!gameWrapper) {
+            console.error('gameWrapper not found');
+            return;
+        }
+
+        // Ajouter l'input au gameWrapper au lieu de body
+        gameWrapper.appendChild(this.nameInput);
+
+        // Positionner immédiatement
+        this.positionInput();
+
+        // Gestion simple du resize
+        this.resizeHandler = () => this.positionInput();
+        window.addEventListener('resize', this.resizeHandler);
+
+        // Focus simple
+        setTimeout(() => {
+            this.nameInput.focus();
+        }, 100);
     }
 
     hide() {
         if (this.nameInput.parentNode) {
-            document.body.removeChild(this.nameInput);
+            this.nameInput.parentNode.removeChild(this.nameInput);
+        }
+        if (this.resizeHandler) {
+            window.removeEventListener('resize', this.resizeHandler);
+            this.resizeHandler = null;
         }
     }
 
     draw(playerData, canStart) {
+        // Dimensions du canvas
+        this.canvas.width = 1000;
+        this.canvas.height = 700;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
         // Fond
-        const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
-        gradient.addColorStop(0, "#1a237e");
-        gradient.addColorStop(1, "#000051");
-        this.ctx.fillStyle = gradient;
+        this.ctx.fillStyle = this.colors.background;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Titre
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "bold 48px Arial";
-        this.ctx.textAlign = "center";
-        this.ctx.fillText("Configuration du Joueur", this.canvas.width / 2, 100);
+        this.drawText("PLAYER", this.canvas.width / 2, 100, this.fonts.title);
+        this.drawText("CONFIGURATION", this.canvas.width / 2, 150, this.fonts.subtitle);
 
-        // Label pour le nom
-        this.ctx.font = "24px Arial";
-        this.ctx.fillText("Nom du joueur", this.canvas.width / 2, 180);
+        // Label pour le nom - Affiche le nom saisi ou "Player name"
+        const nameLabel = playerData.playerName || "Player name";
+        this.drawText(nameLabel, this.canvas.width / 2, 250, this.fonts.label);
 
         // Zone avatar
         this.drawAvatarSection(playerData.playerAvatar);
 
         // Localisation
-        this.ctx.font = "20px Arial";
-        this.ctx.fillStyle = "#aaa";
-        this.ctx.fillText("Localisation: " + playerData.playerLocation, this.canvas.width / 2, 530);
+        this.drawText(
+            `Location: ${playerData.playerLocation}`,
+            this.canvas.width / 2,
+            570,
+            this.fonts.text,
+            this.colors.textSecondary
+        );
 
-        // Boutons
-        this.drawButton(this.startButton, "Commencer", canStart ? "#4CAF50" : "#666");
-        this.drawButton(this.backButton, "Retour", "#666");
+        // Bouton Start
+        this.drawButton(this.startButton, "Start", canStart);
+    }
+
+    drawText(text, x, y, font, color = this.colors.text) {
+        this.ctx.font = font;
+        this.ctx.fillStyle = color;
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(text, x, y);
     }
 
     drawAvatarSection(avatar) {
-        this.ctx.font = "24px Arial";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText("Photo de profil", this.canvas.width / 2, 320);
+        this.drawText("Profile picture", this.canvas.width / 2, 350, this.fonts.label);
 
-        // Cadre pour l'avatar/bouton upload
-        this.ctx.strokeStyle = "#666";
-        this.ctx.lineWidth = 2;
-        this.ctx.strokeRect(this.uploadButton.x, this.uploadButton.y, this.uploadButton.width, this.uploadButton.height);
+        // Cadre pour l'avatar
+        this.ctx.strokeStyle = avatar ? this.colors.primary : this.colors.border;
+        this.ctx.lineWidth = 3;
+        this.ctx.strokeRect(
+            this.uploadButton.x,
+            this.uploadButton.y,
+            this.uploadButton.width,
+            this.uploadButton.height
+        );
 
         if (avatar) {
-            // Afficher l'avatar
-            const img = new Image();
-            img.onload = () => {
-                this.ctx.drawImage(img, this.uploadButton.x, this.uploadButton.y, this.uploadButton.width, this.uploadButton.height);
-            };
-            img.src = avatar;
+            this.drawAvatar(avatar);
         } else {
-            // Bouton d'upload
-            this.ctx.fillStyle = "#444";
-            this.ctx.fillRect(this.uploadButton.x, this.uploadButton.y, this.uploadButton.width, this.uploadButton.height);
-
-            // Icône de caméra ou +
-            this.ctx.strokeStyle = "white";
-            this.ctx.lineWidth = 3;
-            const centerX = this.uploadButton.x + this.uploadButton.width / 2;
-            const centerY = this.uploadButton.y + this.uploadButton.height / 2;
-
-            // Dessiner un +
-            this.ctx.beginPath();
-            this.ctx.moveTo(centerX, centerY - 30);
-            this.ctx.lineTo(centerX, centerY + 30);
-            this.ctx.moveTo(centerX - 30, centerY);
-            this.ctx.lineTo(centerX + 30, centerY);
-            this.ctx.stroke();
-
-            // Texte
-            this.ctx.fillStyle = "white";
-            this.ctx.font = "16px Arial";
-            this.ctx.fillText("Cliquez pour", centerX, centerY + 60);
-            this.ctx.fillText("ajouter une photo", centerX, centerY + 80);
+            this.drawUploadButton();
         }
     }
 
-    drawButton(button, text, color) {
-        this.ctx.fillStyle = color;
+    drawAvatar(avatar) {
+        const img = new Image();
+        img.onload = () => {
+            this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+            this.ctx.fillRect(
+                this.uploadButton.x,
+                this.uploadButton.y,
+                this.uploadButton.width,
+                this.uploadButton.height
+            );
+            this.ctx.drawImage(
+                img,
+                this.uploadButton.x,
+                this.uploadButton.y,
+                this.uploadButton.width,
+                this.uploadButton.height
+            );
+        };
+        img.src = avatar;
+    }
+
+    drawUploadButton() {
+        const { x, y, width, height } = this.uploadButton;
+
+        // Fond du bouton
+        this.ctx.fillStyle = "rgba(40, 40, 40, 0.8)";
+        this.ctx.fillRect(x, y, width, height);
+
+        // Icône +
+        const centerX = x + width / 2;
+        const centerY = y + height / 2;
+
+        this.ctx.strokeStyle = this.colors.text;
+        this.ctx.lineWidth = 4;
+        this.ctx.beginPath();
+        this.ctx.moveTo(centerX - 30, centerY);
+        this.ctx.lineTo(centerX + 30, centerY);
+        this.ctx.moveTo(centerX, centerY - 30);
+        this.ctx.lineTo(centerX, centerY + 30);
+        this.ctx.stroke();
+
+        // Texte
+        this.drawText("Click to", centerX, centerY + 60, this.fonts.small);
+        this.drawText("add a photo", centerX, centerY + 80, this.fonts.small);
+    }
+
+    drawButton(button, text, enabled = true) {
+        // Centrer le bouton
+        button.x = (this.canvas.width - button.width) / 2;
+
+        // Fond du bouton
+        this.ctx.fillStyle = enabled ? this.colors.primary : this.colors.disabled;
         this.ctx.fillRect(button.x, button.y, button.width, button.height);
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "24px Arial";
+
+        // Bordure
+        this.ctx.strokeStyle = enabled ? this.colors.text : this.colors.border;
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeRect(button.x, button.y, button.width, button.height);
+
+        // Coeurs décoratifs
+        if (enabled && this.heartImage && this.heartImage.complete) {
+            this.ctx.drawImage(this.heartImage, button.x - 40, button.y + 14, 32, 32);
+            this.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y + 14, 32, 32);
+        }
+
+        // Texte du bouton
+        this.ctx.font = this.fonts.button;
+        this.ctx.fillStyle = enabled ? this.colors.text : this.colors.textSecondary;
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
         this.ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2);
@@ -127,3 +258,6 @@ class playerSetupUi {
             y >= button.y && y <= button.y + button.height;
     }
 }
+
+// Rendre la classe disponible globalement
+window.playerSetupUi = playerSetupUi;

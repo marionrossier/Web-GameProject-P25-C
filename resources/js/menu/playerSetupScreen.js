@@ -18,12 +18,18 @@ class playerSetupScreen {
     }
 
     async show() {
+        // S'assurer que le canvas a les bonnes dimensions dès le début
         this.canvas.width = 1000;
         this.canvas.height = 700;
         currentScreen = "playerSetup";
 
-        // Afficher l'UI
-        this.ui.show();
+        // Dessiner l'interface AVANT d'afficher l'input
+        this.draw();
+
+        // Afficher l'UI avec un petit délai
+        setTimeout(() => {
+            this.ui.show();
+        }, 50);
 
         // Ajouter les event listeners
         this.canvas.addEventListener("click", this.handleClick);
@@ -31,9 +37,6 @@ class playerSetupScreen {
 
         // Démarrer la géolocalisation
         this.getLocation();
-
-        // Dessiner l'interface
-        this.draw();
     }
 
     hide() {
@@ -45,6 +48,10 @@ class playerSetupScreen {
 
     draw() {
         this.ui.draw(this.playerData, this.playerData.isComplete());
+        // Repositionner le champ de saisie après chaque dessin
+        if (this.ui.nameInput.parentNode) {
+            this.ui.positionInput();
+        }
     }
 
     async handleClick(event) {
@@ -65,11 +72,6 @@ class playerSetupScreen {
         if (this.ui.isClickOnButton(x, y, this.ui.startButton) && this.playerData.isComplete()) {
             this.startGame();
         }
-
-        // Clic sur le bouton Retour
-        if (this.ui.isClickOnButton(x, y, this.ui.backButton)) {
-            this.goBack();
-        }
     }
 
     handleInput(event) {
@@ -86,13 +88,7 @@ class playerSetupScreen {
     startGame() {
         this.playerData.save();
         this.hide();
-        startGame(this.canvas, this.ctx, heartImage(), backButtonImage(), instructionsImage());
-    }
-
-    goBack() {
-        this.hide();
-        currentScreen = "menu";
-        renderMenu(this.ctx, this.canvas, heartImage(), backButtonImage(), instructionsImage(), null);
+        startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
     }
 }
 
