@@ -1,7 +1,9 @@
-class DrawMap {
+const WidthTable = [25, 1000];
+const HeightTable = [17, 700];
+const pixelSizeTable = [16, 1];
 
-    constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
-        const Size =0;
+class DrawMap {
+    constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
         this.canvas = document.getElementById("gameCanvas");
         if (!this.canvas) {
             throw new Error("Canvas 'gameCanvas' introuvable !");
@@ -9,12 +11,9 @@ class DrawMap {
 
         this.ctx = this.canvas.getContext("2d");
 
-
-        const config = new JsonReach("resources/js/Config.json");
-        this.mapWidth = config.get("drawMap", "WidthTable", Size);
-        console.log("width " + this.mapWidth);
-        this.mapHeight = config.get("drawMap", "HeightTable", Size);
-        this.pixelSize = config.get("drawMap", "pixelSizeTable", Size);
+        this.mapWidth = WidthTable[Size];
+        this.mapHeight = HeightTable[Size];
+        this.pixelSize = pixelSizeTable[Size];
         this.canvas.width = this.mapWidth * this.pixelSize;
         this.canvas.height = this.mapHeight * this.pixelSize;
 

@@ -1,3 +1,6 @@
+// Variable pour suivre si le formulaire a déjà été complété
+let playerSetupCompleted = false;
+
 function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, instructionsImage) {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -20,7 +23,14 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                 y >= button.y && y <= button.y + button.height) {
                 currentScreen = button.id;
                 if (button.id === "play") {
-                    startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                    // N'afficher le formulaire que si pas encore complété
+                    if (!playerSetupCompleted) {
+                        const setupScreen = new playerSetupScreen();
+                        setupScreen.show();
+                        playerSetupCompleted = true;
+                    } else {
+                        startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                    }
                 } else {
                     renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
