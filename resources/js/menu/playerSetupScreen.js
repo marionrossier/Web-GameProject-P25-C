@@ -85,12 +85,6 @@ class playerSetupScreen {
         this.draw();
     }
 
-    // startGame() {
-    //     this.playerData.save();
-    //     this.hide();
-    //     startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
-    // }
-
     startGame() {
         this.playerData.save();
         this.hide();

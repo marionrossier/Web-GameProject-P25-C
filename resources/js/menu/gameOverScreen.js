@@ -68,10 +68,10 @@ class gameOverScreen {
         this.ctx.fillText("Game Over", this.canvas.width / 2, 200);
 
         // Score final avec la même police que le menu (32px Arial)
-        if (this.motor.score) {
+        if (window.finalScore) {
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 280);
+            this.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
         }
 
         // Temps avec la même police
@@ -135,6 +135,10 @@ class gameOverScreen {
                     if (button.id === "retry") {
                         // Redémarrer le jeu
                         window.currentScreen = "play";
+                        window.currentLevel = 1; // Réinitialiser le niveau
+                        window.finalScore = 0; // Réinitialiser le score
+                        window.finalTime = 0; // Réinitialiser le temps
+                        window.currentLives = 2; // Réinitialiser les vies
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
                         // Retour au menu

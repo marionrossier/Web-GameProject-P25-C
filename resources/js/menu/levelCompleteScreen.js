@@ -72,10 +72,10 @@ class levelCompleteScreen {
         this.ctx.textAlign = "center";
         this.ctx.fillText("Level Complete!", this.canvas.width / 2, 200);
 
-        if (this.motor.score) {
+        if (window.finalScore) {
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 280);
+            this.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
         }
 
         window.finalTime += Math.floor(this.motor.timer / 24);

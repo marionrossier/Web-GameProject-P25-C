@@ -1,3 +1,10 @@
+currentScreen = "menu";
+window.currentLevel = 1;
+app = null;
+window.currentLives = 3;
+window.finalTime = 0;
+window.finalScore = 1000;
+
 class Motor {
     constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
         this.mapTable = mapTable;
@@ -43,7 +50,6 @@ class Motor {
         this.gameState = 0;
 
         this.timerDisplay = document.getElementById("timerDisplay");
-        this.score = new Score();
     }
 
     gameStart(){
@@ -72,16 +78,17 @@ class Motor {
 
     tick() {
         console.trace("tick called"); // Voir d'où vient l'appel
-        if (this.timer % 24 === 0){
+
+        //Afficher le temps écoulé et le score
+        if (this.timer % 24 === 0) {
             console.log("timer tick");
+            window.finalScore = Math.max(window.finalScore - 5, 0);
 
             if (this.timerDisplay) {
                 const secondsElapsed = this.timer / 24;
                 this.timerDisplay.textContent = `${secondsElapsed} s`;
             }
-            this.score.calculateScore(this.timer/24);
         }
-
 
         this.gameMap.draw();
         for (const entityType in this.gameEntities) {
@@ -98,7 +105,7 @@ class Motor {
         this.ctx.font = "10px Arial";
         this.ctx.fillStyle = "cyan";
         this.ctx.textAlign = "left";
-        this.ctx.fillText(`Score: ${this.score.getCurrentScore()}`, 2, this.canvas.height - 2);
+        this.ctx.fillText(`Play Score: ${window.finalScore}`, 2, this.canvas.height - 2);
 
         this.timer++;
     }

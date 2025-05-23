@@ -1,10 +1,3 @@
-currentScreen = "menu";
-window.currentLevel = 1;
-app = null;
-window.currentLives = 3;
-window.finalTime = 0;
-window.finalScore = new Score();
-
 function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app) {
     console.log(currentScreen);
 

@@ -78,10 +78,10 @@ class gameCompleteScreen {
         this.ctx.fillText("You've Completed Mouse Rush!", this.canvas.width / 2, 220);
 
         // Score final
-        if (this.motor.score) {
+        if (window.finalScore) {
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Final Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 300);
+            this.ctx.fillText(`Final Score: ${window.finalScore}`, this.canvas.width / 2, 300);
         }
 
         // Temps total
