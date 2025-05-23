@@ -148,7 +148,7 @@ class Motor {
         const heartSize = 10;
         const padding = 1;
 
-        for (let i = 0; i < currentLives; i++) {
+        for (let i = 0; i < window.currentLives; i++) {
             this.ctx.drawImage(
                 heartImage,
                 padding + i * (heartSize + padding), // Position X

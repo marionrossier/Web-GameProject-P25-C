@@ -1,12 +1,12 @@
 function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) {
 
     // S'assurer que currentLevel est défini
-    if (typeof currentLevel === 'undefined') {
-        currentLevel = 1;
+    if (typeof window.currentLevel === 'undefined') {
+        window.currentLevel = 1;
     }
 
     // Obtenir les données du niveau
-    const levelData = getLevelData(currentLevel);
+    const levelData = getLevelData(window.currentLevel);
     if (!levelData) {
 
         // En cas d'échec, revenir au menu

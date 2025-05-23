@@ -85,12 +85,12 @@ class gameCompleteScreen {
         }
 
         // Temps total
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
-        const minutes = Math.floor(secondsPlayed / 60);
-        const seconds = secondsPlayed % 60;
+        window.finalTime += Math.floor(this.motor.timer / 24);
+        const minutes = Math.floor(window.finalTime / 60);
+        const seconds = window.finalTime % 60;
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Total Time: ${minutes}m ${seconds}s`, this.canvas.width / 2, 360);
+        this.ctx.fillText(`Play Time: ${minutes}m ${seconds}s`, this.canvas.width / 2, 360);
 
         // Dessiner les boutons
         this.drawButtons();

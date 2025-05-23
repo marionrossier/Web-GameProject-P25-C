@@ -78,14 +78,14 @@ class levelCompleteScreen {
             this.ctx.fillText(`Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 280);
         }
 
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
+        window.finalTime += Math.floor(this.motor.timer / 24);
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Time: ${secondsPlayed} seconds`, this.canvas.width / 2, 340);
+        this.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
 
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Lives: ${currentLives}`, this.canvas.width / 2, 400);
+        this.ctx.fillText(`Lives: ${window.currentLives}`, this.canvas.width / 2, 400);
         this.drawButtons();
     }
 

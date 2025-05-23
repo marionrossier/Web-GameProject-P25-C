@@ -75,10 +75,10 @@ class gameOverScreen {
         }
 
         // Temps avec la même police
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
+        window.finalTime += Math.floor(this.motor.timer / 24);
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Time: ${secondsPlayed} seconds`, this.canvas.width / 2, 340);
+        this.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
 
         // Dessiner les boutons avec le style du menu
         this.drawButtons();
