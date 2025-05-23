@@ -155,21 +155,21 @@ class Cursor {
             // Encore invulnérable, donc on ignore
             return;
         }
-        if (this.motor.lives > 0) {
-            this.motor.lives--;
-            console.log(`Vies restantes : ${this.motor.lives}`);
+        if (currentLives > 0) {
+            currentLives--;
+            console.log(`Vies restantes : ${currentLives}`);
             this.invulnerableUntil = now + 2000; // 2 secondes d'invulnérabilité
         }
 
-        if (this.motor.lives === 0) {
+        if (currentLives === 0) {
             this.motor.gameOver();
             window.currentLevel = 1;
         }
     }
 
     gainLife() {
-        this.motor.lives++; // Augmente le nombre de vies
-        console.log(`Vies restantes : ${this.motor.lives}`);
+        currentLives++; // Augmente le nombre de vies
+        console.log(`Vies restantes : ${currentLives}`);
     }
 
     rectsOverlap(a, b) {

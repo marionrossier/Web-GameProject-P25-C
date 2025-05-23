@@ -1,6 +1,7 @@
 currentScreen = "menu";
 currentLevel = 1;
 app = null;
+currentLives = 3;
 
 function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app) {
     console.log(currentScreen);

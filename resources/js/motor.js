@@ -6,7 +6,6 @@ class Motor {
         this.treeSkin = treeSkin;
         this.size = Size;
         this.cursorSkin = cursorSkin;
-        this.lives = 2; // Nombre initial de vies
         this.gameEntities = gameEntities;
         this.screenTransitions = new ingameState(this);
 
@@ -150,7 +149,7 @@ class Motor {
         const heartSize = 10;
         const padding = 1;
 
-        for (let i = 0; i < this.lives; i++) {
+        for (let i = 0; i < currentLives; i++) {
             this.ctx.drawImage(
                 heartImage,
                 padding + i * (heartSize + padding), // Position X

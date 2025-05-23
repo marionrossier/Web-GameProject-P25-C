@@ -85,7 +85,7 @@ class levelCompleteScreen {
 
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Lives: ${this.motor.lives}`, this.canvas.width / 2, 400);
+        this.ctx.fillText(`Lives: ${currentLives}`, this.canvas.width / 2, 400);
         this.drawButtons();
     }
 
