@@ -51,7 +51,6 @@ class Motor {
         this.gameMap.draw();
         this.startTimer();
         this.gameState = 1;
-        // this.screenTransitions.enableInterception();
     }
 
     changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
