@@ -25,8 +25,8 @@ const summerLevel2Entities  = {
         enemy3 : new Enemy(2, 2, 14, 8, 8, this, 0),
     },
     lives:{
-        life1 : new Life(0, 22, 12, this),
-        life2 : new Life(0, 11, 5, this)
+        life1 : new Life(22, 12, this),
+        life2 : new Life(11, 5, this)
     },
 };
 

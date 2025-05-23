@@ -27,12 +27,12 @@ const winterLevel2Entities = {
         enemy4 : new Enemy(1, 12, 15, 18, 7, this, 0)
     },
     lives:{
-        life1 : new Life(0, 11, 5, this),
-        life2 : new Life(0, 15, 14, this),
-        life3 : new Life(0, 17, 11, this),
-        life4 : new Life(0, 20, 15, this),
-        life5 : new Life(0, 21, 15, this),
-        life6 : new Life(0, 22, 15, this),
+        life1 : new Life(11, 5, this),
+        life2 : new Life(15, 14, this),
+        life3 : new Life(17, 11, this),
+        life4 : new Life(20, 15, this),
+        life5 : new Life(21, 15, this),
+        life6 : new Life(22, 15, this),
     },
 
 };

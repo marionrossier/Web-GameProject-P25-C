@@ -26,7 +26,7 @@ class Motor {
 
         this.cursor = new Cursor(
             this.cursorSkin,
-            canvas,
+            this.canvas,
             this.mapTable,
             this.size,
             null,
@@ -45,7 +45,7 @@ class Motor {
             this.gameEntities.enemies[enemy].enemiesMove();
         }
 
-        this.gameMap = new DrawMap(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size);
+        this.gameMap = new DrawMap(this.mapTable, this.outsideSkin, this.waySkin, this.treeSkin, this.gameEntities, this.size);
 
         this.interval = 1000 / 24;
         this.timerState = null;
@@ -53,24 +53,6 @@ class Motor {
         window.gameState = 0;
 
         this.timerDisplay = document.getElementById("timerDisplay");
-    }
-
-
-    changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
-        this.mapTable = mapTable;
-        this.outsideSkin = outsideSkin;
-        this.waySkin = waySkin;
-        this.treeSkin = treeSkin;
-        this.size = Size;
-    }
-
-    getMap() {
-        return this.mapTable;
-    }
-
-    getTime(){
-        //retourne le nombre de seconde écoulé (enlever le /24 si on veut les frame)
-        return this.timer/24;
     }
 
     tick() {
@@ -86,24 +68,23 @@ class Motor {
                 this.timerDisplay.textContent = `${secondsElapsed} s`;
             }
         }
-
         this.gameMap.draw();
         for (const entityType in this.gameEntities) {
             for (const entity in this.gameEntities[entityType]) {
                 this.gameEntities[entityType][entity].draw();
             }
         }
-
         this.drawLives();
         this.cursor.touch();
         this.cursor.drawMouse();
 
-        // Affichage du score en bas à gauche
-        this.ctx.font = "10px Arial";
-        this.ctx.fillStyle = "cyan";
-        this.ctx.textAlign = "left";
-        this.ctx.fillText(`Play Score: ${window.finalScore}`, 2, this.canvas.height - 2);
-
+        // Affichage du score en bas à gauche sur l'écran de jeu
+        if (gameState === 1) {
+            this.ctx.font = "10px Arial";
+            this.ctx.fillStyle = "cyan";
+            this.ctx.textAlign = "left";
+            this.ctx.fillText(`Play Score: ${window.finalScore}`, 2, this.canvas.height - 2);
+        }
         this.timer++;
     }
 
@@ -123,7 +104,6 @@ class Motor {
         }
     }
 
-
     gameOver(){
         this.stopTimer();
         this.gameState = 0;
@@ -142,12 +122,6 @@ class Motor {
         this.screenTransitions.drawEndGameScreen();
     }
 
-    buttonRestart() {
-        const map = new RandomMap();
-        const generated = map.generateMaze();
-        this.changeMap(generated, this.outsideSkin, this.waySkin, this.treeSkin, this.size);
-    }
-
     drawLives() {
         const heartSize = 10;
         const padding = 1;
@@ -162,5 +136,4 @@ class Motor {
             );
         }
     }
-
 }

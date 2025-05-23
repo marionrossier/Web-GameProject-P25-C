@@ -26,7 +26,7 @@ const winterLevel1Entities = {
         enemy3 : new Enemy(1, 7, 2, 21, 14, this, 0)
     },
     lives:{
-        life1 : new Life(0, 11, 5, this),
+        life1 : new Life(11, 5, this),
     },
 };
 const winterLevel1World = 3;

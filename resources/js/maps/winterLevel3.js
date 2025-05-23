@@ -30,8 +30,8 @@ const winterLevel3Entities = {
         enemy7 : new Enemy(1, 6, 15, 12, 3, this, 0),
     },
     lives:{
-        life1 : new Life(0, 11, 5, this),
-        life2 : new Life(0, 22, 10, this)
+        life1 : new Life(11, 5, this),
+        life2 : new Life(22, 10, this)
     },
 
 };

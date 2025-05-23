@@ -25,8 +25,8 @@ const autumnLevel2Entities = {
         enemy3 : new Enemy(1, 23, 13, 20, 1, this, 0),
     },
     lives:{
-        life1 : new Life(0, 13 , 3, this),
-        life2 : new Life(0, 11, 4, this)
+        life1 : new Life(13 , 3, this),
+        life2 : new Life(11, 4, this)
     },
 };
 
