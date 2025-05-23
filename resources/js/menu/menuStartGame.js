@@ -37,21 +37,6 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
 
         // Créer le moteur de jeu pour ce niveau
         app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities, 0);
-        const cursorSkinNumber = 1;
-
-        // Callback en cas de victoire
-        const onWinCallback = () => {
-            // Garder ces lignes pour la compatibilité avec le code existant
-            currentScreen = "stats";
-            // app.screenTransitions.disableInterception();
-            gameMusic.pause();
-            gameMusic.currentTime = 0;
-            renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
-        };
-
-        // Créer le curseur du joueur
-        const cursor = new Cursor(cursorSkinNumber, canvas, levelData.map, 2, onWinCallback, ctx,
-            app, levelData.gameEntities);
 
         console.log("start");
         app.gameMap.draw();
@@ -70,7 +55,6 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
         currentScreen = "menu";
 
         // Nettoyage
-        // if (app) app.screenTransitions.disableInterception();
         gameMusic.pause();
         gameMusic.currentTime = 0;
 

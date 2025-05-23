@@ -29,14 +29,6 @@ class Motor {
         );
 
         this.gameEntities = gameEntities;
-        for (const entityType in this.gameEntities) {
-            for (const entity in this.gameEntities[entityType]) {
-                this.gameEntities[entityType][entity].draw();
-            }
-        }
-        for (const enemy in this.gameEntities.enemies) {
-            this.gameEntities.enemies[enemy].enemiesMove();
-        }
 
         this.gameMap = new DrawMap(this.mapTable, this.outsideSkin, this.waySkin, this.treeSkin, this.gameEntities, this.size);
 
