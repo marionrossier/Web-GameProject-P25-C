@@ -25,7 +25,7 @@ class gameCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        this.motor.gameState = 0;
+        window.gameState = 0;
 
         // Arrêter la musique du jeu si disponible
         const gameMusic = document.getElementById("gameMusic");

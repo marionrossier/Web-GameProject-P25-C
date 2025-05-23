@@ -27,7 +27,7 @@ class levelCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        this.motor.gameState = 0;
+        window.gameState = 0;
 
         const gameMusic = document.getElementById("gameMusic");
         if (gameMusic) {

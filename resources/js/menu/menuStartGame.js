@@ -52,7 +52,12 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
         // Créer le curseur du joueur
         const cursor = new Cursor(cursorSkinNumber, canvas, levelData.map, 2, onWinCallback, ctx,
             app, levelData.gameEntities);
-        app.gameStart();
+
+        console.log("start");
+        app.gameMap.draw();
+        app.startTimer();
+        window.gameState = 1;
+
         currentScreen = "play";
 
         // Gestion de la musique

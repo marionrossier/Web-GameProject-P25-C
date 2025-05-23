@@ -1,9 +1,12 @@
 currentScreen = "menu";
 window.currentLevel = 1;
 app = null;
-window.currentLives = 3;
+window.startLives = 3;
+window.currentLives = startLives;
 window.finalTime = 0;
-window.finalScore = 1000;
+window.startScore = 1000;
+window.finalScore = startScore;
+window.gameState = 0;
 
 class Motor {
     constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
@@ -47,17 +50,11 @@ class Motor {
         this.interval = 1000 / 24;
         this.timerState = null;
         this.timer = 0;
-        this.gameState = 0;
+        window.gameState = 0;
 
         this.timerDisplay = document.getElementById("timerDisplay");
     }
 
-    gameStart(){
-        console.log("start");
-        this.gameMap.draw();
-        this.startTimer();
-        this.gameState = 1;
-    }
 
     changeMap(mapTable, outsideSkin, waySkin, treeSkin, Size) {
         this.mapTable = mapTable;

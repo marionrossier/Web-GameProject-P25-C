@@ -57,7 +57,6 @@ class DrawMap {
         }
     }
 
-
     generateTreePositions() {
         const eligibleCells = [];
 
@@ -69,7 +68,6 @@ class DrawMap {
                 }
             }
         }
-
         const numberOfTrees = Math.floor(eligibleCells.length * 0.2);
         const selected = [];
 
@@ -80,7 +78,6 @@ class DrawMap {
 
         return selected;
     }
-
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
