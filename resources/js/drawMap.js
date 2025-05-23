@@ -1,6 +1,6 @@
-const WidthTable = [25, 1000];
-const HeightTable = [17, 700];
-const pixelSizeTable = [16, 1];
+const WidthTable = [25];
+const HeightTable = [17];
+const pixelSizeTable = [16];
 
 class DrawMap {
     constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {

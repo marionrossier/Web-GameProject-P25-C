@@ -20,7 +20,7 @@ class Motor {
             canvas,
             this.mapTable,
             this.size,
-            null, // TODO : ← pas de onWin pour l’instant
+            null,
             this.ctx,
             this,
             this.gameEntities
