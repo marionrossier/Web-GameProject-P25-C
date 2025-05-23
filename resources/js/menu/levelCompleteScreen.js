@@ -1,6 +1,9 @@
 // Function de debug pour vérifier le chargement du script
 class levelCompleteScreen {
     constructor(motor) {
+
+        window.currentScreen = null; //pour pas qu'il reste sur currentScreen "play"
+
         this.motor = motor;
         this.canvas = document.getElementById("gameCanvas");
         this.ctx = this.canvas.getContext("2d");
@@ -27,7 +30,6 @@ class levelCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        window.gameState = 0;
 
         const gameMusic = document.getElementById("gameMusic");
         if (gameMusic) {
@@ -132,8 +134,8 @@ class levelCompleteScreen {
                     this.clearEventListeners();
 
                     if (button.id === "nextLevel") {
-                        window.currentLevel++;
 
+                        window.currentLevel++;
                         window.currentScreen = "play";
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {

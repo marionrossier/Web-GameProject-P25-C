@@ -1,12 +1,5 @@
 currentScreen = "menu";
-window.currentLevel = 1;
 app = null;
-window.startLives = 3;
-window.currentLives = startLives;
-window.finalTime = 0;
-window.startScore = 1000;
-window.finalScore = startScore;
-window.gameState = 0;
 
 class Motor {
     constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
@@ -50,7 +43,6 @@ class Motor {
         this.interval = 1000 / 24;
         this.timerState = null;
         this.timer = 0;
-        window.gameState = 0;
 
         this.timerDisplay = document.getElementById("timerDisplay");
     }
@@ -79,7 +71,7 @@ class Motor {
         this.cursor.drawMouse();
 
         // Affichage du score en bas à gauche sur l'écran de jeu
-        if (gameState === 1) {
+        if (window.currentScreen === "play") {
             this.ctx.font = "10px Arial";
             this.ctx.fillStyle = "cyan";
             this.ctx.textAlign = "left";
@@ -106,19 +98,16 @@ class Motor {
 
     gameOver(){
         this.stopTimer();
-        this.gameState = 0;
         this.screenTransitions.drawGameOverScreen();
     }
 
     endLevel(){
         this.stopTimer();
-        this.gameState = 0;
         this.screenTransitions.drawEndLevelScreen();
     }
 
     endGame(){
         this.stopTimer();
-        this.gameState = 0;
         this.screenTransitions.drawEndGameScreen();
     }
 

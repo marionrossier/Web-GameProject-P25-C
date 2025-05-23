@@ -25,7 +25,6 @@ class gameCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        window.gameState = 0;
 
         // Arrêter la musique du jeu si disponible
         const gameMusic = document.getElementById("gameMusic");
@@ -172,8 +171,8 @@ class gameCompleteScreen {
                     this.clearEventListeners();
 
                     if (button.id === "restart") {
-                        window.currentLevel = 1;
-                        window.currentScreen = "play";
+                        // Redémarrer le jeu
+                        window.gameInitialisation();
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
                         // Retour au menu

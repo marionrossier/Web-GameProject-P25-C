@@ -56,7 +56,6 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
         console.log("start");
         app.gameMap.draw();
         app.startTimer();
-        window.gameState = 1;
 
         currentScreen = "play";
 

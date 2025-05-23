@@ -27,7 +27,6 @@ class gameOverScreen {
     show() {
                 // Stopper le jeu
         this.motor.stopTimer();
-        window.gameState = 0;
 
         // Arrêter la musique du jeu si disponible
         const gameMusic = document.getElementById("gameMusic");
@@ -134,11 +133,7 @@ class gameOverScreen {
 
                     if (button.id === "retry") {
                         // Redémarrer le jeu
-                        window.currentScreen = "play";
-                        window.currentLevel = 1; // Réinitialiser le niveau
-                        window.finalScore = window.startScore; // Réinitialiser le score
-                        window.finalTime = 0; // Réinitialiser le temps
-                        window.currentLives = window.startLives; // Réinitialiser les vies
+                        window.gameInitialisation();
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
                         // Retour au menu
