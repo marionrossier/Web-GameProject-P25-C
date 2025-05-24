@@ -35,7 +35,13 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
         menuMusic.pause();
         menuMusic.currentTime = 0;
 
-    } else if (["rules", "stats"].includes(currentScreen)) {
+    } else if (currentScreen === "stats") {
+        drawButton(ctx, backButton, heartImage, backButtonImage);
+
+        //appelle de l'affichage des stats
+        displayStats();
+
+    } else if (["rules"].includes(currentScreen)) {
         if (app) {
             app.stopTimer();
             // app.screenTransitions.disableInterception(); // Désactiver l'interception
