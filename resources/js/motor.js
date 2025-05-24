@@ -36,7 +36,7 @@ class Motor {
             this.gameEntities.enemies[enemy].enemiesMove();
         }
 
-        this.gameMap = new DrawMap(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size);
+        this.gameMap = new DrawMap(mapTable, outsideSkin, waySkin, treeSkin, gameEntities);
 
         this.interval = 1000 / 24;
         this.timerState = null;

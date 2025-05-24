@@ -1,0 +1,15 @@
+{
+  "ScoreBoard": {
+    "players": [
+      { "name": "Bidule", "score": 120 },
+      { "name": "Bob", "score": 85 },
+      { "name": "Machin", "score": 75 },
+      { "name": "Sieur Perceval", "score": 65 },
+      { "name": "Krakougas", "score": 55 }
+    ]
+  },
+
+  "exemple": {
+    "description": "Je suis un exemple :D"
+  }
+}
