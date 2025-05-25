@@ -26,7 +26,7 @@ class ingameState {
     drawGameOverScreen() {
         // S'assurer que le canvas a la bonne taille avant d'afficher l'écran Game Over
         this.preserveCanvasSize();
-        currentLevel = 1;
+        window.currentLevel = 1;
         // Vérifier si la classe gameOverScreen est disponible
         if (typeof window.gameOverScreen === 'function') {
             // Créer une instance de la classe gameOverScreen

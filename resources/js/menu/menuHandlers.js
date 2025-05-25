@@ -29,21 +29,10 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                         setupScreen.show();
                         playerSetupCompleted = true;
                     } else {
+                        window.gameInitialisation();
                         startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
                     }
                 } else {
-                    renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
-                }
-            }
-        });
-    } else if (currentScreen === "gameOver") {
-        gameOverButtons.forEach(button => {
-            if (x >= button.x && x <= button.x + button.width &&
-                y >= button.y && y <= button.y + button.height) {
-                if (button.id === "continue") {
-                    startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
-                } else if (button.id === "menu") {
-                    currentScreen = "menu";
                     renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
             }

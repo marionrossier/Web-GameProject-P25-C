@@ -12,7 +12,6 @@ class Enemy {
         this.hitboxHeight = 25;
 
         this.enemiesMove()
-
     }
 
     enemiesMove(map) {

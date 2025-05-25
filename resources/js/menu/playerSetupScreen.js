@@ -70,7 +70,10 @@ class playerSetupScreen {
 
         // Clic sur le bouton Commencer
         if (this.ui.isClickOnButton(x, y, this.ui.startButton) && this.playerData.isComplete()) {
-            this.startGame();
+            this.playerData.save();
+            this.hide();
+            window.gameInitialisation();
+            startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
         }
     }
 
@@ -83,23 +86,6 @@ class playerSetupScreen {
         const location = await this.locationService.getLocation();
         this.playerData.setLocation(location);
         this.draw();
-    }
-
-    // startGame() {
-    //     this.playerData.save();
-    //     this.hide();
-    //     startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
-    // }
-
-    startGame() {
-        this.playerData.save();
-        this.hide();
-
-        // Récupérer le canvas et contexte originaux
-        const originalCanvas = document.getElementById("gameCanvas");
-        const originalCtx = originalCanvas.getContext("2d");
-
-        startGame(originalCanvas, originalCtx, heartImage, backButtonImage, instructionsImage);
     }
 }
 
