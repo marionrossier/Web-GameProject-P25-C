@@ -1,12 +1,11 @@
 class Enemy {
-    constructor(velocity, startX, startY, endX, endY, map, size) {
+    constructor(velocity, startX, startY, endX, endY, map) {
         this.startX = this.currentX = startX;
         this.startY = this.currentY = startY;
         this.endX = endX;
         this.endY = endY;
         this.velocity = velocity;
         this.map = map;
-        this.size = size;
         this.enemySkin = new EnemySkin();
         this.hitboxWidth = 25;
         this.hitboxHeight = 25;
@@ -88,7 +87,7 @@ class Enemy {
     }
 
     getHitbox() {
-        const cellSize = pixelSizeTable[this.size];
+        const cellSize = window.mapPixelSize;
         const posX = this.currentX * cellSize;
         const posY = this.currentY * cellSize;
 

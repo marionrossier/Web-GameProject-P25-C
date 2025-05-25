@@ -22,11 +22,11 @@ class AutumnLevel3 {
 
         this.autumnLevel3Entities = {
             enemies: {
-                enemy1: new Enemy(1, 14, 3, 11, 16, this, 0),
-                enemy2: new Enemy(3, 23, 13, 6, 1, this, 0),
-                enemy3: new Enemy(2, 11, 5, 1, 10, this, 0),
-                enemy4: new Enemy(3, 5, 10, 23, 14, this, 0),
-                enemy5: new Enemy(2, 20, 7, 8, 15, this, 0)
+                enemy1: new Enemy(1, 14, 3, 11, 16, this),
+                enemy2: new Enemy(3, 23, 13, 6, 1, this),
+                enemy3: new Enemy(2, 11, 5, 1, 10, this),
+                enemy4: new Enemy(3, 5, 10, 23, 14, this),
+                enemy5: new Enemy(2, 20, 7, 8, 15, this)
             },
 
             lives: {

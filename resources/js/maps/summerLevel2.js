@@ -22,9 +22,9 @@ class SummerLevel2 {
 
         this.summerLevel2Entities = {
             enemies: {
-                enemy1: new Enemy(1, 24, 4, 10, 13, this, 0),
-                enemy2: new Enemy(2, 8, 10, 12, 5, this, 0),
-                enemy3: new Enemy(2, 2, 14, 8, 8, this, 0),
+                enemy1: new Enemy(1, 24, 4, 10, 13, this),
+                enemy2: new Enemy(2, 8, 10, 12, 5, this),
+                enemy3: new Enemy(2, 2, 14, 8, 8, this),
             },
             lives: {
                 life1: new Life(22, 12, this),

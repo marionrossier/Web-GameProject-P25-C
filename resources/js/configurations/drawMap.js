@@ -1,9 +1,5 @@
-const WidthTable = [25];
-const HeightTable = [17];
-const pixelSizeTable = [16];
-
 class DrawMap {
-    constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
+    constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
         this.canvas = document.getElementById("gameCanvas");
         if (!this.canvas) {
             throw new Error("Canvas 'gameCanvas' introuvable !");
@@ -11,11 +7,8 @@ class DrawMap {
 
         this.ctx = this.canvas.getContext("2d");
 
-        this.mapWidth = WidthTable[Size];
-        this.mapHeight = HeightTable[Size];
-        this.pixelSize = pixelSizeTable[Size];
-        this.canvas.width = this.mapWidth * this.pixelSize;
-        this.canvas.height = this.mapHeight * this.pixelSize;
+        this.canvas.width = window.mapWidth * window.mapPixelSize;
+        this.canvas.height = window.mapHeight * window.mapPixelSize;
 
         this.mapTable = mapTable;
         this.outsideSkin = outsideSkin;
@@ -30,9 +23,9 @@ class DrawMap {
     }
 
     drawOutsideSkin() {
-        for (let y = 0; y < this.mapHeight; y++) {
-            for (let x = 0; x < this.mapWidth; x++) {
-                const index = y * this.mapWidth + x;
+        for (let y = 0; y < window.mapHeight; y++) {
+            for (let x = 0; x < window.mapWidth; x++) {
+                const index = y * window.mapWidth + x;
                 if (this.mapTable[index] === 1) {
                     this.outsideSkin.draw(this.ctx, x, y);
                 }
@@ -41,9 +34,9 @@ class DrawMap {
     }
 
     drawWaySkin() {
-        for (let y = 0; y < this.mapHeight; y++) {
-            for (let x = 0; x < this.mapWidth; x++) {
-                const index = y * this.mapWidth + x;
+        for (let y = 0; y < window.mapHeight; y++) {
+            for (let x = 0; x < window.mapWidth; x++) {
+                const index = y * window.mapWidth + x;
                 if (this.mapTable[index] === 0) {
                     this.waySkin.drawCenter(this.ctx, x, y);
                 }
@@ -60,9 +53,9 @@ class DrawMap {
     generateTreePositions() {
         const eligibleCells = [];
 
-        for (let y = 0; y < this.mapHeight; y++) {
-            for (let x = 0; x < this.mapWidth; x++) {
-                const index = y * this.mapWidth + x;
+        for (let y = 0; y < window.mapHeight; y++) {
+            for (let x = 0; x < window.mapWidth; x++) {
+                const index = y * window.mapWidth + x;
                 if (this.mapTable[index] === 1) {
                     eligibleCells.push({ x, y });
                 }

@@ -1,18 +1,17 @@
 class Cursor {
-    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor, gameEntities) {
+    constructor(skin, canvas, maptable, onWinCallback, ctx, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
         this.canvas = canvas;
         this.ctx = ctx;
         this.maptable = maptable;
-        this.size = size;
         this.onWin = onWinCallback;
         this.motor = motor;
         this.invulnerableUntil = 0;
         this.isVisible = true;
         this.gameEntities = gameEntities;
         this.isActive = false; // Bloque la souris au début du jeu.
-        const cellSize = pixelSizeTable[this.size];
+        const cellSize = window.mapPixelSize;
 
 
         this.mousePosition = {
@@ -60,12 +59,9 @@ class Cursor {
 
 
     touch() {
-        const cellSize = pixelSizeTable[this.size];
-        const mapWidth = WidthTable[this.size];
-
-        const cellX = Math.floor(this.mousePosition.x / cellSize);
-        const cellY = Math.floor(this.mousePosition.y / cellSize);
-        const index = cellY * mapWidth + cellX;
+        const cellX = Math.floor(this.mousePosition.x / window.mapPixelSize);
+        const cellY = Math.floor(this.mousePosition.y / window.mapPixelSize);
+        const index = cellY * window.mapWidth + cellX;
 
         const cursorHitbox = {
             x: this.mousePosition.x - this.hitbox.width / 2,
@@ -90,8 +86,8 @@ class Cursor {
         for (const key in this.gameEntities.lives) {
             const life = this.gameEntities.lives[key];
             const lifeHitbox = {
-                x: life.positionX * cellSize,
-                y: life.positionY * cellSize,
+                x: life.positionX * window.mapPixelSize,
+                y: life.positionY * window.mapPixelSize,
                 width: life.hitboxWidth,
                 height: life.hitboxHeight
             };
@@ -158,7 +154,7 @@ class Cursor {
         if (window.currentLives > 0) {
             window.currentLives--;
             console.log(`Vies restantes : ${window.currentLives}`);
-            this.invulnerableUntil = now + 2000; // 2 secondes d'invulnérabilité
+            this.invulnerableUntil = now + 1000; // 1 seconde d'invulnérabilité
         }
 
         if (window.currentLives === 0) {

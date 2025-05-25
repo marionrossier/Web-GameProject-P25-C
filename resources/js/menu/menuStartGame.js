@@ -21,22 +21,17 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
 
     try {
         // Forcer les dimensions du canvas à 1000x700
-        if (canvas.width !== 1000 || canvas.height !== 700) {
-            canvas.width = 1000;
-            canvas.height = 700;
-        }
-
-        // Définir les paramètres globaux
-        window.pixelSizeTable = { 2: 32 };
-        window.WidthTable = { 2: 20 };
-        window.HeightTable = { 2: 20 };
+        // if (canvas.width !== 1000 || canvas.height !== 700) {
+        //     canvas.width = 1000;
+        //     canvas.height = 700;
+        // }
 
         const outsideSkin = new OutsideSkin(levelData.world);
         const waySkin = new WaySkin(levelData.world);
         const treeSkin = new TreeSkin(levelData.world);
 
         // Créer le moteur de jeu pour ce niveau
-        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities, 0);
+        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities);
 
         console.log("start");
         app.gameMap.draw();

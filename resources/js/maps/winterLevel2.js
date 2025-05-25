@@ -23,10 +23,10 @@ class WinterLevel2 {
 
         this.winterLevel2Entities = {
             enemies: {
-                enemy1: new Enemy(1, 3, 4, 7, 3, this, 0),
-                enemy2: new Enemy(2, 17, 12, 14, 15, this, 0),
-                enemy3: new Enemy(3, 0, 1, 20, 8, this, 0),
-                enemy4: new Enemy(1, 12, 15, 18, 7, this, 0)
+                enemy1: new Enemy(1, 3, 4, 7, 3, this),
+                enemy2: new Enemy(2, 17, 12, 14, 15, this),
+                enemy3: new Enemy(3, 0, 1, 20, 8, this),
+                enemy4: new Enemy(1, 12, 15, 18, 7, this)
             },
             lives: {
                 life1: new Life(11, 5, this),
