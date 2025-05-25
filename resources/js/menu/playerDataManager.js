@@ -6,8 +6,14 @@ class playerDataManager {
     }
 
     setName(name) {
-        this.playerName = name;
+        const sanitized = name
+            .replace(/[^a-zA-Z0-9 _\-À-ÿ]/g, '')  // lettres, chiffres, espaces, accents, tirets
+            .trim()
+            .substring(0, 20);  // max 20 caractères
+
+        this.playerName = sanitized;
     }
+
 
     setAvatar(imageData) {
         this.playerAvatar = imageData;
