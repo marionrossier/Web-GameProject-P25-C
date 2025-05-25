@@ -1,3 +1,4 @@
+//Game Constants :
 let currentLevel = 1;
 let startLives = 3;
 let currentLives = startLives;
@@ -5,11 +6,20 @@ let finalTime = 0;
 let startScore = 1000;
 let finalScore = startScore;
 
+//Map Constants :
 let mapWidth = [25];
 let mapHeight = [17]; //HeightTable
+
+//Pixel Constants :
 let mapPixelSize = [16]; //pixelSizeTable
 
+//Elements Constants :
 
+
+
+
+
+//Window creation
 window.currentLevel = currentLevel;
 window.startLives = startLives;
 window.currentLevel = currentLevel;

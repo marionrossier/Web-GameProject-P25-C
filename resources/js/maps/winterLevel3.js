@@ -23,13 +23,13 @@ class WinterLevel3 {
 
         this.winterLevel3Entities = {
             enemies: {
-                enemy1: new Enemy(1, 15, 2, 20, 8, this, 0),
-                enemy2: new Enemy(2, 2, 14, 5, 4, this, 0),
-                enemy3: new Enemy(3, 21, 11, 10, 15, this, 0),
-                enemy4: new Enemy(1, 9, 4, 3, 5, this, 0),
-                enemy5: new Enemy(2, 18, 6, 19, 13, this, 0),
-                enemy6: new Enemy(3, 13, 1, 22, 12, this, 0),
-                enemy7: new Enemy(1, 6, 15, 12, 3, this, 0),
+                enemy1: new Enemy(1, 15, 2, 20, 8, this),
+                enemy2: new Enemy(2, 2, 14, 5, 4, this),
+                enemy3: new Enemy(3, 21, 11, 10, 15, this),
+                enemy4: new Enemy(1, 9, 4, 3, 5, this),
+                enemy5: new Enemy(2, 18, 6, 19, 13, this),
+                enemy6: new Enemy(3, 13, 1, 22, 12, this),
+                enemy7: new Enemy(1, 6, 15, 12, 3, this),
             },
             lives: {
                 life1: new Life(11, 5, this),

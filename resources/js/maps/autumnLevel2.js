@@ -22,9 +22,9 @@ class AutumnLevel2 {
 
         this.autumnLevel2Entities = {
             enemies: {
-                enemy1: new Enemy(2, 7, 5, 20, 13, this, 0),
-                enemy2: new Enemy(2, 11, 15, 23, 2, this, 0),
-                enemy3: new Enemy(1, 23, 13, 20, 1, this, 0),
+                enemy1: new Enemy(2, 7, 5, 20, 13, this),
+                enemy2: new Enemy(2, 11, 15, 23, 2, this),
+                enemy3: new Enemy(1, 23, 13, 20, 1, this),
             },
             lives: {
                 life1: new Life(13, 3, this),
