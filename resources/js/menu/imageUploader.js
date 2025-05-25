@@ -29,10 +29,10 @@ class imageUploader {
                 const img = new Image();
                 img.onload = () => {
                     // Créer un canvas pour redimensionner
-                    const canvas = document.createElement('canvas');
+                    const canvasImage = document.createElement('canvas');
                     const size = 150; // Taille cible
-                    canvas.width = size;
-                    canvas.height = size;
+                    canvasImage.width = size;
+                    canvasImage.height = size;
 
                     // Calculer le recadrage pour garder le ratio
                     const scale = Math.max(size / img.width, size / img.height);
@@ -42,7 +42,7 @@ class imageUploader {
                     const y = (size - height) / 2;
 
                     window.ctx.drawImage(img, x, y, width, height);
-                    resolve(canvas.toDataURL('image/jpeg', 0.8));
+                    resolve(canvasImage.toDataURL('image/jpeg', 0.8));
                 };
                 img.src = e.target.result;
             };

@@ -11,11 +11,9 @@ class Motor {
         this.gameEntities = gameEntities;
         this.screenTransitions = new ingameState(this);
 
-        this.canvas = document.getElementById("gameCanvas");
-
         this.cursor = new Cursor(
             this.cursorSkin,
-            this.canvas,
+
             this.mapTable,
             null,
             this,
@@ -61,7 +59,7 @@ class Motor {
             window.ctx.font = "10px Arial";
             window.ctx.fillStyle = "cyan";
             window.ctx.textAlign = "left";
-            window.ctx.fillText(`Play Score: ${window.finalScore}`, 2, this.canvas.height - 2);
+            window.ctx.fillText(`Play Score: ${window.finalScore}`, 2, window.canvas.height - 2);
         }
         this.timer++;
     }

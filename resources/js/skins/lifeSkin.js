@@ -1,6 +1,5 @@
 class LifeSkin {
     constructor() {
-        const canvas = document.getElementById("gameCanvas");
         this.image = new Image();
         this.image.src = "resources/images/game/Heart.png";
 

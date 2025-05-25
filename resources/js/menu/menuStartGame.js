@@ -1,4 +1,4 @@
-function startGame(canvas, heartImage, backButtonImage, instructionsImage) {
+function startGame(heartImage, backButtonImage, instructionsImage) {
 
     // S'assurer que currentLevel est défini
     if (typeof window.currentLevel === 'undefined') {
@@ -11,7 +11,7 @@ function startGame(canvas, heartImage, backButtonImage, instructionsImage) {
 
         // En cas d'échec, revenir au menu
         currentScreen = "menu";
-        renderMenu(canvas, heartImage, backButtonImage, instructionsImage);
+        renderMenu(heartImage, backButtonImage, instructionsImage);
         return;
     }
 
@@ -21,9 +21,9 @@ function startGame(canvas, heartImage, backButtonImage, instructionsImage) {
 
     try {
         // Forcer les dimensions du canvas à 1000x700
-        // if (canvas.width !== 1000 || canvas.height !== 700) {
-        //     canvas.width = 1000;
-        //     canvas.height = 700;
+        // if (window.canvas.width !== 1000 || window.canvas.height !== 700) {
+        //     window.canvas.width = 1000;
+        //     window.canvas.height = 700;
         // }
 
         const outsideSkin = new OutsideSkin(levelData.world);
@@ -59,6 +59,6 @@ function startGame(canvas, heartImage, backButtonImage, instructionsImage) {
         });
 
         // Afficher le menu
-        renderMenu(canvas, heartImage, backButtonImage, instructionsImage, app);
+        renderMenu(heartImage, backButtonImage, instructionsImage, app);
     }
 }

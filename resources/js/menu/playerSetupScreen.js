@@ -1,12 +1,10 @@
 class playerSetupScreen {
     constructor() {
-        this.canvas = document.getElementById("gameCanvas");
-
         // Initialiser les services
         this.playerData = new playerDataManager();
         this.locationService = new locationService();
         this.imageUploader = new imageUploader();
-        this.ui = new playerSetupUi(this.canvas, window.ctx);
+        this.ui = new playerSetupUi( window.ctx);
 
         // Charger les données existantes si disponibles
         this.playerData.load();
@@ -18,8 +16,8 @@ class playerSetupScreen {
 
     async show() {
         // S'assurer que le canvas a les bonnes dimensions dès le début
-        this.canvas.width = 1000;
-        this.canvas.height = 700;
+        window.canvas.width = 1000;
+        window.canvas.height = 700;
         currentScreen = "playerSetup";
 
         // Dessiner l'interface AVANT d'afficher l'input
@@ -31,7 +29,7 @@ class playerSetupScreen {
         }, 50);
 
         // Ajouter les event listeners
-        this.canvas.addEventListener("click", this.handleClick);
+        window.canvas.addEventListener("click", this.handleClick);
         this.ui.nameInput.addEventListener("input", this.handleInput);
 
         // Démarrer la géolocalisation
@@ -41,7 +39,7 @@ class playerSetupScreen {
     hide() {
         this.ui.hide();
         this.imageUploader.destroy();
-        this.canvas.removeEventListener("click", this.handleClick);
+        window.canvas.removeEventListener("click", this.handleClick);
         this.ui.nameInput.removeEventListener("input", this.handleInput);
     }
 
@@ -54,7 +52,7 @@ class playerSetupScreen {
     }
 
     async handleClick(event) {
-        const rect = this.canvas.getBoundingClientRect();
+        const rect = window.canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
@@ -72,7 +70,7 @@ class playerSetupScreen {
             this.playerData.save();
             this.hide();
             window.gameInitialisation();
-            startGame(this.canvas, heartImage, backButtonImage, instructionsImage);
+            startGame( heartImage, backButtonImage, instructionsImage);
         }
     }
 

@@ -1,8 +1,7 @@
 class Cursor {
-    constructor(skin, canvas, maptable, onWinCallback, motor, gameEntities) {
+    constructor(skin, maptable, onWinCallback, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
-        this.canvas = canvas;
         this.maptable = maptable;
         this.onWin = onWinCallback;
         this.motor = motor;
@@ -25,12 +24,12 @@ class Cursor {
             height: this.cursorSkin.spriteSize
         };
 
-        this.canvas.addEventListener("mousemove", (e) => {
+        window.canvas.addEventListener("mousemove", (e) => {
             if (!this.isActive) return;
 
-            const rect = this.canvas.getBoundingClientRect();
-            const scaleX = this.canvas.width / rect.width;
-            const scaleY = this.canvas.height / rect.height;
+            const rect = window.canvas.getBoundingClientRect();
+            const scaleX = window.canvas.width / rect.width;
+            const scaleY = window.canvas.height / rect.height;
 
             this.mousePosition.x = (e.clientX - rect.left) * scaleX;
             this.mousePosition.y = (e.clientY - rect.top) * scaleY;
@@ -51,7 +50,7 @@ class Cursor {
         });
 
         // Dès qu'on clique une fois sur le canvas, active le suivi souris
-        this.canvas.addEventListener("click", () => {
+        window.canvas.addEventListener("click", () => {
             this.isActive = true;
         });
     }

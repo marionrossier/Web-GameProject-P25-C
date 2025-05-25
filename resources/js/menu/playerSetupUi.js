@@ -1,7 +1,5 @@
 class playerSetupUi {
     constructor() {
-        this.canvas = window.canvas;
-
         this.nameInput = this.createNameInput();
 
         // Boutons avec le même style que gameOverScreen
@@ -76,7 +74,7 @@ class playerSetupUi {
 
         // Position relative au gameWrapper
         const inputWidth = 300;
-        const centerX = (this.canvas.width - inputWidth) / 2;
+        const centerX = (window.canvas.width - inputWidth) / 2;
         const inputY = 280; // Position Y dans le canvas
 
         // Calculer la position par rapport au wrapper
@@ -120,21 +118,21 @@ class playerSetupUi {
 
     draw(playerData, canStart) {
         // Dimensions du canvas
-        this.canvas.width = 1000;
-        this.canvas.height = 700;
-        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.canvas.width = 1000;
+        window.canvas.height = 700;
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
         // Fond
         window.ctx.fillStyle = this.colors.background;
-        window.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 
         // Titre
-        this.drawText("PLAYER", this.canvas.width / 2, 100, this.fonts.title);
-        this.drawText("CONFIGURATION", this.canvas.width / 2, 150, this.fonts.subtitle);
+        this.drawText("PLAYER", window.canvas.width / 2, 100, this.fonts.title);
+        this.drawText("CONFIGURATION", window.canvas.width / 2, 150, this.fonts.subtitle);
 
         // Label pour le nom - Affiche le nom saisi ou "Player name"
         const nameLabel = playerData.playerName || "Player name";
-        this.drawText(nameLabel, this.canvas.width / 2, 250, this.fonts.label);
+        this.drawText(nameLabel, window.canvas.width / 2, 250, this.fonts.label);
 
         // Zone avatar
         this.drawAvatarSection(playerData.playerAvatar);
@@ -142,7 +140,7 @@ class playerSetupUi {
         // Localisation
         this.drawText(
             `Location: ${playerData.playerLocation}`,
-            this.canvas.width / 2,
+            window.canvas.width / 2,
             570,
             this.fonts.text,
             this.colors.textSecondary
@@ -160,7 +158,7 @@ class playerSetupUi {
     }
 
     drawAvatarSection(avatar) {
-        this.drawText("Profile picture", this.canvas.width / 2, 350, this.fonts.label);
+        this.drawText("Profile picture", window.canvas.width / 2, 350, this.fonts.label);
 
         // Cadre pour l'avatar
         window.ctx.strokeStyle = avatar ? this.colors.primary : this.colors.border;
@@ -227,7 +225,7 @@ class playerSetupUi {
 
     drawButton(button, text, enabled = true) {
         // Centrer le bouton
-        button.x = (this.canvas.width - button.width) / 2;
+        button.x = (window.canvas.width - button.width) / 2;
 
         // Fond du bouton
         window.ctx.fillStyle = enabled ? this.colors.primary : this.colors.disabled;

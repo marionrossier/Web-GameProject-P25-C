@@ -1,12 +1,11 @@
 class DrawMap {
     constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
-        this.canvas = document.getElementById("gameCanvas");
-        if (!this.canvas) {
+        if (!window.canvas) {
             throw new Error("Canvas 'gameCanvas' introuvable !");
         }
 
-        this.canvas.width = window.mapWidth * window.mapPixelSize;
-        this.canvas.height = window.mapHeight * window.mapPixelSize;
+        window.canvas.width = window.mapWidth * window.mapPixelSize;
+        window.canvas.height = window.mapHeight * window.mapPixelSize;
 
         this.mapTable = mapTable;
         this.outsideSkin = outsideSkin;
@@ -71,7 +70,7 @@ class DrawMap {
     }
 
     draw() {
-        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
         this.drawOutsideSkin();
         this.drawWaySkin();
         this.drawTreeSkinOnRandomCells();

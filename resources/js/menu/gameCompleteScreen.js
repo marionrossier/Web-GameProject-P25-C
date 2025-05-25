@@ -4,13 +4,12 @@ console.log("Script gameCompleteScreen.js chargé avec succès!");
 class gameCompleteScreen {
     constructor(motor) {
         this.motor = motor;
-        this.canvas = document.getElementById("gameCanvas");
         this.activeListener = null;
 
         // IMPORTANT: S'assurer que le canvas a les bonnes dimensions
-        if (this.canvas.width !== 1000 || this.canvas.height !== 700) {
-            this.canvas.width = 1000;
-            this.canvas.height = 700;
+        if (window.canvas.width !== 1000 || window.canvas.height !== 700) {
+            window.canvas.width = 1000;
+            window.canvas.height = 700;
         }
 
         // Dimensions et positions des boutons
@@ -38,7 +37,7 @@ class gameCompleteScreen {
         }
 
         // Forcer le style de curseur normal
-        this.canvas.style.cursor = 'default';
+        window.canvas.style.cursor = 'default';
 
         // Nettoyer les écouteurs d'événements précédents
         this.clearEventListeners();
@@ -52,14 +51,14 @@ class gameCompleteScreen {
 
     draw() {
         // Effacer le canvas
-        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
         // Fond festif avec dégradé
-        const gradient = window.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+        const gradient = window.ctx.createLinearGradient(0, 0, 0, window.canvas.height);
         gradient.addColorStop(0, "#4A148C"); // Violet foncé
         gradient.addColorStop(1, "#311B92"); // Indigo foncé
         window.ctx.fillStyle = gradient;
-        window.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 
         // Dessiner des confettis colorés
         this.drawConfetti();
@@ -68,18 +67,18 @@ class gameCompleteScreen {
         window.ctx.font = "64px Arial";
         window.ctx.fillStyle = "#FFD700"; // Or
         window.ctx.textAlign = "center";
-        window.ctx.fillText("Congratulations!", this.canvas.width / 2, 150);
+        window.ctx.fillText("Congratulations!", window.canvas.width / 2, 150);
 
         // Sous-titre
         window.ctx.font = "36px Arial";
         window.ctx.fillStyle = "white";
-        window.ctx.fillText("You've Completed Mouse Rush!", this.canvas.width / 2, 220);
+        window.ctx.fillText("You've Completed Mouse Rush!", window.canvas.width / 2, 220);
 
         // Score final
         if (window.finalScore) {
             window.ctx.font = "32px Arial";
             window.ctx.fillStyle = "white";
-            window.ctx.fillText(`Final Score: ${window.finalScore}`, this.canvas.width / 2, 300);
+            window.ctx.fillText(`Final Score: ${window.finalScore}`, window.canvas.width / 2, 300);
         }
 
         // Temps total
@@ -88,7 +87,7 @@ class gameCompleteScreen {
         const seconds = window.finalTime % 60;
         window.ctx.font = "32px Arial";
         window.ctx.fillStyle = "white";
-        window.ctx.fillText(`Play Time: ${minutes}m ${seconds}s`, this.canvas.width / 2, 360);
+        window.ctx.fillText(`Play Time: ${minutes}m ${seconds}s`, window.canvas.width / 2, 360);
 
         // Dessiner les boutons
         this.drawButtons();
@@ -99,8 +98,8 @@ class gameCompleteScreen {
         // Générer 100 confettis colorés
         for (let i = 0; i < 100; i++) {
             // Position aléatoire
-            const x = Math.random() * this.canvas.width;
-            const y = Math.random() * this.canvas.height;
+            const x = Math.random() * window.canvas.width;
+            const y = Math.random() * window.canvas.height;
 
             // Taille aléatoire
             const size = Math.random() * 10 + 5;
@@ -126,7 +125,7 @@ class gameCompleteScreen {
     drawButtons() {
         // Centrer les boutons
         for (const button of this.gameCompleteButtons) {
-            button.x = (this.canvas.width - button.width) / 2;
+            button.x = (window.canvas.width - button.width) / 2;
         }
 
         // Dessiner chaque bouton
@@ -156,11 +155,11 @@ class gameCompleteScreen {
     // Ajouter l'écouteur d'événements pour les clics
     addClickListener() {
         this.activeListener = (event) => {
-            const rect = this.canvas.getBoundingClientRect();
+            const rect = window.canvas.getBoundingClientRect();
 
             // Calculer les coordonnées relatives au canvas
-            const scaleX = this.canvas.width / rect.width;
-            const scaleY = this.canvas.height / rect.height;
+            const scaleX = window.canvas.width / rect.width;
+            const scaleY = window.canvas.height / rect.height;
             const x = (event.clientX - rect.left) * scaleX;
             const y = (event.clientY - rect.top) * scaleY;
             // Vérifier les clics sur les boutons
@@ -172,21 +171,21 @@ class gameCompleteScreen {
                     if (button.id === "restart") {
                         // Redémarrer le jeu
                         window.gameInitialisation();
-                        window.startGame(this.canvas,window.heartImage, window.backButtonImage, window.instructionsImage);
+                        window.startGame(window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
                         // Retour au menu
                         window.currentScreen = "menu";
-                        window.renderMenu(this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
+                        window.renderMenu( window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
                     }
                 }
             });
         };
 
-        this.canvas.addEventListener("click", this.activeListener);
+        window.canvas.addEventListener("click", this.activeListener);
     }
     clearEventListeners() {
         if (this.activeListener) {
-            this.canvas.removeEventListener("click", this.activeListener);
+            window.canvas.removeEventListener("click", this.activeListener);
             this.activeListener = null;
         }
     }

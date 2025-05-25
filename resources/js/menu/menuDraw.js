@@ -1,6 +1,6 @@
-function drawBackgroundAndOverlay(canvas) {
+function drawBackgroundAndOverlay() {
     window.ctx.fillStyle = "rgb(60, 60, 60)";
-    window.ctx.fillRect(0, 0, canvas.width, canvas.height);
+    window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 }
 
 function drawButton(button, heartImage, backButtonImage) {
@@ -25,36 +25,36 @@ function drawButton(button, heartImage, backButtonImage) {
     }
 }
 
-function drawMainMenu(canvas, heartImage, backButtonImage) {
-    window.ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBackgroundAndOverlay(canvas);
+function drawMainMenu(heartImage, backButtonImage) {
+    window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
+    drawBackgroundAndOverlay(window.canvas);
 
     window.ctx.font = "48px Arial";
     window.ctx.fillStyle = "white";
     window.ctx.textAlign = "center";
-    window.ctx.fillText("Mouse Rush", canvas.width / 2, 200);
+    window.ctx.fillText("Mouse Rush", window.canvas.width / 2, 200);
 
     menuButtons.forEach(button => drawButton(button, heartImage, backButtonImage));
 }
 
-function drawScreen(canvas, currentScreen, heartImage, backButtonImage, instructionsImage) {
-    window.ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBackgroundAndOverlay(canvas);
+function drawScreen(currentScreen, heartImage, backButtonImage, instructionsImage) {
+    window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
+    drawBackgroundAndOverlay(window.canvas);
 
     if (currentScreen === "rules" && instructionsImage.complete && instructionsImage.naturalWidth !== 0) {
-        window.ctx.drawImage(instructionsImage, 0, 25, canvas.width, canvas.height);
+        window.ctx.drawImage(instructionsImage, 0, 25, window.canvas.width, window.canvas.height);
     } else if (currentScreen === "gameOver") {
         ctx.font = "48px Arial";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText("Game Over!", canvas.width / 2, 300);
+        ctx.fillText("Game Over!", window.canvas.width / 2, 300);
 
         gameOverButtons.forEach(button => drawButton(button, heartImage, backButtonImage));
     } else {
         ctx.font = "48px Arial";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText("Screen not loaded", canvas.width / 2, canvas.height / 2);
+        ctx.fillText("Screen not loaded", window.canvas.width / 2, window.canvas.height / 2);
     }
 
     if (currentScreen !== "gameOver") {

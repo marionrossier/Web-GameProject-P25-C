@@ -5,15 +5,11 @@ class levelCompleteScreen {
         window.currentScreen = null; //pour pas qu'il reste sur currentScreen "play"
 
         this.motor = motor;
-        this.canvas = document.getElementById("gameCanvas");
         this.activeListener = null;
 
-        this.originalWidth = this.canvas.width;
-        this.originalHeight = this.canvas.height;
-
-        if (this.canvas.width !== 1000 || this.canvas.height !== 700) {
-            this.canvas.width = 1000;
-            this.canvas.height = 700;
+        if (window.canvas.width !== 1000 || window.canvas.height !== 700) {
+            window.canvas.width = 1000;
+            window.canvas.height = 700;
         }
 
         this.levelCompleteButtons = [
@@ -37,11 +33,11 @@ class levelCompleteScreen {
         }
 
         // IMPORTANT: Forcer le curseur système par défaut
-        this.canvas.style.cursor = 'default';
+        window.canvas.style.cursor = 'default';
 
         // Si la classe updateCursorStyle est disponible, l'utiliser
         if (typeof window.updateCursorStyle === 'function') {
-            window.updateCursorStyle("menu", this.canvas);
+            window.updateCursorStyle("menu", window.canvas);
         }
 
         // Neutraliser directement le curseur du moteur s'il existe
@@ -63,30 +59,30 @@ class levelCompleteScreen {
 
     draw() {
 
-        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
         window.ctx.fillStyle = "rgb(60, 60, 60)";
-        window.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 
         window.ctx.font = "48px Arial";
         window.ctx.fillStyle = "#4CAF50";
         window.ctx.textAlign = "center";
-        window.ctx.fillText("Level Complete!", this.canvas.width / 2, 200);
+        window.ctx.fillText("Level Complete!", window.canvas.width / 2, 200);
 
         if (window.finalScore) {
             window.ctx.font = "32px Arial";
             window.ctx.fillStyle = "white";
-            window.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
+            window.ctx.fillText(`Play Score: ${window.finalScore}`, window.canvas.width / 2, 280);
         }
 
         window.finalTime += Math.floor(this.motor.timer / 24);
         window.ctx.font = "32px Arial";
         window.ctx.fillStyle = "white";
-        window.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
+        window.ctx.fillText(`Play Time: ${window.finalTime} seconds`, window.canvas.width / 2, 340);
 
         window.ctx.font = "32px Arial";
         window.ctx.fillStyle = "white";
-        window.ctx.fillText(`Lives: ${window.currentLives}`, this.canvas.width / 2, 400);
+        window.ctx.fillText(`Lives: ${window.currentLives}`, window.canvas.width / 2, 400);
         this.drawButtons();
     }
 
@@ -94,7 +90,7 @@ class levelCompleteScreen {
     drawButtons() {
 
         for (const button of this.levelCompleteButtons) {
-            button.x = (this.canvas.width - button.width) / 2;
+            button.x = (window.canvas.width - button.width) / 2;
         }
 
 
@@ -120,10 +116,10 @@ class levelCompleteScreen {
 
     addClickListener() {
         this.activeListener = (event) => {
-            const rect = this.canvas.getBoundingClientRect();
+            const rect = window.canvas.getBoundingClientRect();
 
-            const scaleX = this.canvas.width / rect.width;
-            const scaleY = this.canvas.height / rect.height;
+            const scaleX = window.canvas.width / rect.width;
+            const scaleY = window.canvas.height / rect.height;
             const x = (event.clientX - rect.left) * scaleX;
             const y = (event.clientY - rect.top) * scaleY;
 
@@ -136,22 +132,22 @@ class levelCompleteScreen {
 
                         window.currentLevel++;
                         window.currentScreen = "play";
-                        window.startGame(this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage);
+                        window.startGame( window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
 
                         window.currentScreen = "menu";
-                        window.renderMenu(this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
+                        window.renderMenu( window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
                     }
                 }
             });
         };
 
-        this.canvas.addEventListener("click", this.activeListener);
+        window.canvas.addEventListener("click", this.activeListener);
     }
 
     clearEventListeners() {
         if (this.activeListener) {
-            this.canvas.removeEventListener("click", this.activeListener);
+            window.canvas.removeEventListener("click", this.activeListener);
             this.activeListener = null;
         }
     }
