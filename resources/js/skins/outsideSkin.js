@@ -38,7 +38,7 @@ class OutsideSkin {
                 break;
             case 3: // winter
                 this.skinX = 5;
-                this.skinY = 10;
+                this.skinY = 9;
                 break;
         }
     }

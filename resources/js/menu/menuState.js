@@ -1,7 +1,3 @@
-currentScreen = "menu";
-currentLevel = 1;
-app = null;
-
 function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app) {
     console.log(currentScreen);
 
@@ -44,7 +40,6 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
     } else if (["rules"].includes(currentScreen)) {
         if (app) {
             app.stopTimer();
-            // app.screenTransitions.disableInterception(); // Désactiver l'interception
         }
         drawScreen(ctx, canvas, currentScreen, heartImage, backButtonImage, instructionsImage);
     }

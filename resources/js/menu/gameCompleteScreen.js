@@ -25,7 +25,6 @@ class gameCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        this.motor.gameState = 0;
 
         // Arrêter la musique du jeu si disponible
         const gameMusic = document.getElementById("gameMusic");
@@ -78,19 +77,19 @@ class gameCompleteScreen {
         this.ctx.fillText("You've Completed Mouse Rush!", this.canvas.width / 2, 220);
 
         // Score final
-        if (this.motor.score) {
+        if (window.finalScore) {
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Final Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 300);
+            this.ctx.fillText(`Final Score: ${window.finalScore}`, this.canvas.width / 2, 300);
         }
 
         // Temps total
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
-        const minutes = Math.floor(secondsPlayed / 60);
-        const seconds = secondsPlayed % 60;
+        window.finalTime += Math.floor(this.motor.timer / 24);
+        const minutes = Math.floor(window.finalTime / 60);
+        const seconds = window.finalTime % 60;
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Total Time: ${minutes}m ${seconds}s`, this.canvas.width / 2, 360);
+        this.ctx.fillText(`Play Time: ${minutes}m ${seconds}s`, this.canvas.width / 2, 360);
 
         // Dessiner les boutons
         this.drawButtons();
@@ -172,8 +171,8 @@ class gameCompleteScreen {
                     this.clearEventListeners();
 
                     if (button.id === "restart") {
-                        window.currentLevel = 1;
-                        window.currentScreen = "play";
+                        // Redémarrer le jeu
+                        window.gameInitialisation();
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
                         // Retour au menu
