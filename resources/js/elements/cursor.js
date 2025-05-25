@@ -8,7 +8,7 @@ class Cursor {
         this.isVisible = true;
         this.gameEntities = gameEntities;
         this.isActive = false; // Bloque la souris au début du jeu.
-        const cellSize = window.mapPixelSize;
+        const cellSize = MAP.pixelSize;
 
         this.mousePosition = {
             x: 0 * cellSize + cellSize / 2,
@@ -18,8 +18,8 @@ class Cursor {
         this.prevMousePosition = { x: this.mousePosition.x, y: this.mousePosition.y };
 
         this.hitbox = {
-            width: window.cursorHitBoxWidth,
-            height: window.cursorHitBoxHeight
+            width: CURSOR.hitBoxWidth,
+            height: CURSOR.hitBoxHeight
         };
 
         window.canvas.addEventListener("mousemove", (e) => {
@@ -55,9 +55,9 @@ class Cursor {
 
 
     touch() {
-        const cellX = Math.floor(this.mousePosition.x / window.mapPixelSize);
-        const cellY = Math.floor(this.mousePosition.y / window.mapPixelSize);
-        const index = cellY * window.mapWidth + cellX;
+        const cellX = Math.floor(this.mousePosition.x / MAP.pixelSize);
+        const cellY = Math.floor(this.mousePosition.y / MAP.pixelSize);
+        const index = cellY * MAP.width + cellX;
 
         const cursorHitbox = {
             x: this.mousePosition.x - this.hitbox.width / 2,
@@ -82,8 +82,8 @@ class Cursor {
         for (const key in this.gameEntities.lives) {
             const life = this.gameEntities.lives[key];
             const lifeHitbox = {
-                x: life.positionX * window.mapPixelSize,
-                y: life.positionY * window.mapPixelSize,
+                x: life.positionX * MAP.pixelSize,
+                y: life.positionY * MAP.pixelSize,
                 width: life.hitboxWidth,
                 height: life.hitboxHeight
             };

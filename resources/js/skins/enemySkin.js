@@ -19,8 +19,8 @@ class EnemySkin {
                 16, // Image source height
                 x * 16, // Destination x
                 y * 16, // Destination y
-                window.enemyDestinationWidth, // Destination width
-                window.enemyDestinationHeight // Destination height
+                ENEMY.destinationWidth, // Destination width
+                ENEMY.destinationHeight // Destination height
             );
         }
     }

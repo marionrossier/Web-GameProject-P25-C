@@ -4,8 +4,8 @@ class Life {
         this.positionY = positionY;
         this.map = map;
         this.lifeSkin = new LifeSkin();
-        this.hitboxWidth = window.lifeHitBoxWidth;
-        this.hitboxHeight = window.lifeHitBoxHeight;
+        this.hitboxWidth = LIFE.hitBoxWidth;
+        this.hitboxHeight = LIFE.hitBoxHeight;
     }
 
     draw() {

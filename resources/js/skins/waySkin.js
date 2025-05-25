@@ -20,8 +20,8 @@ class WaySkin {
                 16, // Image source height
                 x * 16, // Destination x
                 y * 16, // Destination y
-                window.wayDestinationWidth, // Destination width
-                window.wayDestinationHeight // Destination height
+                WAY.destinationWidth, // Destination width
+                WAY.destinationHeight // Destination height
             );
         }
     }

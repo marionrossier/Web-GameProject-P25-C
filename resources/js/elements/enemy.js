@@ -7,8 +7,8 @@ class Enemy {
         this.velocity = velocity;
         this.map = map;
         this.enemySkin = new EnemySkin();
-        this.hitboxWidth = window.enemyHitBoxWidth;
-        this.hitboxHeight = window.enemyHitBoxHeight;
+        this.hitboxWidth = ENEMY.hitBoxWidth;
+        this.hitboxHeight = ENEMY.hitBoxHeight;
 
         this.enemiesMove()
     }
@@ -87,7 +87,7 @@ class Enemy {
     }
 
     getHitbox() {
-        const cellSize = window.mapPixelSize;
+        const cellSize = MAP.pixelSize;
         const posX = this.currentX * cellSize;
         const posY = this.currentY * cellSize;
 

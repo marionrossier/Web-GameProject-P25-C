@@ -4,8 +4,8 @@ class DrawMap {
             throw new Error("Canvas 'gameCanvas' introuvable !");
         }
 
-        window.canvas.width = window.mapWidth * window.mapPixelSize;
-        window.canvas.height = window.mapHeight * window.mapPixelSize;
+        window.canvas.width = MAP.width * MAP.pixelSize;
+        window.canvas.height = MAP.height * MAP.pixelSize;
 
         this.mapTable = mapTable;
         this.outsideSkin = outsideSkin;
@@ -20,9 +20,9 @@ class DrawMap {
     }
 
     drawOutsideSkin() {
-        for (let y = 0; y < window.mapHeight; y++) {
-            for (let x = 0; x < window.mapWidth; x++) {
-                const index = y * window.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 1) {
                     this.outsideSkin.draw(x, y);
                 }
@@ -31,9 +31,9 @@ class DrawMap {
     }
 
     drawWaySkin() {
-        for (let y = 0; y < window.mapHeight; y++) {
-            for (let x = 0; x < window.mapWidth; x++) {
-                const index = y * window.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 0) {
                     this.waySkin.drawCenter(x, y);
                 }
@@ -50,9 +50,9 @@ class DrawMap {
     generateTreePositions() {
         const eligibleCells = [];
 
-        for (let y = 0; y < window.mapHeight; y++) {
-            for (let x = 0; x < window.mapWidth; x++) {
-                const index = y * window.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 1) {
                     eligibleCells.push({ x, y });
                 }
