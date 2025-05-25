@@ -20,8 +20,8 @@ class OutsideSkin {
                 16, // Image source height
                 x * 16, // Destination x
                 y * 16, // Destination y
-                16, // Destination width
-                16 // Destination height
+                window.outsideDestinationWidth, // Destination width
+                window.outsideDestinationHeight // Destination height
             );
         }
     }

@@ -13,9 +13,7 @@ class Motor {
 
         this.cursor = new Cursor(
             this.cursorSkin,
-
             this.mapTable,
-            null,
             this,
             this.gameEntities
         );

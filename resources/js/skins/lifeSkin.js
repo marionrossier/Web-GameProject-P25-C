@@ -19,8 +19,8 @@ class LifeSkin {
                 16, // Image source height
                 x * 16+2, // Destination x
                 y * 16+2, // Destination y
-                12, // Destination width
-                12 // Destination height
+                window.lifeDestinationWidth, // Destination width
+                window.lifeDestinationHeight // Destination height
             );
         }
     }

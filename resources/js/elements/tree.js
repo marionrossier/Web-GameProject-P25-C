@@ -1,10 +1,9 @@
 class Tree {
-    constructor(x, y, skin, size) {
+    constructor(x, y, skin) {
         this.x = x;
         this.y = y;
         this.skin = skin;
         this.treeSkin = new TreeSkin(this.skin);
-        this.size = size;
     }
 
     draw() {

@@ -19,8 +19,8 @@ class TreeSkin {
                 48, // Image source height
                 x * 16+2, // Destination x
                 y * 16, // Destination y
-                16-4, // Destination width
-                16 // Destination height
+                window.treeDestinationWidth, // Destination width
+                window.treeDestinationHeight // Destination height
             );
         }
     }

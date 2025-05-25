@@ -20,12 +20,6 @@ function startGame(heartImage, backButtonImage, instructionsImage) {
     const gameMusic = document.getElementById("gameMusic");
 
     try {
-        // Forcer les dimensions du canvas à 1000x700
-        // if (window.canvas.width !== 1000 || window.canvas.height !== 700) {
-        //     window.canvas.width = 1000;
-        //     window.canvas.height = 700;
-        // }
-
         const outsideSkin = new OutsideSkin(levelData.world);
         const waySkin = new WaySkin(levelData.world);
         const treeSkin = new TreeSkin(levelData.world);

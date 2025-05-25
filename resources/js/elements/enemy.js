@@ -7,8 +7,8 @@ class Enemy {
         this.velocity = velocity;
         this.map = map;
         this.enemySkin = new EnemySkin();
-        this.hitboxWidth = 25;
-        this.hitboxHeight = 25;
+        this.hitboxWidth = window.enemyHitBoxWidth;
+        this.hitboxHeight = window.enemyHitBoxHeight;
 
         this.enemiesMove()
     }

@@ -22,8 +22,8 @@ class CursorSkin {
                 16, // Image source height
                 x-6, // Destination x
                 y-6, // Destination y
-                12, // Destination width
-                12 // Destination height
+                window.cursorDestinationWidth, // Destination width
+                window.cursorDestinationHeight// Destination height
             );
         }
     }

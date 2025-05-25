@@ -1,16 +1,14 @@
 class Cursor {
-    constructor(skin, maptable, onWinCallback, motor, gameEntities) {
+    constructor(skin, maptable, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
         this.maptable = maptable;
-        this.onWin = onWinCallback;
         this.motor = motor;
         this.invulnerableUntil = 0;
         this.isVisible = true;
         this.gameEntities = gameEntities;
         this.isActive = false; // Bloque la souris au début du jeu.
         const cellSize = window.mapPixelSize;
-
 
         this.mousePosition = {
             x: 0 * cellSize + cellSize / 2,
@@ -20,8 +18,8 @@ class Cursor {
         this.prevMousePosition = { x: this.mousePosition.x, y: this.mousePosition.y };
 
         this.hitbox = {
-            width: this.cursorSkin.spriteSize,
-            height: this.cursorSkin.spriteSize
+            width: window.cursorHitBoxWidth,
+            height: window.cursorHitBoxHeight
         };
 
         window.canvas.addEventListener("mousemove", (e) => {
