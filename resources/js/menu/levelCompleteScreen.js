@@ -1,6 +1,9 @@
 // Function de debug pour vérifier le chargement du script
 class levelCompleteScreen {
     constructor(motor) {
+
+        window.currentScreen = null; //pour pas qu'il reste sur currentScreen "play"
+
         this.motor = motor;
         this.canvas = document.getElementById("gameCanvas");
         this.ctx = this.canvas.getContext("2d");
@@ -27,7 +30,6 @@ class levelCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        this.motor.gameState = 0;
 
         const gameMusic = document.getElementById("gameMusic");
         if (gameMusic) {
@@ -72,20 +74,20 @@ class levelCompleteScreen {
         this.ctx.textAlign = "center";
         this.ctx.fillText("Level Complete!", this.canvas.width / 2, 200);
 
-        if (this.motor.score) {
+        if (window.finalScore) {
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 280);
+            this.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
         }
 
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
+        window.finalTime += Math.floor(this.motor.timer / 24);
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Time: ${secondsPlayed} seconds`, this.canvas.width / 2, 340);
+        this.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
 
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Lives: ${this.motor.lives}`, this.canvas.width / 2, 400);
+        this.ctx.fillText(`Lives: ${window.currentLives}`, this.canvas.width / 2, 400);
         this.drawButtons();
     }
 
@@ -132,8 +134,8 @@ class levelCompleteScreen {
                     this.clearEventListeners();
 
                     if (button.id === "nextLevel") {
-                        window.currentLevel++;
 
+                        window.currentLevel++;
                         window.currentScreen = "play";
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {

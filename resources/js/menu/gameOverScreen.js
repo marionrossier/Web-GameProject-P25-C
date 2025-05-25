@@ -27,7 +27,6 @@ class gameOverScreen {
     show() {
                 // Stopper le jeu
         this.motor.stopTimer();
-        this.motor.gameState = 0;
 
         // Arrêter la musique du jeu si disponible
         const gameMusic = document.getElementById("gameMusic");
@@ -68,17 +67,17 @@ class gameOverScreen {
         this.ctx.fillText("Game Over", this.canvas.width / 2, 200);
 
         // Score final avec la même police que le menu (32px Arial)
-        if (this.motor.score) {
+        if (window.finalScore) {
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 280);
+            this.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
         }
 
         // Temps avec la même police
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
+        window.finalTime += Math.floor(this.motor.timer / 24);
         this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Time: ${secondsPlayed} seconds`, this.canvas.width / 2, 340);
+        this.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
 
         // Dessiner les boutons avec le style du menu
         this.drawButtons();
@@ -134,7 +133,7 @@ class gameOverScreen {
 
                     if (button.id === "retry") {
                         // Redémarrer le jeu
-                        window.currentScreen = "play";
+                        window.gameInitialisation();
                         window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
                         // Retour au menu

@@ -1,12 +1,12 @@
 function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) {
 
     // S'assurer que currentLevel est défini
-    if (typeof currentLevel === 'undefined') {
-        currentLevel = 1;
+    if (typeof window.currentLevel === 'undefined') {
+        window.currentLevel = 1;
     }
 
     // Obtenir les données du niveau
-    const levelData = getLevelData(currentLevel);
+    const levelData = getLevelData(window.currentLevel);
     if (!levelData) {
 
         // En cas d'échec, revenir au menu
@@ -21,38 +21,22 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
 
     try {
         // Forcer les dimensions du canvas à 1000x700
-        if (canvas.width !== 1000 || canvas.height !== 700) {
-            canvas.width = 1000;
-            canvas.height = 700;
-        }
-
-        // Définir les paramètres globaux
-        window.pixelSizeTable = { 2: 32 };
-        window.WidthTable = { 2: 20 };
-        window.HeightTable = { 2: 20 };
+        // if (canvas.width !== 1000 || canvas.height !== 700) {
+        //     canvas.width = 1000;
+        //     canvas.height = 700;
+        // }
 
         const outsideSkin = new OutsideSkin(levelData.world);
         const waySkin = new WaySkin(levelData.world);
         const treeSkin = new TreeSkin(levelData.world);
 
         // Créer le moteur de jeu pour ce niveau
-        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities, 0);
-        const cursorSkinNumber = 1;
+        app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities);
 
-        // Callback en cas de victoire
-        const onWinCallback = () => {
-            // Garder ces lignes pour la compatibilité avec le code existant
-            currentScreen = "stats";
-            // app.screenTransitions.disableInterception();
-            gameMusic.pause();
-            gameMusic.currentTime = 0;
-            renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
-        };
+        console.log("start");
+        app.gameMap.draw();
+        app.startTimer();
 
-        // Créer le curseur du joueur
-        const cursor = new Cursor(cursorSkinNumber, canvas, levelData.map, 2, onWinCallback, ctx,
-            app, levelData.gameEntities);
-        app.gameStart();
         currentScreen = "play";
 
         // Gestion de la musique
@@ -66,7 +50,6 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
         currentScreen = "menu";
 
         // Nettoyage
-        // if (app) app.screenTransitions.disableInterception();
         gameMusic.pause();
         gameMusic.currentTime = 0;
 
