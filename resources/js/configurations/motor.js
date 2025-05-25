@@ -2,12 +2,11 @@ currentScreen = "menu";
 app = null;
 
 class Motor {
-    constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
+    constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
         this.mapTable = mapTable;
         this.outsideSkin = outsideSkin;
         this.waySkin = waySkin;
         this.treeSkin = treeSkin;
-        this.size = Size;
         this.cursorSkin = cursorSkin;
         this.gameEntities = gameEntities;
         this.screenTransitions = new ingameState(this);
@@ -21,7 +20,6 @@ class Motor {
             this.cursorSkin,
             this.canvas,
             this.mapTable,
-            this.size,
             null,
             this.ctx,
             this,
@@ -30,7 +28,7 @@ class Motor {
 
         this.gameEntities = gameEntities;
 
-        this.gameMap = new DrawMap(this.mapTable, this.outsideSkin, this.waySkin, this.treeSkin, this.gameEntities, this.size);
+        this.gameMap = new DrawMap(this.mapTable, this.outsideSkin, this.waySkin, this.treeSkin, this.gameEntities);
 
         this.interval = 1000 / 24;
         this.timerState = null;

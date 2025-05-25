@@ -88,7 +88,7 @@ class Enemy {
     }
 
     getHitbox() {
-        const cellSize = pixelSizeTable[this.size];
+        const cellSize = window.mapPixelSize;
         const posX = this.currentX * cellSize;
         const posY = this.currentY * cellSize;
 

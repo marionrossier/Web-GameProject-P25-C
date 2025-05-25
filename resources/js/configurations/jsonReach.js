@@ -21,13 +21,9 @@ class JsonReach {
         }
     }
 
-    get(father, child, number = null) {
+    get(father, child) {
         try {
-            let result = this.data[father][child];
-            if (number !== null) {
-                result = result[number];
-            }
-            return result;
+            return this.data[father][child];
         } catch (e) {
             console.error("Erreur d'accès JSON :", e);
             return null;

@@ -5,6 +5,11 @@ let finalTime = 0;
 let startScore = 1000;
 let finalScore = startScore;
 
+let mapWidth = [25];
+let mapHeight = [17]; //HeightTable
+let mapPixelSize = [16]; //pixelSizeTable
+
+
 window.currentLevel = currentLevel;
 window.startLives = startLives;
 window.currentLevel = currentLevel;
@@ -12,6 +17,10 @@ window.currentLives = startLives;
 window.finalTime = finalTime;
 window.startScore = startScore;
 window.finalScore = startScore;
+
+window.mapWidth = mapWidth;
+window.mapHeight = mapHeight;
+window.mapPixelSize = mapPixelSize;
 
 
 function gameInitialisation() {
