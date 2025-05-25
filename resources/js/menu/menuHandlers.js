@@ -1,7 +1,7 @@
 // Variable pour suivre si le formulaire a déjà été complété
 let playerSetupCompleted = false;
 
-function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, instructionsImage) {
+function handleCanvasClick(event, canvas, heartImage, backButtonImage, instructionsImage) {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
@@ -13,7 +13,7 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
             app.stopTimer();
         }
         currentScreen = "menu";
-        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+        renderMenu(canvas, heartImage, backButtonImage, instructionsImage, app);
         return;
     }
 
@@ -30,20 +30,20 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                         playerSetupCompleted = true;
                     } else {
                         window.gameInitialisation();
-                        startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                        startGame(canvas, heartImage, backButtonImage, instructionsImage);
                     }
                 } else {
-                    renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+                    renderMenu(canvas, heartImage, backButtonImage, instructionsImage, app);
                 }
             }
         });
     }
 }
 
-function handleKeydown(event, ctx, canvas, heartImage, backButtonImage, instructionsImage) {
+function handleKeydown(event, canvas, heartImage, backButtonImage, instructionsImage) {
     if (event.key === "Escape" && currentScreen === "play") {
         if (app) app.stopTimer();
         currentScreen = "menu";
-        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+        renderMenu(canvas, heartImage, backButtonImage, instructionsImage, app);
     }
 }

@@ -30,7 +30,6 @@ class imageUploader {
                 img.onload = () => {
                     // Créer un canvas pour redimensionner
                     const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
                     const size = 150; // Taille cible
                     canvas.width = size;
                     canvas.height = size;
@@ -42,7 +41,7 @@ class imageUploader {
                     const x = (size - width) / 2;
                     const y = (size - height) / 2;
 
-                    ctx.drawImage(img, x, y, width, height);
+                    window.ctx.drawImage(img, x, y, width, height);
                     resolve(canvas.toDataURL('image/jpeg', 0.8));
                 };
                 img.src = e.target.result;

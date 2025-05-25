@@ -1,7 +1,6 @@
 class EnemySkin {
     constructor() {
         const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
         this.image = new Image();
         this.image.src = "resources/images/game/Characters.png";
 
@@ -13,7 +12,7 @@ class EnemySkin {
 
     draw(x, y) {
         if (this.imageLoaded) {
-            this.ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 16 * 16, // Image source x 16
                 16 * 16, // Image source y 16

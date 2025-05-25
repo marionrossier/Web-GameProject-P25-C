@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
 
     this.heartImage = heartImage();
     this.backButtonImage = backButtonImage();
@@ -12,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
         new Promise(resolve => { this.instructionsImage.onload = resolve; this.instructionsImage.onerror = resolve; })
     ]).then(() => {
         currentScreen = "menu";
-        renderMenu(ctx, canvas, this.heartImage, this.backButtonImage, this.instructionsImage, app);
+        renderMenu(canvas, this.heartImage, this.backButtonImage, this.instructionsImage, app);
     });
 
     canvas.addEventListener("click", (event) => handleCanvasClick
-            (event, canvas, ctx, this.heartImage, this.backButtonImage, this.instructionsImage));
+            (event, canvas, this.heartImage, this.backButtonImage, this.instructionsImage));
     document.addEventListener("keydown", (event) => handleKeydown
-            (event, ctx, canvas, this.heartImage, this.backButtonImage, this.instructionsImage));
+            (event, canvas, this.heartImage, this.backButtonImage, this.instructionsImage));
 });

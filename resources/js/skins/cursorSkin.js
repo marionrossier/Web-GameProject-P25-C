@@ -12,9 +12,9 @@ class CursorSkin {
         };
     }
 
-    draw(ctx, x, y) {
+    draw(x, y) {
         if (this.imageLoaded) {
-            ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
                 this.baseY * 16, // Image source y

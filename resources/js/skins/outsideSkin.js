@@ -10,9 +10,9 @@ class OutsideSkin {
         this.selectSkin(skinNbr);
     }
 
-    draw(ctx, x, y) {
+    draw(x, y) {
         if (this.imageLoaded) {
-            ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
                 this.skinY * 16, // Image source y

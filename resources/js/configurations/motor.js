@@ -11,17 +11,13 @@ class Motor {
         this.gameEntities = gameEntities;
         this.screenTransitions = new ingameState(this);
 
-        const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
-
-        this.canvas = canvas;
+        this.canvas = document.getElementById("gameCanvas");
 
         this.cursor = new Cursor(
             this.cursorSkin,
             this.canvas,
             this.mapTable,
             null,
-            this.ctx,
             this,
             this.gameEntities
         );
@@ -62,10 +58,10 @@ class Motor {
 
         // Affichage du score en bas à gauche sur l'écran de jeu
         if (window.currentScreen === "play") {
-            this.ctx.font = "10px Arial";
-            this.ctx.fillStyle = "cyan";
-            this.ctx.textAlign = "left";
-            this.ctx.fillText(`Play Score: ${window.finalScore}`, 2, this.canvas.height - 2);
+            window.ctx.font = "10px Arial";
+            window.ctx.fillStyle = "cyan";
+            window.ctx.textAlign = "left";
+            window.ctx.fillText(`Play Score: ${window.finalScore}`, 2, this.canvas.height - 2);
         }
         this.timer++;
     }
@@ -106,7 +102,7 @@ class Motor {
         const padding = 1;
 
         for (let i = 0; i < window.currentLives; i++) {
-            this.ctx.drawImage(
+            window.ctx.drawImage(
                 heartImage,
                 padding + i * (heartSize + padding), // Position X
                 padding, // Position Y

@@ -1,4 +1,4 @@
-function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) {
+function startGame(canvas, heartImage, backButtonImage, instructionsImage) {
 
     // S'assurer que currentLevel est défini
     if (typeof window.currentLevel === 'undefined') {
@@ -11,7 +11,7 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
 
         // En cas d'échec, revenir au menu
         currentScreen = "menu";
-        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage);
+        renderMenu(canvas, heartImage, backButtonImage, instructionsImage);
         return;
     }
 
@@ -59,6 +59,6 @@ function startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage) 
         });
 
         // Afficher le menu
-        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+        renderMenu(canvas, heartImage, backButtonImage, instructionsImage, app);
     }
 }

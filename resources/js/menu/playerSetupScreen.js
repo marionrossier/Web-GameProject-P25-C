@@ -1,13 +1,12 @@
 class playerSetupScreen {
     constructor() {
         this.canvas = document.getElementById("gameCanvas");
-        this.ctx = this.canvas.getContext("2d");
 
         // Initialiser les services
         this.playerData = new playerDataManager();
         this.locationService = new locationService();
         this.imageUploader = new imageUploader();
-        this.ui = new playerSetupUi(this.canvas, this.ctx);
+        this.ui = new playerSetupUi(this.canvas, window.ctx);
 
         // Charger les données existantes si disponibles
         this.playerData.load();
@@ -73,7 +72,7 @@ class playerSetupScreen {
             this.playerData.save();
             this.hide();
             window.gameInitialisation();
-            startGame(this.canvas, this.ctx, heartImage, backButtonImage, instructionsImage);
+            startGame(this.canvas, heartImage, backButtonImage, instructionsImage);
         }
     }
 

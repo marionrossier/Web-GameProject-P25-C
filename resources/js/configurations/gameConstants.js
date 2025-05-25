@@ -1,17 +1,28 @@
 //Game Constants :
 let currentLevel = 1;
-let startLives = 3;
+const startLives = 3;
 let currentLives = startLives;
 let finalTime = 0;
-let startScore = 1000;
+const startScore = 1000;
 let finalScore = startScore;
 
 //Map Constants :
-let mapWidth = [25];
-let mapHeight = [17]; //HeightTable
+const mapWidth = [25];
+const mapHeight = [17]; //HeightTable
 
 //Pixel Constants :
-let mapPixelSize = [16]; //pixelSizeTable
+const mapPixelSize = [16]; //pixelSizeTable
+
+//Canvas Constants :
+const screenCanvasWidth = 1000;
+const screenCanvasHeight = 700;
+
+let gameCanvasWidth = window.mapWidth * window.mapPixelSize;
+let gameCanvasHeight = window.mapHeight * window.mapPixelSize;
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+
 
 //Elements Constants :
 
@@ -32,6 +43,10 @@ window.mapWidth = mapWidth;
 window.mapHeight = mapHeight;
 window.mapPixelSize = mapPixelSize;
 
+window.screenCanvasWidth = screenCanvasWidth;
+window.screenCanvasHeight = screenCanvasHeight;
+window.ctx = ctx;
+window.canvas = canvas;
 
 function gameInitialisation() {
     window.currentScreen = "play";

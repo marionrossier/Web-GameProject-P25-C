@@ -1,9 +1,8 @@
 class Cursor {
-    constructor(skin, canvas, maptable, onWinCallback, ctx, motor, gameEntities) {
+    constructor(skin, canvas, maptable, onWinCallback, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
         this.canvas = canvas;
-        this.ctx = ctx;
         this.maptable = maptable;
         this.onWin = onWinCallback;
         this.motor = motor;
@@ -140,7 +139,7 @@ class Cursor {
         }
 
         if  (this.isVisible) {
-            this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
+            this.cursorSkin.draw(this.mousePosition.x, this.mousePosition.y);
         }
     }
 

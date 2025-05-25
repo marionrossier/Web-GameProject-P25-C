@@ -5,8 +5,6 @@ class DrawMap {
             throw new Error("Canvas 'gameCanvas' introuvable !");
         }
 
-        this.ctx = this.canvas.getContext("2d");
-
         this.canvas.width = window.mapWidth * window.mapPixelSize;
         this.canvas.height = window.mapHeight * window.mapPixelSize;
 
@@ -27,7 +25,7 @@ class DrawMap {
             for (let x = 0; x < window.mapWidth; x++) {
                 const index = y * window.mapWidth + x;
                 if (this.mapTable[index] === 1) {
-                    this.outsideSkin.draw(this.ctx, x, y);
+                    this.outsideSkin.draw(x, y);
                 }
             }
         }
@@ -38,7 +36,7 @@ class DrawMap {
             for (let x = 0; x < window.mapWidth; x++) {
                 const index = y * window.mapWidth + x;
                 if (this.mapTable[index] === 0) {
-                    this.waySkin.drawCenter(this.ctx, x, y);
+                    this.waySkin.drawCenter(x, y);
                 }
             }
         }
@@ -46,7 +44,7 @@ class DrawMap {
 
     drawTreeSkinOnRandomCells() {
         for (const { x, y } of this.treePositions) {
-            this.treeSkin.draw(this.ctx, x, y);
+            this.treeSkin.draw(x, y);
         }
     }
 
@@ -73,7 +71,7 @@ class DrawMap {
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawOutsideSkin();
         this.drawWaySkin();
         this.drawTreeSkinOnRandomCells();

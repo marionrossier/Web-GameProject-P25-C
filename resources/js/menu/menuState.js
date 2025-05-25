@@ -1,4 +1,4 @@
-function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app) {
+function renderMenu(canvas, heartImage, backButtonImage, instructionsImage, app) {
     console.log(currentScreen);
 
     updateCursorStyle(currentScreen, canvas);
@@ -7,14 +7,10 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
     const gameMusic = document.getElementById("gameMusic");
 
     if (currentScreen === "menu") {
-        if (app) {
-            app.stopTimer();
-        }
-        canvas.width = initialCanvasWidth;
-        canvas.height = initialCanvasHeight;
-        drawMainMenu(ctx, canvas, heartImage, backButtonImage);
+        if (app) app.stopTimer();
 
-        // Jouer la musique du menu, arrêter celle du jeu
+        drawMainMenu(canvas, heartImage, backButtonImage);
+
         menuMusic.play().catch((error) => {
             console.error("Erreur lors de la lecture de la musique du menu :", error);
         });
@@ -22,9 +18,7 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
         gameMusic.currentTime = 0;
 
     } else if (currentScreen === "play") {
-        drawButton(ctx, backButton, heartImage, backButtonImage);
 
-        // Jouer la musique du jeu, arrêter celle du menu
         gameMusic.play().catch((error) => {
             console.error("Erreur lors de la lecture de la musique du jeu :", error);
         });
@@ -32,15 +26,10 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
         menuMusic.currentTime = 0;
 
     } else if (currentScreen === "stats") {
-        drawButton(ctx, backButton, heartImage, backButtonImage);
-
-        //appelle de l'affichage des stats
         displayStats();
 
-    } else if (["rules"].includes(currentScreen)) {
-        if (app) {
-            app.stopTimer();
-        }
-        drawScreen(ctx, canvas, currentScreen, heartImage, backButtonImage, instructionsImage);
+    } else if (currentScreen === "rules") {
+        if (app) app.stopTimer();
+        drawScreen(canvas, currentScreen, heartImage, backButtonImage, instructionsImage);
     }
 }

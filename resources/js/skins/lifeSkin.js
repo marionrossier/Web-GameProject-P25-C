@@ -1,7 +1,6 @@
 class LifeSkin {
     constructor() {
         const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
         this.image = new Image();
         this.image.src = "resources/images/game/Heart.png";
 
@@ -13,7 +12,7 @@ class LifeSkin {
 
     draw(x, y) {
         if (this.imageLoaded) {
-            this.ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 0, // Image source x
                 0, // Image source y

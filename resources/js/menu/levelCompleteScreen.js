@@ -6,7 +6,6 @@ class levelCompleteScreen {
 
         this.motor = motor;
         this.canvas = document.getElementById("gameCanvas");
-        this.ctx = this.canvas.getContext("2d");
         this.activeListener = null;
 
         this.originalWidth = this.canvas.width;
@@ -64,30 +63,30 @@ class levelCompleteScreen {
 
     draw() {
 
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.fillStyle = "rgb(60, 60, 60)";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.fillStyle = "rgb(60, 60, 60)";
+        window.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.font = "48px Arial";
-        this.ctx.fillStyle = "#4CAF50";
-        this.ctx.textAlign = "center";
-        this.ctx.fillText("Level Complete!", this.canvas.width / 2, 200);
+        window.ctx.font = "48px Arial";
+        window.ctx.fillStyle = "#4CAF50";
+        window.ctx.textAlign = "center";
+        window.ctx.fillText("Level Complete!", this.canvas.width / 2, 200);
 
         if (window.finalScore) {
-            this.ctx.font = "32px Arial";
-            this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
+            window.ctx.font = "32px Arial";
+            window.ctx.fillStyle = "white";
+            window.ctx.fillText(`Play Score: ${window.finalScore}`, this.canvas.width / 2, 280);
         }
 
         window.finalTime += Math.floor(this.motor.timer / 24);
-        this.ctx.font = "32px Arial";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
+        window.ctx.font = "32px Arial";
+        window.ctx.fillStyle = "white";
+        window.ctx.fillText(`Play Time: ${window.finalTime} seconds`, this.canvas.width / 2, 340);
 
-        this.ctx.font = "32px Arial";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Lives: ${window.currentLives}`, this.canvas.width / 2, 400);
+        window.ctx.font = "32px Arial";
+        window.ctx.fillStyle = "white";
+        window.ctx.fillText(`Lives: ${window.currentLives}`, this.canvas.width / 2, 400);
         this.drawButtons();
     }
 
@@ -101,21 +100,21 @@ class levelCompleteScreen {
 
         this.levelCompleteButtons.forEach(button => {
 
-            this.ctx.fillStyle = button.id === "nextLevel" ? "#4CAF50" : "#ff5722";
-            this.ctx.fillRect(button.x, button.y, button.width, button.height);
+            window.ctx.fillStyle = button.id === "nextLevel" ? "#4CAF50" : "#ff5722";
+            window.ctx.fillRect(button.x, button.y, button.width, button.height);
 
-            this.ctx.strokeStyle = "white";
-            this.ctx.strokeRect(button.x, button.y, button.width, button.height);
+            window.ctx.strokeStyle = "white";
+            window.ctx.strokeRect(button.x, button.y, button.width, button.height);
 
             if (this.heartImage && this.heartImage.complete && this.heartImage.naturalWidth !== 0) {
-                this.ctx.drawImage(this.heartImage, button.x - 40, button.y, 32, 32);
-                this.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y, 32, 32);
+                window.ctx.drawImage(this.heartImage, button.x - 40, button.y, 32, 32);
+                window.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y, 32, 32);
             }
 
-            this.ctx.font = "20px Arial";
-            this.ctx.fillStyle = "white";
-            this.ctx.textAlign = "center";
-            this.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
+            window.ctx.font = "20px Arial";
+            window.ctx.fillStyle = "white";
+            window.ctx.textAlign = "center";
+            window.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
         });
     }
 
@@ -137,11 +136,11 @@ class levelCompleteScreen {
 
                         window.currentLevel++;
                         window.currentScreen = "play";
-                        window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
+                        window.startGame(this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
 
                         window.currentScreen = "menu";
-                        window.renderMenu(this.ctx, this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
+                        window.renderMenu(this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
                     }
                 }
             });

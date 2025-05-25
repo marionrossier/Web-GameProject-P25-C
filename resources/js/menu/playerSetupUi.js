@@ -1,7 +1,6 @@
 class playerSetupUi {
-    constructor(canvas, ctx) {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
+    constructor() {
+        this.canvas = window.canvas;
 
         this.nameInput = this.createNameInput();
 
@@ -123,11 +122,11 @@ class playerSetupUi {
         // Dimensions du canvas
         this.canvas.width = 1000;
         this.canvas.height = 700;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Fond
-        this.ctx.fillStyle = this.colors.background;
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.fillStyle = this.colors.background;
+        window.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Titre
         this.drawText("PLAYER", this.canvas.width / 2, 100, this.fonts.title);
@@ -154,19 +153,19 @@ class playerSetupUi {
     }
 
     drawText(text, x, y, font, color = this.colors.text) {
-        this.ctx.font = font;
-        this.ctx.fillStyle = color;
-        this.ctx.textAlign = "center";
-        this.ctx.fillText(text, x, y);
+        window.ctx.font = font;
+        window.ctx.fillStyle = color;
+        window.ctx.textAlign = "center";
+        window.ctx.fillText(text, x, y);
     }
 
     drawAvatarSection(avatar) {
         this.drawText("Profile picture", this.canvas.width / 2, 350, this.fonts.label);
 
         // Cadre pour l'avatar
-        this.ctx.strokeStyle = avatar ? this.colors.primary : this.colors.border;
-        this.ctx.lineWidth = 3;
-        this.ctx.strokeRect(
+        window.ctx.strokeStyle = avatar ? this.colors.primary : this.colors.border;
+        window.ctx.lineWidth = 3;
+        window.ctx.strokeRect(
             this.uploadButton.x,
             this.uploadButton.y,
             this.uploadButton.width,
@@ -183,14 +182,14 @@ class playerSetupUi {
     drawAvatar(avatar) {
         const img = new Image();
         img.onload = () => {
-            this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-            this.ctx.fillRect(
+            window.ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+            window.ctx.fillRect(
                 this.uploadButton.x,
                 this.uploadButton.y,
                 this.uploadButton.width,
                 this.uploadButton.height
             );
-            this.ctx.drawImage(
+            window.ctx.drawImage(
                 img,
                 this.uploadButton.x,
                 this.uploadButton.y,
@@ -205,21 +204,21 @@ class playerSetupUi {
         const { x, y, width, height } = this.uploadButton;
 
         // Fond du bouton
-        this.ctx.fillStyle = "rgba(40, 40, 40, 0.8)";
-        this.ctx.fillRect(x, y, width, height);
+        window.ctx.fillStyle = "rgba(40, 40, 40, 0.8)";
+        window.ctx.fillRect(x, y, width, height);
 
         // Icône +
         const centerX = x + width / 2;
         const centerY = y + height / 2;
 
-        this.ctx.strokeStyle = this.colors.text;
-        this.ctx.lineWidth = 4;
-        this.ctx.beginPath();
-        this.ctx.moveTo(centerX - 30, centerY);
-        this.ctx.lineTo(centerX + 30, centerY);
-        this.ctx.moveTo(centerX, centerY - 30);
-        this.ctx.lineTo(centerX, centerY + 30);
-        this.ctx.stroke();
+        window.ctx.strokeStyle = this.colors.text;
+        window.ctx.lineWidth = 4;
+        window.ctx.beginPath();
+        window.ctx.moveTo(centerX - 30, centerY);
+        window.ctx.lineTo(centerX + 30, centerY);
+        window.ctx.moveTo(centerX, centerY - 30);
+        window.ctx.lineTo(centerX, centerY + 30);
+        window.ctx.stroke();
 
         // Texte
         this.drawText("Click to", centerX, centerY + 60, this.fonts.small);
@@ -231,26 +230,26 @@ class playerSetupUi {
         button.x = (this.canvas.width - button.width) / 2;
 
         // Fond du bouton
-        this.ctx.fillStyle = enabled ? this.colors.primary : this.colors.disabled;
-        this.ctx.fillRect(button.x, button.y, button.width, button.height);
+        window.ctx.fillStyle = enabled ? this.colors.primary : this.colors.disabled;
+        window.ctx.fillRect(button.x, button.y, button.width, button.height);
 
         // Bordure
-        this.ctx.strokeStyle = enabled ? this.colors.text : this.colors.border;
-        this.ctx.lineWidth = 2;
-        this.ctx.strokeRect(button.x, button.y, button.width, button.height);
+        window.ctx.strokeStyle = enabled ? this.colors.text : this.colors.border;
+        window.ctx.lineWidth = 2;
+        window.ctx.strokeRect(button.x, button.y, button.width, button.height);
 
         // Coeurs décoratifs
         if (enabled && this.heartImage && this.heartImage.complete) {
-            this.ctx.drawImage(this.heartImage, button.x - 40, button.y + 14, 32, 32);
-            this.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y + 14, 32, 32);
+            window.ctx.drawImage(this.heartImage, button.x - 40, button.y + 14, 32, 32);
+            window.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y + 14, 32, 32);
         }
 
         // Texte du bouton
-        this.ctx.font = this.fonts.button;
-        this.ctx.fillStyle = enabled ? this.colors.text : this.colors.textSecondary;
-        this.ctx.textAlign = "center";
-        this.ctx.textBaseline = "middle";
-        this.ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2);
+        window.ctx.font = this.fonts.button;
+        window.ctx.fillStyle = enabled ? this.colors.text : this.colors.textSecondary;
+        window.ctx.textAlign = "center";
+        window.ctx.textBaseline = "middle";
+        window.ctx.fillText(text, button.x + button.width / 2, button.y + button.height / 2);
     }
 
     isClickOnButton(x, y, button) {
