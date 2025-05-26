@@ -1,6 +1,3 @@
-const initialCanvasWidth = 1000;
-const initialCanvasHeight = 700;
-
 const menuButtons = [
     { id: "play", text: "Play", x: 400, y: 400, width: 200, height: 60 },
     { id: "rules", text: "Instructions", x: 400, y: 480, width: 200, height: 60 },
@@ -10,7 +7,7 @@ const menuButtons = [
 const backButton = {
     id: "back",
     text: "Back",
-    x: initialCanvasWidth - 20 - 40,
+    x: window.screenCanvasWidth - 20 - 40,
     y: 20,
     width: 40,
     height: 40

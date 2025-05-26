@@ -1,14 +1,11 @@
 class DrawMap {
     constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
-        this.canvas = document.getElementById("gameCanvas");
-        if (!this.canvas) {
+        if (!window.canvas) {
             throw new Error("Canvas 'gameCanvas' introuvable !");
         }
 
-        this.ctx = this.canvas.getContext("2d");
-
-        this.canvas.width = window.mapWidth * window.mapPixelSize;
-        this.canvas.height = window.mapHeight * window.mapPixelSize;
+        window.canvas.width = MAP.width * MAP.pixelSize;
+        window.canvas.height = MAP.height * MAP.pixelSize;
 
         this.mapTable = mapTable;
         this.outsideSkin = outsideSkin;
@@ -23,22 +20,22 @@ class DrawMap {
     }
 
     drawOutsideSkin() {
-        for (let y = 0; y < window.mapHeight; y++) {
-            for (let x = 0; x < window.mapWidth; x++) {
-                const index = y * window.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 1) {
-                    this.outsideSkin.draw(this.ctx, x, y);
+                    this.outsideSkin.draw(x, y);
                 }
             }
         }
     }
 
     drawWaySkin() {
-        for (let y = 0; y < window.mapHeight; y++) {
-            for (let x = 0; x < window.mapWidth; x++) {
-                const index = y * window.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 0) {
-                    this.waySkin.drawCenter(this.ctx, x, y);
+                    this.waySkin.drawCenter(x, y);
                 }
             }
         }
@@ -46,16 +43,16 @@ class DrawMap {
 
     drawTreeSkinOnRandomCells() {
         for (const { x, y } of this.treePositions) {
-            this.treeSkin.draw(this.ctx, x, y);
+            this.treeSkin.draw(x, y);
         }
     }
 
     generateTreePositions() {
         const eligibleCells = [];
 
-        for (let y = 0; y < window.mapHeight; y++) {
-            for (let x = 0; x < window.mapWidth; x++) {
-                const index = y * window.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 1) {
                     eligibleCells.push({ x, y });
                 }
@@ -73,7 +70,7 @@ class DrawMap {
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
         this.drawOutsideSkin();
         this.drawWaySkin();
         this.drawTreeSkinOnRandomCells();

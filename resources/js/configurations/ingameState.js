@@ -2,8 +2,7 @@ class ingameState {
     constructor(motor) {
         this.motor = motor; // Référence à l'instance de Motor pour accéder à gameState
 
-        const canvas = document.getElementById("gameCanvas");
-        if (canvas) {
+        if (window.canvas) {
             this.originalWidth = canvas.width;
             this.originalHeight = canvas.height;
         }

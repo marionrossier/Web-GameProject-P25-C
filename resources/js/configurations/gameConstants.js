@@ -1,44 +1,91 @@
-//Game Constants :
+// --- DOM access ---
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+// --- Constantes figées par domaine ---
+const MAP = Object.freeze({
+    width: 25,
+    height: 17,
+    pixelSize: 16
+});
+
+const CANVAS = Object.freeze({
+    screenWidth: 1000,
+    screenHeight: 700
+});
+
+const CURSOR = Object.freeze({
+    destinationWidth: 12,
+    destinationHeight: 12,
+    hitBoxWidth: 16,
+    hitBoxHeight: 16
+});
+
+const ENEMY = Object.freeze({
+    destinationWidth: 16,
+    destinationHeight: 16,
+    hitBoxWidth: 20,
+    hitBoxHeight: 20
+});
+
+const LIFE = Object.freeze({
+    destinationWidth: 12,
+    destinationHeight: 12,
+    hitBoxWidth: 16,
+    hitBoxHeight: 16
+});
+
+const OUTSIDE = Object.freeze({
+    destinationWidth: 16,
+    destinationHeight: 16
+});
+
+const TREE = Object.freeze({
+    destinationWidth: 12, // 16 - 4
+    destinationHeight: 16
+});
+
+const WAY = Object.freeze({
+    destinationWidth: 16,
+    destinationHeight: 16
+});
+
+const GAMEPLAY = Object.freeze({
+    startLives: 3,
+    startScore: 1000
+});
+
+// --- États de jeu dynamiques ---
 let currentLevel = 1;
-let startLives = 3;
-let currentLives = startLives;
+let currentLives = GAMEPLAY.startLives;
 let finalTime = 0;
-let startScore = 1000;
-let finalScore = startScore;
+let finalScore = GAMEPLAY.startScore;
 
-//Map Constants :
-let mapWidth = [25];
-let mapHeight = [17]; //HeightTable
+// --- Exposition globale ---
+Object.assign(window, {
+    canvas,
+    ctx,
+    MAP,
+    CANVAS,
+    CURSOR,
+    ENEMY,
+    LIFE,
+    OUTSIDE,
+    TREE,
+    WAY,
+    GAMEPLAY,
+    currentLevel,
+    currentLives,
+    finalTime,
+    finalScore
+});
 
-//Pixel Constants :
-let mapPixelSize = [16]; //pixelSizeTable
-
-//Elements Constants :
-
-
-
-
-
-//Window creation
-window.currentLevel = currentLevel;
-window.startLives = startLives;
-window.currentLevel = currentLevel;
-window.currentLives = startLives;
-window.finalTime = finalTime;
-window.startScore = startScore;
-window.finalScore = startScore;
-
-window.mapWidth = mapWidth;
-window.mapHeight = mapHeight;
-window.mapPixelSize = mapPixelSize;
-
-
+// --- Initialisation du jeu ---
 function gameInitialisation() {
     window.currentScreen = "play";
-    window.currentLevel = 1; // Réinitialiser le niveau
-    window.finalScore = window.startScore; // Réinitialiser le score
-    window.finalTime = 0; // Réinitialiser le temps
-    window.currentLives = window.startLives; // Réinitialiser les vies
+    window.currentLevel = 1;
+    window.currentLives = GAMEPLAY.startLives;
+    window.finalTime = 0;
+    window.finalScore = GAMEPLAY.startScore;
 }
-
 window.gameInitialisation = gameInitialisation;
