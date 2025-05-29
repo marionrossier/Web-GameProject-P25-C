@@ -1,30 +1,26 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WPPage from "./components/WPPage";
+import Navbar from "./components/Navbar";
+import './styles/style.css';
+import './styles/gameScreen.css';
+import './styles/responsive.css';
 
-import Description from './pages/Description';
-import Flux from './pages/Flux';
-import Journal from './pages/Journal';
-import Maquettes from './pages/Maquettes';
-import Mockup from './pages/Mockup';
-import Game from './pages/Game'; // Ton composant unifié Game.jsx
 
-function App() {
+const App = () => {
     return (
-        <main>
+        <Router>
+            <Navbar />
             <Routes>
-                {/* Redirection de la racine vers la vraie page d'accueil */}
-                <Route path="/" element={<Navigate to="/description" />} />
-
-                {/* Pages React */}
-                <Route path="/description" element={<Description />} />
-                <Route path="/flux" element={<Flux />} />
-                <Route path="/journal" element={<Journal />} />
-                <Route path="/maquettes" element={<Maquettes />} />
-                <Route path="/mockup" element={<Mockup />} />
-                <Route path="/game" element={<Game />} />
+                <Route path="/" element={<WPPage slug="description" />} />
+                <Route path="/flux" element={<WPPage slug="flux" />} />
+                <Route path="/logbook" element={<WPPage slug="logbook" />} />
+                <Route path="/wireframe" element={<WPPage slug="wireframe" />} />
+                <Route path="/mockup" element={<WPPage slug="mockup" />} />
+                <Route path="/game" element={<WPPage slug="game" />} />
             </Routes>
-        </main>
+        </Router>
     );
-}
+};
 
 export default App;
