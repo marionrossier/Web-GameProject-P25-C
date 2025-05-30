@@ -1,8 +1,8 @@
 // Variable pour suivre si le formulaire a déjà été complété
 let playerSetupCompleted = false;
 
-function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, instructionsImage) {
-    const rect = canvas.getBoundingClientRect();
+function handleCanvasClick(event, heartImage, backButtonImage, instructionsImage) {
+    const rect = window.canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
@@ -13,7 +13,7 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
             app.stopTimer();
         }
         currentScreen = "menu";
-        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+        renderMenu(heartImage, backButtonImage, instructionsImage, app);
         return;
     }
 
@@ -29,32 +29,21 @@ function handleCanvasClick(event, canvas, ctx, heartImage, backButtonImage, inst
                         setupScreen.show();
                         playerSetupCompleted = true;
                     } else {
-                        startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
+                        window.gameInitialisation();
+                        startGame(heartImage, backButtonImage, instructionsImage);
                     }
                 } else {
-                    renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
-                }
-            }
-        });
-    } else if (currentScreen === "gameOver") {
-        gameOverButtons.forEach(button => {
-            if (x >= button.x && x <= button.x + button.width &&
-                y >= button.y && y <= button.y + button.height) {
-                if (button.id === "continue") {
-                    startGame(canvas, ctx, heartImage, backButtonImage, instructionsImage);
-                } else if (button.id === "menu") {
-                    currentScreen = "menu";
-                    renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+                    renderMenu(heartImage, backButtonImage, instructionsImage, app);
                 }
             }
         });
     }
 }
 
-function handleKeydown(event, ctx, canvas, heartImage, backButtonImage, instructionsImage) {
+function handleKeydown(event, heartImage, backButtonImage, instructionsImage) {
     if (event.key === "Escape" && currentScreen === "play") {
         if (app) app.stopTimer();
         currentScreen = "menu";
-        renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app);
+        renderMenu(heartImage, backButtonImage, instructionsImage, app);
     }
 }

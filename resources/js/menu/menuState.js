@@ -1,24 +1,16 @@
-currentScreen = "menu";
-currentLevel = 1;
-app = null;
-
-function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage, app) {
+function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
     console.log(currentScreen);
 
-    updateCursorStyle(currentScreen, canvas);
+    updateCursorStyle(currentScreen);
 
     const menuMusic = document.getElementById("menuMusic");
     const gameMusic = document.getElementById("gameMusic");
 
     if (currentScreen === "menu") {
-        if (app) {
-            app.stopTimer();
-        }
-        canvas.width = initialCanvasWidth;
-        canvas.height = initialCanvasHeight;
-        drawMainMenu(ctx, canvas, heartImage, backButtonImage);
+        if (app) app.stopTimer();
 
-        // Jouer la musique du menu, arrêter celle du jeu
+        drawMainMenu(heartImage, backButtonImage);
+
         menuMusic.play().catch((error) => {
             console.error("Erreur lors de la lecture de la musique du menu :", error);
         });
@@ -26,20 +18,18 @@ function renderMenu(ctx, canvas, heartImage, backButtonImage, instructionsImage,
         gameMusic.currentTime = 0;
 
     } else if (currentScreen === "play") {
-        drawButton(ctx, backButton, heartImage, backButtonImage);
 
-        // Jouer la musique du jeu, arrêter celle du menu
         gameMusic.play().catch((error) => {
             console.error("Erreur lors de la lecture de la musique du jeu :", error);
         });
         menuMusic.pause();
         menuMusic.currentTime = 0;
 
-    } else if (["rules", "stats"].includes(currentScreen)) {
-        if (app) {
-            app.stopTimer();
-            // app.screenTransitions.disableInterception(); // Désactiver l'interception
-        }
-        drawScreen(ctx, canvas, currentScreen, heartImage, backButtonImage, instructionsImage);
+    } else if (currentScreen === "stats") {
+        displayStats();
+
+    } else if (currentScreen === "rules") {
+        if (app) app.stopTimer();
+        drawScreen(currentScreen, heartImage, backButtonImage, instructionsImage);
     }
 }

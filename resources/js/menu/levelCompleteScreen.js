@@ -1,17 +1,15 @@
 // Function de debug pour vérifier le chargement du script
 class levelCompleteScreen {
     constructor(motor) {
+
+        window.currentScreen = null; //pour pas qu'il reste sur currentScreen "play"
+
         this.motor = motor;
-        this.canvas = document.getElementById("gameCanvas");
-        this.ctx = this.canvas.getContext("2d");
         this.activeListener = null;
 
-        this.originalWidth = this.canvas.width;
-        this.originalHeight = this.canvas.height;
-
-        if (this.canvas.width !== 1000 || this.canvas.height !== 700) {
-            this.canvas.width = 1000;
-            this.canvas.height = 700;
+        if (window.canvas.width !== 1000 || window.canvas.height !== 700) {
+            window.canvas.width = 1000;
+            window.canvas.height = 700;
         }
 
         this.levelCompleteButtons = [
@@ -27,7 +25,6 @@ class levelCompleteScreen {
     show() {
 
         this.motor.stopTimer();
-        this.motor.gameState = 0;
 
         const gameMusic = document.getElementById("gameMusic");
         if (gameMusic) {
@@ -36,11 +33,11 @@ class levelCompleteScreen {
         }
 
         // IMPORTANT: Forcer le curseur système par défaut
-        this.canvas.style.cursor = 'default';
+        window.canvas.style.cursor = 'default';
 
         // Si la classe updateCursorStyle est disponible, l'utiliser
         if (typeof window.updateCursorStyle === 'function') {
-            window.updateCursorStyle("menu", this.canvas);
+            window.updateCursorStyle("menu", window.canvas);
         }
 
         // Neutraliser directement le curseur du moteur s'il existe
@@ -62,30 +59,30 @@ class levelCompleteScreen {
 
     draw() {
 
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
-        this.ctx.fillStyle = "rgb(60, 60, 60)";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.fillStyle = "rgb(60, 60, 60)";
+        window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 
-        this.ctx.font = "48px Arial";
-        this.ctx.fillStyle = "#4CAF50";
-        this.ctx.textAlign = "center";
-        this.ctx.fillText("Level Complete!", this.canvas.width / 2, 200);
+        window.ctx.font = "48px Arial";
+        window.ctx.fillStyle = "#4CAF50";
+        window.ctx.textAlign = "center";
+        window.ctx.fillText("Level Complete!", window.canvas.width / 2, 200);
 
-        if (this.motor.score) {
-            this.ctx.font = "32px Arial";
-            this.ctx.fillStyle = "white";
-            this.ctx.fillText(`Score: ${this.motor.score.getCurrentScore()}`, this.canvas.width / 2, 280);
+        if (window.finalScore) {
+            window.ctx.font = "32px Arial";
+            window.ctx.fillStyle = "white";
+            window.ctx.fillText(`Play Score: ${window.finalScore}`, window.canvas.width / 2, 280);
         }
 
-        const secondsPlayed = Math.floor(this.motor.timer / 24);
-        this.ctx.font = "32px Arial";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Time: ${secondsPlayed} seconds`, this.canvas.width / 2, 340);
+        window.finalTime += Math.floor(this.motor.timer / 24);
+        window.ctx.font = "32px Arial";
+        window.ctx.fillStyle = "white";
+        window.ctx.fillText(`Play Time: ${window.finalTime} seconds`, window.canvas.width / 2, 340);
 
-        this.ctx.font = "32px Arial";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText(`Lives: ${this.motor.lives}`, this.canvas.width / 2, 400);
+        window.ctx.font = "32px Arial";
+        window.ctx.fillStyle = "white";
+        window.ctx.fillText(`Lives: ${window.currentLives}`, window.canvas.width / 2, 400);
         this.drawButtons();
     }
 
@@ -93,36 +90,36 @@ class levelCompleteScreen {
     drawButtons() {
 
         for (const button of this.levelCompleteButtons) {
-            button.x = (this.canvas.width - button.width) / 2;
+            button.x = (window.canvas.width - button.width) / 2;
         }
 
 
         this.levelCompleteButtons.forEach(button => {
 
-            this.ctx.fillStyle = button.id === "nextLevel" ? "#4CAF50" : "#ff5722";
-            this.ctx.fillRect(button.x, button.y, button.width, button.height);
+            window.ctx.fillStyle = button.id === "nextLevel" ? "#4CAF50" : "#ff5722";
+            window.ctx.fillRect(button.x, button.y, button.width, button.height);
 
-            this.ctx.strokeStyle = "white";
-            this.ctx.strokeRect(button.x, button.y, button.width, button.height);
+            window.ctx.strokeStyle = "white";
+            window.ctx.strokeRect(button.x, button.y, button.width, button.height);
 
             if (this.heartImage && this.heartImage.complete && this.heartImage.naturalWidth !== 0) {
-                this.ctx.drawImage(this.heartImage, button.x - 40, button.y, 32, 32);
-                this.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y, 32, 32);
+                window.ctx.drawImage(this.heartImage, button.x - 40, button.y, 32, 32);
+                window.ctx.drawImage(this.heartImage, button.x + button.width + 10, button.y, 32, 32);
             }
 
-            this.ctx.font = "20px Arial";
-            this.ctx.fillStyle = "white";
-            this.ctx.textAlign = "center";
-            this.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
+            window.ctx.font = "20px Arial";
+            window.ctx.fillStyle = "white";
+            window.ctx.textAlign = "center";
+            window.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
         });
     }
 
     addClickListener() {
         this.activeListener = (event) => {
-            const rect = this.canvas.getBoundingClientRect();
+            const rect = window.canvas.getBoundingClientRect();
 
-            const scaleX = this.canvas.width / rect.width;
-            const scaleY = this.canvas.height / rect.height;
+            const scaleX = window.canvas.width / rect.width;
+            const scaleY = window.canvas.height / rect.height;
             const x = (event.clientX - rect.left) * scaleX;
             const y = (event.clientY - rect.top) * scaleY;
 
@@ -132,25 +129,25 @@ class levelCompleteScreen {
                     this.clearEventListeners();
 
                     if (button.id === "nextLevel") {
-                        window.currentLevel++;
 
+                        window.currentLevel++;
                         window.currentScreen = "play";
-                        window.startGame(this.canvas, this.ctx, window.heartImage, window.backButtonImage, window.instructionsImage);
+                        window.startGame( window.heartImage, window.backButtonImage, window.instructionsImage);
                     } else if (button.id === "menu") {
 
                         window.currentScreen = "menu";
-                        window.renderMenu(this.ctx, this.canvas, window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
+                        window.renderMenu( window.heartImage, window.backButtonImage, window.instructionsImage, this.motor);
                     }
                 }
             });
         };
 
-        this.canvas.addEventListener("click", this.activeListener);
+        window.canvas.addEventListener("click", this.activeListener);
     }
 
     clearEventListeners() {
         if (this.activeListener) {
-            this.canvas.removeEventListener("click", this.activeListener);
+            window.canvas.removeEventListener("click", this.activeListener);
             this.activeListener = null;
         }
     }

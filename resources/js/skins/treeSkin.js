@@ -9,9 +9,9 @@ class TreeSkin {
         this.selectSkin(skinNbr)
     }
 
-    draw(ctx, x, y) {
+    draw(x, y) {
         if (this.imageLoaded) {
-            ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 32, // Image source x
                 this.skinY * 48, // Image source y
@@ -19,8 +19,8 @@ class TreeSkin {
                 48, // Image source height
                 x * 16+2, // Destination x
                 y * 16, // Destination y
-                16-4, // Destination width
-                16 // Destination height
+                TREE.destinationWidth, // Destination width
+                TREE.destinationHeight // Destination height
             );
         }
     }

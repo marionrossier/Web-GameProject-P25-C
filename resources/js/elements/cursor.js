@@ -1,19 +1,14 @@
 class Cursor {
-    constructor(skin, canvas, maptable, size, onWinCallback, ctx, motor, gameEntities) {
+    constructor(skin, maptable, motor, gameEntities) {
         this.skin = skin;
         this.cursorSkin = new CursorSkin(this.skin);
-        this.canvas = canvas;
-        this.ctx = ctx;
         this.maptable = maptable;
-        this.size = size;
-        this.onWin = onWinCallback;
         this.motor = motor;
         this.invulnerableUntil = 0;
         this.isVisible = true;
         this.gameEntities = gameEntities;
         this.isActive = false; // Bloque la souris au début du jeu.
-        const cellSize = pixelSizeTable[this.size];
-
+        const cellSize = MAP.pixelSize;
 
         this.mousePosition = {
             x: 0 * cellSize + cellSize / 2,
@@ -23,16 +18,16 @@ class Cursor {
         this.prevMousePosition = { x: this.mousePosition.x, y: this.mousePosition.y };
 
         this.hitbox = {
-            width: this.cursorSkin.spriteSize,
-            height: this.cursorSkin.spriteSize
+            width: CURSOR.hitBoxWidth,
+            height: CURSOR.hitBoxHeight
         };
 
-        this.canvas.addEventListener("mousemove", (e) => {
+        window.canvas.addEventListener("mousemove", (e) => {
             if (!this.isActive) return;
 
-            const rect = this.canvas.getBoundingClientRect();
-            const scaleX = this.canvas.width / rect.width;
-            const scaleY = this.canvas.height / rect.height;
+            const rect = window.canvas.getBoundingClientRect();
+            const scaleX = window.canvas.width / rect.width;
+            const scaleY = window.canvas.height / rect.height;
 
             this.mousePosition.x = (e.clientX - rect.left) * scaleX;
             this.mousePosition.y = (e.clientY - rect.top) * scaleY;
@@ -53,19 +48,16 @@ class Cursor {
         });
 
         // Dès qu'on clique une fois sur le canvas, active le suivi souris
-        this.canvas.addEventListener("click", () => {
+        window.canvas.addEventListener("click", () => {
             this.isActive = true;
         });
     }
 
 
     touch() {
-        const cellSize = pixelSizeTable[this.size];
-        const mapWidth = WidthTable[this.size];
-
-        const cellX = Math.floor(this.mousePosition.x / cellSize);
-        const cellY = Math.floor(this.mousePosition.y / cellSize);
-        const index = cellY * mapWidth + cellX;
+        const cellX = Math.floor(this.mousePosition.x / MAP.pixelSize);
+        const cellY = Math.floor(this.mousePosition.y / MAP.pixelSize);
+        const index = cellY * MAP.width + cellX;
 
         const cursorHitbox = {
             x: this.mousePosition.x - this.hitbox.width / 2,
@@ -90,8 +82,8 @@ class Cursor {
         for (const key in this.gameEntities.lives) {
             const life = this.gameEntities.lives[key];
             const lifeHitbox = {
-                x: life.positionX * cellSize,
-                y: life.positionY * cellSize,
+                x: life.positionX * MAP.pixelSize,
+                y: life.positionY * MAP.pixelSize,
                 width: life.hitboxWidth,
                 height: life.hitboxHeight
             };
@@ -144,7 +136,7 @@ class Cursor {
         }
 
         if  (this.isVisible) {
-            this.cursorSkin.draw(this.ctx, this.mousePosition.x, this.mousePosition.y);
+            this.cursorSkin.draw(this.mousePosition.x, this.mousePosition.y);
         }
     }
 
@@ -155,21 +147,21 @@ class Cursor {
             // Encore invulnérable, donc on ignore
             return;
         }
-        if (this.motor.lives > 0) {
-            this.motor.lives--;
-            console.log(`Vies restantes : ${this.motor.lives}`);
-            this.invulnerableUntil = now + 2000; // 2 secondes d'invulnérabilité
+        if (window.currentLives > 0) {
+            window.currentLives--;
+            console.log(`Vies restantes : ${window.currentLives}`);
+            this.invulnerableUntil = now + 1000; // 1 seconde d'invulnérabilité
         }
 
-        if (this.motor.lives === 0) {
+        if (window.currentLives === 0) {
             this.motor.gameOver();
             window.currentLevel = 1;
         }
     }
 
     gainLife() {
-        this.motor.lives++; // Augmente le nombre de vies
-        console.log(`Vies restantes : ${this.motor.lives}`);
+        window.currentLives++; // Augmente le nombre de vies
+        console.log(`Vies restantes : ${window.currentLives}`);
     }
 
     rectsOverlap(a, b) {

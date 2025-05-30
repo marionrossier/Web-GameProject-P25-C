@@ -1,7 +1,5 @@
 class LifeSkin {
     constructor() {
-        const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
         this.image = new Image();
         this.image.src = "resources/images/game/Heart.png";
 
@@ -13,7 +11,7 @@ class LifeSkin {
 
     draw(x, y) {
         if (this.imageLoaded) {
-            this.ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 0, // Image source x
                 0, // Image source y
@@ -21,8 +19,8 @@ class LifeSkin {
                 16, // Image source height
                 x * 16+2, // Destination x
                 y * 16+2, // Destination y
-                12, // Destination width
-                12 // Destination height
+                LIFE.destinationWidth, // Destination width
+                LIFE.destinationHeight // Destination height
             );
         }
     }
