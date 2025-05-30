@@ -1,0 +1,19 @@
+{
+  "drawMap": {
+    "WidthTable": {
+      "0": 25,
+      "1": 1000
+    },
+    "HeightTable": {
+      "0": 17,
+      "1": 700
+    },
+    "pixelSizeTable": {
+      "0": 16,
+      "1": 1
+    }
+  },
+  "exemple": {
+    "description": "Je suis un exemple :D"
+  }
+}
