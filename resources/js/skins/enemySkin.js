@@ -1,3 +1,7 @@
+/**
+ * Represents the visual appearance of an enemy in the game.
+ * Responsible for loading and drawing the enemy's sprite.
+ */
 class EnemySkin {
     constructor() {
         this.image = new Image();

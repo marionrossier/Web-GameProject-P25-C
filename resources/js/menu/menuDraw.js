@@ -1,8 +1,28 @@
+/**
+ * Renders the background with a specified color and overlays it onto the entire canvas.
+ *
+ * @return {void} Does not return a value.
+ */
 function drawBackgroundAndOverlay() {
     window.ctx.fillStyle = "rgb(60, 60, 60)";
     window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 }
 
+/**
+ * Renders a button on the canvas. Depending on the button's `id` and availability of images,
+ * the button is drawn with specific styles or images.
+ *
+ * @param {Object} button - The button object containing properties for rendering.
+ * @param {string} button.id - The identifier for the button (e.g., "back").
+ * @param {number} button.x - The x-coordinate of the button's position on the canvas.
+ * @param {number} button.y - The y-coordinate of the button's position on the canvas.
+ * @param {number} button.width - The width of the button.
+ * @param {number} button.height - The height of the button.
+ * @param {string} button.text - The text to be displayed within the button.
+ * @param {HTMLImageElement} heartImage - The image element for the heart icon, used for decoration.
+ * @param {HTMLImageElement} backButtonImage - The image element for the back button icon.
+ * @return {void} Does not return a value.
+ */
 function drawButton(button, heartImage, backButtonImage) {
     if (button.id === "back" && backButtonImage.complete && backButtonImage.naturalWidth !== 0) {
         window.ctx.drawImage(backButtonImage, button.x, button.y, button.width, button.height);
@@ -25,6 +45,14 @@ function drawButton(button, heartImage, backButtonImage) {
     }
 }
 
+/**
+ * Renders the main menu onto the canvas, including the background, title text,
+ * and menu buttons.
+ *
+ * @param {HTMLImageElement} heartImage - The image used for the heart icon on buttons.
+ * @param {HTMLImageElement} backButtonImage - The image used for the back button icon on buttons.
+ * @return {void} This function does not return a value.
+ */
 function drawMainMenu(heartImage, backButtonImage) {
     window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
     drawBackgroundAndOverlay(window.canvas);
@@ -37,6 +65,15 @@ function drawMainMenu(heartImage, backButtonImage) {
     menuButtons.forEach(button => drawButton(button, heartImage, backButtonImage));
 }
 
+/**
+ * Draws the appropriate content on the screen based on the current screen state and provided images.
+ *
+ * @param {string} currentScreen - The current screen to be displayed. Possible values include "rules", "gameOver", or others.
+ * @param {HTMLImageElement} heartImage - The image used for the heart in buttons.
+ * @param {HTMLImageElement} backButtonImage - The image used for the back button.
+ * @param {HTMLImageElement} instructionsImage - The image displayed when the current screen is "rules".
+ * @return {void} Does not return a value.
+ */
 function drawScreen(currentScreen, heartImage, backButtonImage, instructionsImage) {
     window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
     drawBackgroundAndOverlay(window.canvas);

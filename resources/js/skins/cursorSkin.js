@@ -1,3 +1,7 @@
+/**
+ * The CursorSkin class is responsible for managing and rendering character
+ * cursor skins with different appearances and directions.
+ */
 class CursorSkin {
     constructor(skinNbr) {
         this.image = new Image();

@@ -1,3 +1,8 @@
+/**
+ * A class to handle image uploading, resizing, and validation.
+ * This class provides functionality for users to select an image file,
+ * resize it to a specific dimension, and validate the file type and size.
+ */
 class imageUploader {
     constructor() {
         this.fileInput = document.createElement("input");

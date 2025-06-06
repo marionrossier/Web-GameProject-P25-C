@@ -1,3 +1,13 @@
+/**
+ * Renders the game's menu or appropriate screen based on the current screen state.
+ * Handles background music and screen updates accordingly.
+ *
+ * @param {Object} heartImage - The image object used for the heart graphic on the screen.
+ * @param {Object} backButtonImage - The image object used for the back button graphic on the screen.
+ * @param {Object} instructionsImage - The image object for the instructions screen graphic.
+ * @param {Object} app - The application instance, used for controlling timers and other app-level actions.
+ * @return {void} This method does not return a value.
+ */
 function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
     console.log(currentScreen);
 

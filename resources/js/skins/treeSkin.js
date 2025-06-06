@@ -1,3 +1,6 @@
+/**
+ * Represents a tree skin used in the game, allowing the selection of various tree appearances and rendering them on the canvas.
+ */
 class TreeSkin {
     constructor(skinNbr) {
         this.image = new Image();

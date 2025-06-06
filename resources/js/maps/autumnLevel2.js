@@ -1,3 +1,7 @@
+/**
+ * Represents the AutumnLevel2 class, defining the structure, entities, and world configuration
+ * for level 2 in the autumn-themed section of the game.
+ */
 class AutumnLevel2 {
     constructor() {
         this.autumnLevel2Map = [

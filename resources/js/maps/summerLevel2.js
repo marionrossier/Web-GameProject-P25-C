@@ -1,3 +1,7 @@
+/**
+ * Represents the `SummerLevel2` class, which defines the map, entities, and world
+ * configuration for the second summer level in a game.
+ */
 class SummerLevel2 {
     constructor() {
         this.summerLevel2Map = [

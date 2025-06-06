@@ -1,3 +1,7 @@
+/**
+ * The `gameOverScreen` class represents the game-over screen of the application. It is responsible for
+ * displaying the game-over interface, drawing buttons, handling user interactions, and managing game state transitions.
+ */
 class gameOverScreen {
     constructor(motor) {
         this.motor = motor;

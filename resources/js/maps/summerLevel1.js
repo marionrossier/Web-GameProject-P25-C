@@ -1,3 +1,7 @@
+/**
+ * Represents the configuration and data for the first level of a summer-themed game.
+ * This class encapsulates level map data, game entities, and world configuration.
+ */
 class SummerLevel1 {
     constructor() {
         this.summerLevel1Map = [

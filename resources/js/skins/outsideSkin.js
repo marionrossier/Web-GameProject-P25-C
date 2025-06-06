@@ -1,3 +1,7 @@
+/**
+ * Represents an outside skin that can be displayed based on different seasons.
+ * Handles the loading and selection of texture images for different skins.
+ */
 class OutsideSkin {
     constructor(skinNbr) {
         this.image = new Image();

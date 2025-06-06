@@ -1,3 +1,8 @@
+/**
+ * DrawMap class provides functionality to render a game map onto a canvas.
+ * It utilizes different skins to draw various elements such as outside areas,
+ * pathways, and randomly placed trees based on the provided map structure.
+ */
 class DrawMap {
     constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
         if (!window.canvas) {

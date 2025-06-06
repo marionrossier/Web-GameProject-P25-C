@@ -1,3 +1,10 @@
+/**
+ * Displays the statistics or leaderboard screen on the canvas.
+ * The method clears the current canvas, draws the leaderboard, highlights the current player's score,
+ * and shows a message if there are no scores recorded yet.
+ *
+ * @return {void} Does not return a value.
+ */
 function displayStatsScreen() {
     checkScoreBoard();
     const data = getScoreBoard();
