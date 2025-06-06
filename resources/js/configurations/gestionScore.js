@@ -62,3 +62,14 @@ function showInLog(){
         console.error("ScoreBoard invalide ou vide.");
     }
 }
+
+function savePlayerScore(score) {
+    const playerName = getPlayerName();
+
+    if (score > 0) {
+        newScoreBoard(playerName, score);
+        console.log(`Score sauvegardé: ${playerName} - ${score}`);
+        return true;
+    }
+    return false;
+}
