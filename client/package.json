@@ -2,6 +2,7 @@
   "name": "web-game-react",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://marionrossier.github.io/Web-GameProject-P25-C",
   "dependencies": {
     "http-proxy-middleware": "^3.0.5",
     "react": "^18.2.0",
@@ -12,7 +13,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "proxy": "https://dev-webgame-p25.pantheonsite.io",
   "browserslist": {
@@ -26,5 +29,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
