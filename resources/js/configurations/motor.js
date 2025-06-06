@@ -46,9 +46,8 @@ class Motor {
     }
 
     tick() {
-        console.trace("tick called"); // Voir d'où vient l'appel
+        console.trace("tick called");
 
-        //Afficher le temps écoulé et le score
         if (this.timer % 24 === 0) {
             console.log("timer tick");
             window.finalScore = Math.max(window.finalScore - 5, 0);
@@ -68,7 +67,6 @@ class Motor {
         this.cursor.touch();
         this.cursor.drawMouse();
 
-        // Affichage du score en bas à gauche sur l'écran de jeu
         if (window.currentScreen === "play") {
             window.ctx.font = "10px Arial";
             window.ctx.fillStyle = "cyan";
@@ -105,7 +103,6 @@ class Motor {
     }
 
     endGame(){
-        // Sauvegarder le score simplement
         savePlayerScore(window.finalScore);
 
         this.stopTimer();
@@ -120,9 +117,9 @@ class Motor {
             window.ctx.drawImage(
                 heartImage,
                 padding + i * (heartSize + padding), // Position X
-                padding, // Position Y
-                heartSize, // Largeur
-                heartSize // Hauteur
+                padding,
+                heartSize,
+                heartSize
             );
         }
     }

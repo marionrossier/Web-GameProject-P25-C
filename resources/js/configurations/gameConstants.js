@@ -20,7 +20,6 @@ const canvas = document.getElementById("gameCanvas");
  */
 const ctx = canvas.getContext("2d");
 
-// --- Constantes figées par domaine ---
 /**
  * Defines the properties of a fixed map configuration, which includes width, height, and pixel size.
  * This object is immutable and cannot be modified after its definition.
@@ -152,7 +151,6 @@ const GAMEPLAY = Object.freeze({
     startScore: 1000
 });
 
-// --- États de jeu dynamiques ---
 /**
  * Represents the current level in a game or application.
  * This variable tracks the user's current progress or stage.
@@ -187,7 +185,6 @@ let finalTime = 0;
  */
 let finalScore = GAMEPLAY.startScore;
 
-// --- Exposition globale ---
 Object.assign(window, {
     canvas,
     ctx,
@@ -206,7 +203,6 @@ Object.assign(window, {
     finalScore
 });
 
-// --- Initialisation du jeu ---
 /**
  * Initializes the game state by setting up the default values for screen, level, lives, final time, and final score.
  *

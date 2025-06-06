@@ -73,7 +73,6 @@ class playerDataManager {
         localStorage.setItem('playerData', JSON.stringify(playerData));
         window.playerData = playerData;
 
-        // IMPORTANT: Définir la variable globale simple
         window.currentPlayer = this;
 
         console.log(`Joueur sauvegardé: ${this.playerName}`);
@@ -88,7 +87,6 @@ class playerDataManager {
             this.playerAvatar = data.avatar || null;
             this.playerLocation = data.location || "Localisation en cours...";
 
-            // IMPORTANT: Définir la variable globale simple
             window.currentPlayer = this;
 
             console.log(`Joueur chargé: ${this.playerName}`);
@@ -97,7 +95,6 @@ class playerDataManager {
         return null;
     }
 
-    // Méthode simple pour obtenir le nom
     getName() {
         return this.playerName || "Anonymous Player";
     }

@@ -9,7 +9,7 @@ class JsonReach {
 
     loadSync() {
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", this.path, false); // ⚠️ false = mode synchrone
+        xhr.open("GET", this.path, false);
         try {
             xhr.send(null);
             if (xhr.status === 200) {

@@ -11,14 +11,14 @@ class Cursor {
         this.invulnerableUntil = 0;
         this.isVisible = true;
         this.gameEntities = gameEntities;
-        this.isActive = false; // Bloque la souris au début du jeu.
+        this.isActive = false;
         const cellSize = MAP.pixelSize;
 
         this.mousePosition = {
             x: 0 * cellSize + cellSize / 2,
             y: 14 * cellSize + cellSize / 2
         };
-        this.lastDirection = "down"; // valeur par défaut
+        this.lastDirection = "down";
         this.prevMousePosition = { x: this.mousePosition.x, y: this.mousePosition.y };
 
         this.hitbox = {
@@ -36,7 +36,6 @@ class Cursor {
             this.mousePosition.x = (e.clientX - rect.left) * scaleX;
             this.mousePosition.y = (e.clientY - rect.top) * scaleY;
 
-            //pour changer le skin du cursor selon sa direction
             const deltaX = this.mousePosition.x - this.prevMousePosition.x;
             const deltaY = this.mousePosition.y - this.prevMousePosition.y;
 
@@ -51,7 +50,6 @@ class Cursor {
 
         });
 
-        // Dès qu'on clique une fois sur le canvas, active le suivi souris
         window.canvas.addEventListener("click", () => {
             this.isActive = true;
         });
@@ -127,16 +125,14 @@ class Cursor {
     drawMouse() {
         const now = Date.now();
 
-        // Pendant l'invulnérabilité, on fait clignoter
         if (now < this.invulnerableUntil) {
-            // Toutes les 100 ms, on inverse la visibilité
             if (Math.floor(now / 100) % 2 === 0) {
                 this.isVisible = true;
             } else {
                 this.isVisible = false;
             }
         } else {
-            this.isVisible = true; // Hors invulnérabilité, toujours visible
+            this.isVisible = true;
         }
 
         if  (this.isVisible) {
@@ -148,13 +144,12 @@ class Cursor {
     loseLife() {
         const now = Date.now();
         if (now < this.invulnerableUntil) {
-            // Encore invulnérable, donc on ignore
             return;
         }
         if (window.currentLives > 0) {
             window.currentLives--;
             console.log(`Vies restantes : ${window.currentLives}`);
-            this.invulnerableUntil = now + 1000; // 1 seconde d'invulnérabilité
+            this.invulnerableUntil = now + 1000;
         }
 
         if (window.currentLives === 0) {
@@ -164,7 +159,7 @@ class Cursor {
     }
 
     gainLife() {
-        window.currentLives++; // Augmente le nombre de vies
+        window.currentLives++;
         console.log(`Vies restantes : ${window.currentLives}`);
     }
 

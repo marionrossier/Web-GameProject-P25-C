@@ -49,8 +49,8 @@ function drawButton(button, heartImage, backButtonImage) {
  * Renders the main menu onto the canvas, including the background, title text,
  * and menu buttons.
  *
- * @param {HTMLImageElement} heartImage - The image used for the heart icon on buttons.
- * @param {HTMLImageElement} backButtonImage - The image used for the back button icon on buttons.
+ * @param {Object} heartImage - The image used for the heart icon on buttons.
+ * @param {Object} backButtonImage - The image used for the back button icon on buttons.
  * @return {void} This function does not return a value.
  */
 function drawMainMenu(heartImage, backButtonImage) {
@@ -69,9 +69,9 @@ function drawMainMenu(heartImage, backButtonImage) {
  * Draws the appropriate content on the screen based on the current screen state and provided images.
  *
  * @param {string} currentScreen - The current screen to be displayed. Possible values include "rules", "gameOver", or others.
- * @param {HTMLImageElement} heartImage - The image used for the heart in buttons.
- * @param {HTMLImageElement} backButtonImage - The image used for the back button.
- * @param {HTMLImageElement} instructionsImage - The image displayed when the current screen is "rules".
+ * @param {Object} heartImage - The image used for the heart in buttons.
+ * @param {Object} backButtonImage - The image used for the back button.
+ * @param {Object} instructionsImage - The image displayed when the current screen is "rules".
  * @return {void} Does not return a value.
  */
 function drawScreen(currentScreen, heartImage, backButtonImage, instructionsImage) {
