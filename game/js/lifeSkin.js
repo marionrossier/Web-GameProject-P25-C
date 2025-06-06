@@ -3,8 +3,7 @@ class LifeSkin {
         const canvas = document.getElementById("gameCanvas");
         this.ctx = canvas.getContext("2d");
         this.image = new Image();
-        this.image.src = "/game/images/Heart.png";
-
+        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Heart.png`;
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;

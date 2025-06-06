@@ -1,7 +1,7 @@
 class TreeSkin {
     constructor(skinNbr) {
         this.image = new Image();
-        this.image.src = "/game/images/Trees.png";
+        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Trees.png`;
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;

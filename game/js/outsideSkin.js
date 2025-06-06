@@ -1,7 +1,7 @@
 class OutsideSkin {
     constructor(skinNbr) {
         this.image = new Image();
-        this.image.src = "/game/images/Ground.png";
+        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Ground.png`;
         this.imageLoaded = false;
 
         this.image.onload = () => {

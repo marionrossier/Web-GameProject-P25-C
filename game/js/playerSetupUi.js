@@ -37,7 +37,7 @@ class playerSetupUi {
         if (typeof heartImage === 'function') return heartImage();
 
         const img = new Image();
-        img.src = "/game/images/Heart.png";
+        img.src = `${window.PUBLIC_URL || ""}/game/images/Heart.png`;
         return img;
     }
 
