@@ -1,15 +1,11 @@
 {
   "ScoreBoard": {
     "players": [
-      { "name": "Bidule", "score": 120 },
-      { "name": "Bob", "score": 85 },
-      { "name": "Machin", "score": 75 },
-      { "name": "Sieur Perceval", "score": 65 },
-      { "name": "Krakougas", "score": 55 }
+      { "name": "Mégane", "score": 650 },
+      { "name": "Eric", "score": 635 },
+      { "name": "Marion", "score": 600 },
+      { "name": "Valentin", "score": 450 },
+      { "name": "Marion", "score": 300 }
     ]
-  },
-
-  "exemple": {
-    "description": "Je suis un exemple :D"
   }
 }
