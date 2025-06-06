@@ -1,12 +1,10 @@
 class playerSetupScreen {
     constructor() {
-        // Initialiser les services
+        // Créer une nouvelle instance
         this.playerData = new playerDataManager();
         this.locationService = new locationService();
         this.imageUploader = new imageUploader();
-        this.ui = new playerSetupUi( window.ctx);
-        this.backButton = backButtonImage();
-        this.heartImage = heartImage();
+        this.ui = new playerSetupUi(window.ctx);
 
         // Charger les données existantes si disponibles
         this.playerData.load();
@@ -17,24 +15,19 @@ class playerSetupScreen {
     }
 
     async show() {
-        // S'assurer que le canvas a les bonnes dimensions dès le début
         window.canvas.width = 1000;
         window.canvas.height = 700;
         currentScreen = "playerSetup";
 
-        // Dessiner l'interface AVANT d'afficher l'input
         this.draw();
 
-        // Afficher l'UI avec un petit délai
         setTimeout(() => {
             this.ui.show();
         }, 50);
 
-        // Ajouter les event listeners
         window.canvas.addEventListener("click", this.handleClick);
         this.ui.nameInput.addEventListener("input", this.handleInput);
 
-        // Démarrer la géolocalisation
         this.getLocation();
     }
 
@@ -47,11 +40,9 @@ class playerSetupScreen {
 
     draw() {
         this.ui.draw(this.playerData, this.playerData.isComplete());
-        // Repositionner le champ de saisie après chaque dessin
         if (this.ui.nameInput.parentNode) {
             this.ui.positionInput();
         }
-        drawButton(backButton, heartImage, backButtonImage);
     }
 
     async handleClick(event) {
@@ -59,7 +50,6 @@ class playerSetupScreen {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
-        // Clic sur le bouton upload/avatar
         if (this.ui.isClickOnButton(x, y, this.ui.uploadButton)) {
             const imageData = await this.imageUploader.selectImage();
             if (imageData) {
@@ -68,16 +58,19 @@ class playerSetupScreen {
             }
         }
 
-        // Clic sur le bouton Commencer
         if (this.ui.isClickOnButton(x, y, this.ui.startButton) && this.playerData.isComplete()) {
+            // IMPORTANT: Sauvegarder définit automatiquement window.currentPlayer
             this.playerData.save();
+
+            console.log(`Joueur configuré: ${getPlayerName()}`);
             this.hide();
             window.gameInitialisation();
-            startGame( heartImage, backButtonImage, instructionsImage);
+            startGame(heartImage, backButtonImage, instructionsImage);
         }
     }
 
     handleInput(event) {
+        // SIMPLE: Juste mettre à jour le nom
         this.playerData.setName(event.target.value);
         this.draw();
     }
