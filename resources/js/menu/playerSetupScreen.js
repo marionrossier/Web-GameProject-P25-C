@@ -62,7 +62,6 @@ class playerSetupScreen {
         if (this.ui.isClickOnButton(x, y, this.ui.startButton) && this.playerData.isComplete()) {
             this.playerData.save();
 
-            console.log(`Joueur configuré: ${getPlayerName()}`);
             this.hide();
             window.gameInitialisation();
             startGame(heartImage, backButtonImage, instructionsImage);

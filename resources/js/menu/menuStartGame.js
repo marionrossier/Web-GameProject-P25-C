@@ -30,7 +30,6 @@ function startGame(heartImage, backButtonImage, instructionsImage) {
 
         app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities);
 
-        console.log("start");
         app.gameMap.draw();
         app.startTimer();
 

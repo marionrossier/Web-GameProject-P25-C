@@ -9,7 +9,6 @@
  * @return {void} This method does not return a value.
  */
 function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
-    console.log(currentScreen);
 
     updateCursorStyle(currentScreen);
 

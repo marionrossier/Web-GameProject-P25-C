@@ -49,7 +49,6 @@ class Motor {
         console.trace("tick called");
 
         if (this.timer % 24 === 0) {
-            console.log("timer tick");
             window.finalScore = Math.max(window.finalScore - 5, 0);
 
             if (this.timerDisplay) {
@@ -78,7 +77,6 @@ class Motor {
 
     startTimer() {
         if (this.timerState === null) {
-            console.log("début de partie");
             this.timer = 0;
             this.timerState = setInterval(() => this.tick(), this.interval);
         }
@@ -88,7 +86,6 @@ class Motor {
         if (this.timerState !== null) {
             clearInterval(this.timerState);
             this.timerState = null;
-            console.log("partie arrêté");
         }
     }
 

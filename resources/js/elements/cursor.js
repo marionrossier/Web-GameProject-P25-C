@@ -74,7 +74,6 @@ class Cursor {
             const enemyHitbox = enemy.getHitbox();
 
             if (this.rectsOverlap(cursorHitbox, enemyHitbox)) {
-                console.log("Collision avec ennemi !");
                 this.loseLife();
                 return;
             }
@@ -91,7 +90,6 @@ class Cursor {
             };
 
             if (this.rectsOverlap(cursorHitbox, lifeHitbox)) {
-                console.log("Récupération de vie !");
                 delete this.gameEntities.lives[key];
                 this.gainLife();
                 return;
@@ -101,7 +99,6 @@ class Cursor {
         let value = this.maptable[index];
 
         if (value === undefined) {
-            console.log("Souris hors des limites de la map");
             return;
         }
 
@@ -110,7 +107,6 @@ class Cursor {
             case 0:
                 break;
             case 1:
-                console.log("Mur !");
                 this.loseLife();
                 break;
             case 4:
@@ -148,7 +144,6 @@ class Cursor {
         }
         if (window.currentLives > 0) {
             window.currentLives--;
-            console.log(`Vies restantes : ${window.currentLives}`);
             this.invulnerableUntil = now + 1000;
         }
 
@@ -160,7 +155,6 @@ class Cursor {
 
     gainLife() {
         window.currentLives++;
-        console.log(`Vies restantes : ${window.currentLives}`);
     }
 
     rectsOverlap(a, b) {

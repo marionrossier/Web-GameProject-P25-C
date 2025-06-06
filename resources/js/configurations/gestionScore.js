@@ -90,7 +90,6 @@ function showInLog(){
 
     if (scoreboard && scoreboard.players) {
         scoreboard.players.forEach((player, index) => {
-            console.log(`${index + 1}. ${player.name} - Score : ${player.score}`);
         });
     } else {
         console.error("ScoreBoard invalide ou vide.");
@@ -108,7 +107,6 @@ function savePlayerScore(score) {
 
     if (score > 0) {
         newScoreBoard(playerName, score);
-        console.log(`Score sauvegardé: ${playerName} - ${score}`);
         return true;
     }
     return false;

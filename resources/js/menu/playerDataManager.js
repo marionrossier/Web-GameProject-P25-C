@@ -47,7 +47,6 @@ class playerDataManager {
             .substring(0, 20);
 
         this.playerName = sanitized;
-        console.log(`Nom du joueur défini: ${this.playerName}`);
     }
 
     setAvatar(imageData) {
@@ -75,7 +74,6 @@ class playerDataManager {
 
         window.currentPlayer = this;
 
-        console.log(`Joueur sauvegardé: ${this.playerName}`);
         return playerData;
     }
 
@@ -89,7 +87,6 @@ class playerDataManager {
 
             window.currentPlayer = this;
 
-            console.log(`Joueur chargé: ${this.playerName}`);
             return data;
         }
         return null;

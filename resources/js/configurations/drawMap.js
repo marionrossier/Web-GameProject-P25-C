@@ -6,7 +6,7 @@
 class DrawMap {
     constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
         if (!window.canvas) {
-            throw new Error("Canvas 'gameCanvas' introuvable !");
+            throw new Error("Canvas 'gameCanvas' not found !");
         }
 
         window.canvas.width = MAP.width * MAP.pixelSize;
@@ -21,7 +21,6 @@ class DrawMap {
         this.treePositions = this.generateTreePositions();
 
         this.draw();
-        console.log("Éléments dessinés !");
     }
 
     drawOutsideSkin() {

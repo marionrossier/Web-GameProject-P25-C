@@ -1,5 +1,4 @@
 // Function de debug pour vérifier le chargement du script
-console.log("Script gameCompleteScreen.js chargé avec succès!");
 
 /**
  * Represents the "game complete" screen displayed after a player finishes the game.
