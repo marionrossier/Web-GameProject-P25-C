@@ -2,63 +2,64 @@ import React, { useEffect } from "react";
 
 const Game = () => {
     useEffect(() => {
+        const base = process.env.PUBLIC_URL;
         const scriptPaths = [
             // Elements
-            "/game/js/cursor.js",
-            "/game/js/tree.js",
-            "/game/js/enemy.js",
-            "/game/js/life.js",
+            `${base}/game/js/cursor.js`,
+            `${base}/game/js/tree.js`,
+            `${base}/game/js/enemy.js`,
+            `${base}/game/js/life.js`,
 
             // Skins
-            "/game/js/cursorSkin.js",
-            "/game/js/enemySkin.js",
-            "/game/js/lifeSkin.js",
-            "/game/js/treeSkin.js",
-            "/game/js/outsideSkin.js",
-            "/game/js/waySkin.js",
+            `${base}/game/js/cursorSkin.js`,
+            `${base}/game/js/enemySkin.js`,
+            `${base}/game/js/lifeSkin.js`,
+            `${base}/game/js/treeSkin.js`,
+            `${base}/game/js/outsideSkin.js`,
+            `${base}/game/js/waySkin.js`,
 
             // Map drawing + random map generator
-            "/game/js/drawMap.js",
-            "/game/js/randomMap.js",
+            `${base}/game/js/drawMap.js`,
+            `${base}/game/js/randomMap.js`,
 
             // Menu constants, images, configs
-            "/game/js/menuConstants.js",
-            "/game/js/playerDataManager.js",
-            "/game/js/locationService.js",
-            "/game/js/imageUploader.js",
-            "/game/js/playerSetupUi.js",
-            "/game/js/playerSetupScreen.js",
-            "/game/js/gameOverScreen.js",
-            "/game/js/levelCompleteScreen.js",
-            "/game/js/gameCompleteScreen.js",
-            "/game/js/ingameState.js",
-            "/game/js/score.js",
+            `${base}/game/js/menuConstants.js`,
+            `${base}/game/js/playerDataManager.js`,
+            `${base}/game/js/locationService.js`,
+            `${base}/game/js/imageUploader.js`,
+            `${base}/game/js/playerSetupUi.js`,
+            `${base}/game/js/playerSetupScreen.js`,
+            `${base}/game/js/gameOverScreen.js`,
+            `${base}/game/js/levelCompleteScreen.js`,
+            `${base}/game/js/gameCompleteScreen.js`,
+            `${base}/game/js/ingameState.js`,
+            `${base}/game/js/score.js`,
 
             // Motor (core logic)
-            "/game/js/motor.js",
+            `${base}/game/js/motor.js`,
 
             // Maps manager + levels
-            "/game/js/levelManager.js",
-            "/game/js/summerLevel1.js",
-            "/game/js/autumnLevel1.js",
-            "/game/js/winterLevel1.js",
-            "/game/js/summerLevel2.js",
-            "/game/js/autumnLevel2.js",
-            "/game/js/winterLevel2.js",
-            "/game/js/summerLevel3.js",
-            "/game/js/autumnLevel3.js",
-            "/game/js/winterLevel3.js",
+            `${base}/game/js/levelManager.js`,
+            `${base}/game/js/summerLevel1.js`,
+            `${base}/game/js/autumnLevel1.js`,
+            `${base}/game/js/winterLevel1.js`,
+            `${base}/game/js/summerLevel2.js`,
+            `${base}/game/js/autumnLevel2.js`,
+            `${base}/game/js/winterLevel2.js`,
+            `${base}/game/js/summerLevel3.js`,
+            `${base}/game/js/autumnLevel3.js`,
+            `${base}/game/js/winterLevel3.js`,
 
             // Menu drawing, click handling
-            "/game/js/menuDraw.js",
-            "/game/js/menuState.js",
-            "/game/js/menuStartGame.js",
-            "/game/js/menuHandlers.js",
-            "/game/js/cursorDisplayManager.js",
+            `${base}/game/js/menuDraw.js`,
+            `${base}/game/js/menuState.js`,
+            `${base}/game/js/menuStartGame.js`,
+            `${base}/game/js/menuHandlers.js`,
+            `${base}/game/js/cursorDisplayManager.js`,
 
             // FINAL ENTRY POINT
-            "/game/js/menu.js",
-            "/game/js/script.js"
+            `${base}/game/js/menu.js`,
+            `${base}/game/js/script.js`
         ];
 
         const addedScripts = [];
@@ -72,14 +73,14 @@ const Game = () => {
                     script.onload = resolve;
                     script.onerror = () => {
                         console.error(`Erreur de chargement pour : ${src}`);
-                        resolve(); // ne bloque pas la suite
+                        resolve(); // continue anyway
                     };
                     document.body.appendChild(script);
                     addedScripts.push(script);
                 });
             }
 
-            // Simuler l'événement DOMContentLoaded
+            // Simuler DOMContentLoaded
             const event = new Event("DOMContentLoaded", {
                 bubbles: true,
                 cancelable: true,
@@ -93,6 +94,8 @@ const Game = () => {
             addedScripts.forEach((s) => s.remove());
         };
     }, []);
+
+    const base = process.env.PUBLIC_URL;
 
     return (
         <main>
@@ -110,11 +113,11 @@ const Game = () => {
                     </div>
 
                     <audio id="menuMusic" loop>
-                        <source src="/game/audio/Menu_Theme.mp3" type="audio/mpeg" />
+                        <source src={`${base}/game/audio/Menu_Theme.mp3`} type="audio/mpeg" />
                     </audio>
 
                     <audio id="gameMusic" loop>
-                        <source src="/game/audio/Forest_Theme.mp3" type="audio/mpeg" />
+                        <source src={`${base}/game/audio/Forest_Theme.mp3`} type="audio/mpeg" />
                     </audio>
 
                     {/* Screens required by game state management */}
