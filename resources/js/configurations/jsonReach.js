@@ -29,4 +29,8 @@ class JsonReach {
             return null;
         }
     }
+
+    getObject(){
+        return this.data;
+    }
 }
