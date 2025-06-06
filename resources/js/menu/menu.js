@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     this.heartImage = heartImage();
     this.backButtonImage = backButtonImage();
-    this.instructionsImage = instructionsImage()
+    this.instructionsImage = instructionsImage();
 
     Promise.all([
         new Promise(resolve => { this.heartImage.onload = resolve; this.heartImage.onerror = resolve; }),

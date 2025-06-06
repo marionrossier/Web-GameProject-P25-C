@@ -93,7 +93,6 @@ class levelCompleteScreen {
             button.x = (window.canvas.width - button.width) / 2;
         }
 
-
         this.levelCompleteButtons.forEach(button => {
 
             window.ctx.fillStyle = button.id === "nextLevel" ? "#4CAF50" : "#ff5722";
