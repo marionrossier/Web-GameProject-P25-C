@@ -92,7 +92,7 @@ function showInLog(){
         scoreboard.players.forEach((player, index) => {
         });
     } else {
-        console.error("ScoreBoard invalide ou vide.");
+        console.error("ScoreBoard invalid or empty.");
     }
 }
 

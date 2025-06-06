@@ -38,7 +38,7 @@ function startGame(heartImage, backButtonImage, instructionsImage) {
         menuMusic.pause();
         menuMusic.currentTime = 0;
         gameMusic.play().catch((error) => {
-            console.error("Erreur lors de la lecture de la musique du jeu :", error);
+            console.error("Error during game music play :", error);
         });
 
     } catch (error) {
@@ -48,7 +48,7 @@ function startGame(heartImage, backButtonImage, instructionsImage) {
         gameMusic.currentTime = 0;
 
         menuMusic.play().catch((error) => {
-            console.error("Erreur lors de la lecture de la musique du menu :", error);
+            console.error("Error during menu music play :", error);
         });
 
         renderMenu(heartImage, backButtonImage, instructionsImage, app);
