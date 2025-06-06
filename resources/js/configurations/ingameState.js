@@ -1,3 +1,9 @@
+/**
+ * The `ingameState` class represents the state of the game during gameplay.
+ * It is responsible for managing and displaying different game-related screens like
+ * the 'Game Over' screen, 'Level Complete' screen, and 'Game Complete' screen.
+ * It also ensures to preserve the original canvas size during specific actions.
+ */
 class ingameState {
     constructor(motor) {
         this.motor = motor; // Référence à l'instance de Motor pour accéder à gameState

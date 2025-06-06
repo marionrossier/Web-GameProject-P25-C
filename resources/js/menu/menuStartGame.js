@@ -1,3 +1,11 @@
+/**
+ * Starts the game by initializing or resuming the current game level, setting up necessary assets, and managing game music.
+ *
+ * @param {Object} heartImage - The image asset to be used for heart/life indicators.
+ * @param {Object} backButtonImage - The image asset for the back button.
+ * @param {Object} instructionsImage - The image asset for the instructions or help section.
+ * @return {void} Does not return a value, updates the application state and starts the game.
+ */
 function startGame(heartImage, backButtonImage, instructionsImage) {
 
     // S'assurer que currentLevel est défini

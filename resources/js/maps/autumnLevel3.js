@@ -1,3 +1,6 @@
+/**
+ * Represents the Autumn Level 3 in the game, which includes the map, entities, and world configuration.
+ */
 class AutumnLevel3 {
     constructor() {
         this.autumnLevel3Map = [

@@ -1,3 +1,6 @@
+/**
+ * Represents a visual skin for a game element, allowing customization of its appearance.
+ */
 class WaySkin {
     constructor(skinNbr) {
         this.image = new Image();

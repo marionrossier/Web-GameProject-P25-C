@@ -1,6 +1,22 @@
+/**
+ * Represents the currently active screen in the application.
+ * Typically used to keep track of the user's current view or interface.
+ *
+ * @type {string}
+ */
 currentScreen = "menu";
+/**
+ * Represents the main application.
+ * Provides functionality for initializing and managing the overall application lifecycle.
+ */
 app = null;
 
+/**
+ * The Motor class manages the core game elements and state, including
+ * the game map, player interactions, timers, and screen transitions.
+ * It is responsible for the game's main logic, such as rendering,
+ * updating entities, and handling game events.
+ */
 class Motor {
     constructor(cursorSkin, mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
         this.mapTable = mapTable;

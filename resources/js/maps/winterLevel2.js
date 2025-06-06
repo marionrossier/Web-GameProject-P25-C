@@ -1,3 +1,7 @@
+/**
+ * Represents the WinterLevel2 class, which defines the map, entities, and world level
+ * configuration for a specific level in the winter-themed game world.
+ */
 class WinterLevel2 {
     constructor() {
         this.winterLevel2Map = [

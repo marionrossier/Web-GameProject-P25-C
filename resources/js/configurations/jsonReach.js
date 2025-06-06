@@ -1,3 +1,6 @@
+/**
+ * Represents a utility class for loading and accessing JSON data from a file.
+ */
 class JsonReach {
     constructor(path) {
         this.path = path;

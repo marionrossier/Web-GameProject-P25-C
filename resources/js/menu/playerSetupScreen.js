@@ -1,3 +1,7 @@
+/**
+ * Represents the player setup screen in the application.
+ * This class manages the initialization, display, and interactions on the player setup screen.
+ */
 class playerSetupScreen {
     constructor() {
         // Créer une nouvelle instance

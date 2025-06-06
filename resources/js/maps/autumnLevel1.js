@@ -1,3 +1,7 @@
+/**
+ * Represents the first level of the Autumn-themed stage in a game.
+ * The `AutumnLevel1` class defines the map, entities, and world parameters for the level.
+ */
 class AutumnLevel1 {
     constructor() {
         this.autumnLevel1Map = [

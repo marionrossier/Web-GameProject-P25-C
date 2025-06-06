@@ -1,3 +1,9 @@
+/**
+ * Retrieves detailed data for a specified game level based on the provided level number.
+ *
+ * @param {number} level - The level number for which data should be retrieved.
+ * @return {Object|null} An object containing the `map`, `gameEntities`, and `world` for the specified level, or null if the level is not found.
+ */
 function getLevelData(level) {
     switch (level) {
         case 1: {
