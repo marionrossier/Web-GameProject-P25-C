@@ -2,8 +2,6 @@ class gameOverScreen {
     constructor(motor) {
         this.motor = motor;
         this.activeListener = null;
-        this.backButton = backButtonImage();
-        this.heartImage = heartImage();
 
         // Dimensions et positions des boutons comme dans menuConstants.js
         const buttonY1 = window.canvas.height * 0.6; // ~420px sur un canvas de 700px

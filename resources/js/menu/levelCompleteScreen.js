@@ -6,8 +6,6 @@ class levelCompleteScreen {
 
         this.motor = motor;
         this.activeListener = null;
-        this.backButton = backButtonImage();
-        this.heartImage = heartImage();
 
         if (window.canvas.width !== 1000 || window.canvas.height !== 700) {
             window.canvas.width = 1000;
@@ -113,8 +111,6 @@ class levelCompleteScreen {
             window.ctx.textAlign = "center";
             window.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
         });
-        drawButton(backButton, heartImage, backButtonImage);
-
     }
 
     addClickListener() {

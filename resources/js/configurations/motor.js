@@ -79,9 +79,6 @@ class Motor {
     }
 
     gameOver(){
-        // Sauvegarder le score simplement
-        savePlayerScore(window.finalScore);
-
         this.stopTimer();
         this.screenTransitions.drawGameOverScreen();
     }

@@ -1,4 +1,4 @@
-function displayStats() {
+function displayStatsScreen() {
     checkScoreBoard();
     const data = getScoreBoard();
     const currentPlayerName = getPlayerName(); // Utiliser la fonction simple
@@ -41,4 +41,5 @@ function displayStats() {
 
         window.ctx.fillText(text, window.canvas.width / 2, y);
     });
+    drawButton(backButton, heartImage, backButtonImage);
 }

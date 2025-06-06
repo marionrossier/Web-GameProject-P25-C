@@ -96,8 +96,6 @@ class gameCompleteScreen {
     // Dessiner des confettis pour un effet festif
     drawConfetti() {
         // Générer 100 confettis colorés
-        this.backButton = backButtonImage();
-        this.heartImage = heartImage();
 
         for (let i = 0; i < 100; i++) {
             // Position aléatoire
@@ -153,7 +151,6 @@ class gameCompleteScreen {
             window.ctx.textAlign = "center";
             window.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
         });
-        drawButton(backButton, heartImage, backButtonImage);
     }
 
     // Ajouter l'écouteur d'événements pour les clics
