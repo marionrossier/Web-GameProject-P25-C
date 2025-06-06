@@ -5,6 +5,8 @@ class playerSetupScreen {
         this.locationService = new locationService();
         this.imageUploader = new imageUploader();
         this.ui = new playerSetupUi( window.ctx);
+        this.backButton = backButtonImage();
+        this.heartImage = heartImage();
 
         // Charger les données existantes si disponibles
         this.playerData.load();
@@ -49,6 +51,7 @@ class playerSetupScreen {
         if (this.ui.nameInput.parentNode) {
             this.ui.positionInput();
         }
+        drawButton(backButton, heartImage, backButtonImage);
     }
 
     async handleClick(event) {

@@ -2,6 +2,8 @@ class gameOverScreen {
     constructor(motor) {
         this.motor = motor;
         this.activeListener = null;
+        this.backButton = backButtonImage();
+        this.heartImage = heartImage();
 
         // Dimensions et positions des boutons comme dans menuConstants.js
         const buttonY1 = window.canvas.height * 0.6; // ~420px sur un canvas de 700px
@@ -106,6 +108,7 @@ class gameOverScreen {
             window.ctx.textAlign = "center";
             window.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
         });
+        drawButton(backButton, heartImage, backButtonImage);
     }
 
     // Ajouter l'écouteur d'événements pour les clics (comme dans le menu)
