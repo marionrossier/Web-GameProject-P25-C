@@ -1,19 +1,27 @@
+
 function displayStats() {
 
-    const ScoreBoard = new JsonReach("/resources/js/ScoreBoard.json");
-    const players = ScoreBoard.get("ScoreBoard", "players");
+    checkScoreBoard();
+    const data = getScoreBoard();
 
-    window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height); // Efface l’écran
-    window.ctx.fillStyle = "#333333"; // Gris foncé
+    // Nettoie l'écran
+    window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
+    window.ctx.fillStyle = "#333333"; // Fond gris foncé
     window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
+
+    // Titre
     window.ctx.font = "40px Arial";
     window.ctx.fillStyle = "#ffffff";
-    window.ctx.fillText("Leader Board :", window.canvas.width / 2, window.canvas.height / 2-70);
+    window.ctx.textAlign = "center";
+    window.ctx.fillText("Leader Board :", window.canvas.width / 2, window.canvas.height / 2 -40);
 
-    if (!players) return;
+    if (!data || !data.players) return;
 
-    window.ctx.font = "20px Arial";
-    players.forEach((p, index) => {
-        ctx.fillText(`${p.name} : ${p.score}`, window.canvas.width / 2, window.canvas.height / 2 + index * 30);
+    // Affichage des joueurs
+    window.ctx.font = "24px Arial";
+    data.players.forEach((p, index) => {
+        const y = window.canvas.height / 2 + index * 30;
+        const text = `${index + 1}. ${p.name} : ${p.score}`;
+        window.ctx.fillText(text, window.canvas.width / 2, y);
     });
 }
