@@ -1,4 +1,9 @@
 // Function de debug pour vérifier le chargement du script
+/**
+ * Represents the level complete screen in the game.
+ * This screen displays the details of the completed level, including the score, time, and remaining lives.
+ * It also provides buttons for navigating to the next level or returning to the menu.
+ */
 class levelCompleteScreen {
     constructor(motor) {
 

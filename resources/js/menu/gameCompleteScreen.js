@@ -1,6 +1,11 @@
 // Function de debug pour vérifier le chargement du script
 console.log("Script gameCompleteScreen.js chargé avec succès!");
 
+/**
+ * Represents the "game complete" screen displayed after a player finishes the game.
+ * This screen includes congratulatory messages, options to restart the game or return
+ * to the main menu, and visual enhancements such as confetti and buttons.
+ */
 class gameCompleteScreen {
     constructor(motor) {
         this.motor = motor;

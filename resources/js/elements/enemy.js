@@ -1,3 +1,6 @@
+/**
+ * Represents an enemy in the game, which can move along a defined path.
+ */
 class Enemy {
     constructor(velocity, startX, startY, endX, endY, map) {
         this.startX = this.currentX = startX;

@@ -1,3 +1,7 @@
+/**
+ * Class representing the UI for player setup in a game.
+ * Provides methods for creating and displaying UI elements for player configuration such as name input, avatar selection, and buttons.
+ */
 class playerSetupUi {
     constructor() {
         this.nameInput = this.createNameInput();

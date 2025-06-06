@@ -1,3 +1,6 @@
+/**
+ * Represents the first level in the winter-themed game.
+ */
 class WinterLevel1 {
     constructor() {
         this.winterLevel1Map = [

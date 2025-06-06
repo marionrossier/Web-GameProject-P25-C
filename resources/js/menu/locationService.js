@@ -1,3 +1,7 @@
+/**
+ * Provides services for retrieving the user's current location
+ * and obtaining location information using reverse geocoding.
+ */
 class locationService {
     async getLocation() {
         if (!("geolocation" in navigator)) {

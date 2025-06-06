@@ -1,3 +1,6 @@
+/**
+ * Represents a Tree object, containing its position and appearance.
+ */
 class Tree {
     constructor(x, y, skin) {
         this.x = x;

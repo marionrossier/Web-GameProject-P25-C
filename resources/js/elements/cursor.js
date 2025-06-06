@@ -1,3 +1,7 @@
+/**
+ * Represents a user-controlled cursor within the game environment, providing interaction
+ * and collision detection with various game elements such as enemies, walls, and lives.
+ */
 class Cursor {
     constructor(skin, maptable, motor, gameEntities) {
         this.skin = skin;

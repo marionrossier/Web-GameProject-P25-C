@@ -1,3 +1,7 @@
+/**
+ * Represents the WinterLevel3 class which defines the structure, entities, and world configuration
+ * for the Winter Level 3 of the application.
+ */
 class WinterLevel3 {
     constructor() {
         this.winterLevel3Map = [

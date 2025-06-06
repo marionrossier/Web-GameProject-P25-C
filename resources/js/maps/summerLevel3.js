@@ -1,3 +1,6 @@
+/**
+ * Represents the Summer Level 3 game state, including map configuration, entities, and world properties.
+ */
 class SummerLevel3 {
     constructor() {
         this.summerLevel3Map = [
