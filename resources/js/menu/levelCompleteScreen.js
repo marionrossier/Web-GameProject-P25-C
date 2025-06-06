@@ -7,7 +7,7 @@
 class levelCompleteScreen {
     constructor(motor) {
 
-        window.currentScreen = null; //pour pas qu'il reste sur currentScreen "play"
+        window.currentScreen = null; //so it doesn't stay on currentScreen "play"
 
         this.motor = motor;
         this.activeListener = null;
@@ -37,28 +37,22 @@ class levelCompleteScreen {
             gameMusic.currentTime = 0;
         }
 
-        // IMPORTANT: Forcer le curseur système par défaut
+        // IMPORTANT: Force the default system cursor
         window.canvas.style.cursor = 'default';
 
-        // Si la classe updateCursorStyle est disponible, l'utiliser
         if (typeof window.updateCursorStyle === 'function') {
             window.updateCursorStyle("menu", window.canvas);
         }
 
-        // Neutraliser directement le curseur du moteur s'il existe
         if (this.motor.cursor) {
-            // Sauvegarder la méthode originale drawMouse
             if (!this.originalDrawMouse && this.motor.cursor.drawMouse) {
                 this.originalDrawMouse = this.motor.cursor.drawMouse;
-                // Remplacer par une fonction vide
                 this.motor.cursor.drawMouse = function() {};
             }
         }
 
         this.clearEventListeners();
-
         this.draw();
-
         this.addClickListener();
     }
 
@@ -91,7 +85,6 @@ class levelCompleteScreen {
         this.drawButtons();
     }
 
-    // Dessiner les boutons exactement comme dans le menu
     drawButtons() {
 
         for (const button of this.levelCompleteButtons) {

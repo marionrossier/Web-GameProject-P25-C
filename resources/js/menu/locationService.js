@@ -13,8 +13,8 @@ class locationService {
             const locationName = await this.reverseGeocode(position.coords.latitude, position.coords.longitude);
             return locationName;
         } catch (error) {
-            console.error("Erreur de géolocalisation:", error);
-            return "Position non disponible";
+            console.error("Geolocalisation error:", error);
+            return "Position not available";
         }
     }
 

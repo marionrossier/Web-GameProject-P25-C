@@ -4,16 +4,13 @@
  */
 class playerSetupScreen {
     constructor() {
-        // Créer une nouvelle instance
         this.playerData = new playerDataManager();
         this.locationService = new locationService();
         this.imageUploader = new imageUploader();
         this.ui = new playerSetupUi(window.ctx);
 
-        // Charger les données existantes si disponibles
         this.playerData.load();
 
-        // Gérer les événements
         this.handleClick = this.handleClick.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
@@ -63,10 +60,8 @@ class playerSetupScreen {
         }
 
         if (this.ui.isClickOnButton(x, y, this.ui.startButton) && this.playerData.isComplete()) {
-            // IMPORTANT: Sauvegarder définit automatiquement window.currentPlayer
             this.playerData.save();
 
-            console.log(`Joueur configuré: ${getPlayerName()}`);
             this.hide();
             window.gameInitialisation();
             startGame(heartImage, backButtonImage, instructionsImage);
@@ -74,7 +69,6 @@ class playerSetupScreen {
     }
 
     handleInput(event) {
-        // SIMPLE: Juste mettre à jour le nom
         this.playerData.setName(event.target.value);
         this.draw();
     }

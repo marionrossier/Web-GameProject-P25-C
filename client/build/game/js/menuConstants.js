@@ -23,18 +23,18 @@ const gameOverButtons = [
 
 function heartImage (){
     const heartImage = new Image();
-    heartImage.src = "/game/images/Heart.png";
+    heartImage.src = `${window.PUBLIC_URL || ""}/game/images/Heart.png`;
     return heartImage;
 }
 
 function backButtonImage (){
     const backButtonImage = new Image();
-    backButtonImage.src = "/game/images/rollback-picto.png";
+    backButtonImage.src = `${window.PUBLIC_URL || ""}/game/images/rollback-picto.png`;
     return backButtonImage;
 }
 
 function instructionsImage (){
     const instructionsImage = new Image();
-    instructionsImage.src = "/game/images/Instructions.png";
+    instructionsImage.src = `${window.PUBLIC_URL || ""}/game/images/Instructions.png`;
     return instructionsImage;
 }

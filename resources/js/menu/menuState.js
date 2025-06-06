@@ -9,7 +9,6 @@
  * @return {void} This method does not return a value.
  */
 function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
-    console.log(currentScreen);
 
     updateCursorStyle(currentScreen);
 
@@ -22,7 +21,7 @@ function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
         drawMainMenu(heartImage, backButtonImage);
 
         menuMusic.play().catch((error) => {
-            console.error("Erreur lors de la lecture de la musique du menu :", error);
+            console.error("Error during menu music play :", error);
         });
         gameMusic.pause();
         gameMusic.currentTime = 0;
@@ -30,7 +29,7 @@ function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
     } else if (currentScreen === "play") {
 
         gameMusic.play().catch((error) => {
-            console.error("Erreur lors de la lecture de la musique du jeu :", error);
+            console.error("Error during game music play :", error);
         });
         menuMusic.pause();
         menuMusic.currentTime = 0;

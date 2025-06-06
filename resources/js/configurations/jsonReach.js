@@ -9,17 +9,17 @@ class JsonReach {
 
     loadSync() {
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", this.path, false); // ⚠️ false = mode synchrone
+        xhr.open("GET", this.path, false);
         try {
             xhr.send(null);
             if (xhr.status === 200) {
                 return JSON.parse(xhr.responseText);
             } else {
-                console.error("Erreur HTTP :", xhr.status);
+                console.error("HTTP error :", xhr.status);
                 return null;
             }
         } catch (e) {
-            console.error("Erreur de chargement synchrone :", e);
+            console.error("Synchon chargment error :", e);
             return null;
         }
     }
@@ -28,7 +28,7 @@ class JsonReach {
         try {
             return this.data[father][child];
         } catch (e) {
-            console.error("Erreur d'accès JSON :", e);
+            console.error("JSON access error :", e);
             return null;
         }
     }

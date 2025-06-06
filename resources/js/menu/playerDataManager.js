@@ -47,7 +47,6 @@ class playerDataManager {
             .substring(0, 20);
 
         this.playerName = sanitized;
-        console.log(`Nom du joueur défini: ${this.playerName}`);
     }
 
     setAvatar(imageData) {
@@ -73,10 +72,8 @@ class playerDataManager {
         localStorage.setItem('playerData', JSON.stringify(playerData));
         window.playerData = playerData;
 
-        // IMPORTANT: Définir la variable globale simple
         window.currentPlayer = this;
 
-        console.log(`Joueur sauvegardé: ${this.playerName}`);
         return playerData;
     }
 
@@ -88,16 +85,13 @@ class playerDataManager {
             this.playerAvatar = data.avatar || null;
             this.playerLocation = data.location || "Localisation en cours...";
 
-            // IMPORTANT: Définir la variable globale simple
             window.currentPlayer = this;
 
-            console.log(`Joueur chargé: ${this.playerName}`);
             return data;
         }
         return null;
     }
 
-    // Méthode simple pour obtenir le nom
     getName() {
         return this.playerName || "Anonymous Player";
     }

@@ -1,7 +1,7 @@
 class CursorSkin {
     constructor(skinNbr) {
         this.image = new Image();
-        this.image.src = "/game/images/Characters.png";
+        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Characters.png`;
         this.spriteSize = 16;
         this.selectSkin(skinNbr);
         this.updateDirection("down")

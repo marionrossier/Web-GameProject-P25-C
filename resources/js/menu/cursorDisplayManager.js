@@ -11,8 +11,8 @@ function updateCursorStyle(currentScreen, canvas) {
     }
 
     if (currentScreen === "play") {
-        window.canvas.style.cursor = "none"; // Cacher la souris en jeu
+        window.canvas.style.cursor = "none"; // Hide the mouse cursor during gameplay
     } else {
-        window.canvas.style.cursor = "default"; // Souris visible ailleurs
+        window.canvas.style.cursor = "default";  // Mouse visible elsewhere
     }
 }

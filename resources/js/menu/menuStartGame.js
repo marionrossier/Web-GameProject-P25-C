@@ -8,22 +8,18 @@
  */
 function startGame(heartImage, backButtonImage, instructionsImage) {
 
-    // S'assurer que currentLevel est défini
     if (typeof window.currentLevel === 'undefined') {
         window.currentLevel = 1;
     }
 
-    // Obtenir les données du niveau
     const levelData = getLevelData(window.currentLevel);
     if (!levelData) {
 
-        // En cas d'échec, revenir au menu
         currentScreen = "menu";
         renderMenu(heartImage, backButtonImage, instructionsImage);
         return;
     }
 
-    // Références aux éléments audio
     const menuMusic = document.getElementById("menuMusic");
     const gameMusic = document.getElementById("gameMusic");
 
@@ -32,35 +28,29 @@ function startGame(heartImage, backButtonImage, instructionsImage) {
         const waySkin = new WaySkin(levelData.world);
         const treeSkin = new TreeSkin(levelData.world);
 
-        // Créer le moteur de jeu pour ce niveau
         app = new Motor(2, levelData.map, outsideSkin, waySkin, treeSkin, levelData.gameEntities);
 
-        console.log("start");
         app.gameMap.draw();
         app.startTimer();
 
         currentScreen = "play";
 
-        // Gestion de la musique
         menuMusic.pause();
         menuMusic.currentTime = 0;
         gameMusic.play().catch((error) => {
-            console.error("Erreur lors de la lecture de la musique du jeu :", error);
+            console.error("Error during game music play :", error);
         });
 
     } catch (error) {
         currentScreen = "menu";
 
-        // Nettoyage
         gameMusic.pause();
         gameMusic.currentTime = 0;
 
-        // Relancer la musique du menu
         menuMusic.play().catch((error) => {
-            console.error("Erreur lors de la lecture de la musique du menu :", error);
+            console.error("Error during menu music play :", error);
         });
 
-        // Afficher le menu
         renderMenu(heartImage, backButtonImage, instructionsImage, app);
     }
 }
