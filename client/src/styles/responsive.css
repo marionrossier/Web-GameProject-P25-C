@@ -1,0 +1,112 @@
+/*Responsive part Computer*/
+@media screen and (min-width: 1025px) {
+
+    #description {
+        display: flex;
+        align-items: flex-start;
+    }
+
+
+    header nav ul {
+        padding: 10px 30px 10px 30px;
+    }
+
+    header nav ul li[class="hamburger"]{
+        display: none;
+    }
+
+    body {
+        max-width: 100%;
+        margin : 3em 10%;
+        justify-content: center;
+        background-color: rgb(240, 240, 240);
+    }
+
+    header h1 {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    footer {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+}
+
+/*Responsive part Tablette and Smartphone landscape */
+@media screen and (max-width: 1024px) and (min-width: 481px) {
+
+    header nav ul {
+        padding: 10px 30px 10px 30px;
+    }
+
+    header nav ul li[class="hamburger"]{
+        display: none;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    main .imageLeft {
+        max-width : 100%;
+    }
+
+    table {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .Diagrams {
+        width: 100%;
+    }
+}
+
+/*Responsive part Smartphone portrait*/
+@media screen and (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+
+    header h1, footer {
+        border-radius: 0;
+    }
+
+    main .imageLeft {
+        max-width: 100%;
+    }
+
+    /*Navigation*/
+    header nav {
+        display: flex;
+        justify-content: center;
+    }
+
+    header nav ul {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    header nav [class="active"] a {
+        background-color: white;
+        width: 100vw;
+        display: block;
+        text-align: center;
+    }
+
+    table {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    aside {
+        margin-top: 0;
+    }
+
+    .Diagrams {
+        width: 100%;
+    }
+}
