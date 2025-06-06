@@ -26,7 +26,7 @@ function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
         menuMusic.currentTime = 0;
 
     } else if (currentScreen === "stats") {
-        displayStats();
+        displayStatsScreen();
 
     } else if (currentScreen === "rules") {
         if (app) app.stopTimer();

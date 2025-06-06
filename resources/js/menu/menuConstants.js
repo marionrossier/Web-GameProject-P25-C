@@ -4,10 +4,10 @@ const menuButtons = [
     { id: "stats", text: "Results", x: 400, y: 560, width: 200, height: 60 }
 ];
 
-const backButton = {
+window.backButton = {
     id: "back",
     text: "Back",
-    x: window.screenCanvasWidth - 20 - 40,
+    x: window.CANVAS.screenWidth - 20 - 40,
     y: 20,
     width: 40,
     height: 40

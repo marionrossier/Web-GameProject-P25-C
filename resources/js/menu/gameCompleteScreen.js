@@ -96,6 +96,7 @@ class gameCompleteScreen {
     // Dessiner des confettis pour un effet festif
     drawConfetti() {
         // Générer 100 confettis colorés
+
         for (let i = 0; i < 100; i++) {
             // Position aléatoire
             const x = Math.random() * window.canvas.width;

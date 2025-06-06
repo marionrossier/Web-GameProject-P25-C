@@ -106,6 +106,7 @@ class gameOverScreen {
             window.ctx.textAlign = "center";
             window.ctx.fillText(button.text, button.x + button.width / 2, button.y + button.height / 2 + 7);
         });
+        drawButton(backButton, heartImage, backButtonImage);
     }
 
     // Ajouter l'écouteur d'événements pour les clics (comme dans le menu)
