@@ -63,19 +63,27 @@ const Game = () => {
                     script.onload = resolve;
                     script.onerror = () => {
                         console.error(`Erreur de chargement pour : ${src}`);
-                        resolve(); // continue anyway
+                        resolve(); // continuer même en cas d'erreur
                     };
                     document.body.appendChild(script);
                     addedScripts.push(script);
                 });
             }
 
-            // Simuler DOMContentLoaded
+            // Simuler DOMContentLoaded pour déclencher les scripts du jeu
             const event = new Event("DOMContentLoaded", {
                 bubbles: true,
                 cancelable: true,
             });
             document.dispatchEvent(event);
+
+            // Supprimer les écrans (start/end/gameover) si présents
+            setTimeout(() => {
+                ["startScreen", "endScreen", "gameOverScreen"].forEach((id) => {
+                    const el = document.getElementById(id);
+                    if (el) el.remove();
+                });
+            }, 200);
         };
 
         loadScriptsSequentially();
@@ -96,7 +104,9 @@ const Game = () => {
                         <p>By Eric, the 01.04.2025</p>
                     </header>
 
-                    <p>Move your mouse through the maze without touching the edges. The game starts below!</p>
+                    <p>
+                        Move your mouse through the maze without touching the edges. The game starts below!
+                    </p>
 
                     <div id="gameWrapper" style={{ position: "relative" }}>
                         <canvas id="gameCanvas" width="1000" height="700"></canvas>
@@ -109,19 +119,6 @@ const Game = () => {
                     <audio id="gameMusic" loop>
                         <source src={`${base}/game/audio/Forest_Theme.mp3`} type="audio/mpeg" />
                     </audio>
-
-                    {/* Screens required by game state management */}
-                    <div id="startScreen" style={{ display: "none" }}>
-                        <button id="startButton">Start Game</button>
-                    </div>
-
-                    <div id="endScreen" style={{ display: "none" }}>
-                        <button id="replayButton">Play Again</button>
-                    </div>
-
-                    <div id="gameOverScreen" style={{ display: "none" }}>
-                        <button id="replayButton2">Retry</button>
-                    </div>
                 </article>
             </section>
         </main>
