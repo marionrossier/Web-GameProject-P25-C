@@ -1,7 +1,10 @@
+/**
+ * Represents a tree skin used in the game, allowing the selection of various tree appearances and rendering them on the canvas.
+ */
 class TreeSkin {
     constructor(skinNbr) {
         this.image = new Image();
-        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Trees.png`;
+        this.image.src = `${window.PUBLIC_URL}/game/images/Trees.png`;
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;
@@ -9,9 +12,9 @@ class TreeSkin {
         this.selectSkin(skinNbr)
     }
 
-    draw(ctx, x, y) {
+    draw(x, y) {
         if (this.imageLoaded) {
-            ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 32, // Image source x
                 this.skinY * 48, // Image source y
@@ -19,8 +22,8 @@ class TreeSkin {
                 48, // Image source height
                 x * 16+2, // Destination x
                 y * 16, // Destination y
-                16-4, // Destination width
-                16 // Destination height
+                TREE.destinationWidth, // Destination width
+                TREE.destinationHeight // Destination height
             );
         }
     }

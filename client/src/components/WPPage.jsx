@@ -4,9 +4,10 @@ const WPPage = ({ slug }) => {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const [error, setError] = useState("");
+    const [reloadIndex, setReloadIndex] = useState(0);
 
     useEffect(() => {
-        fetch(`https://dev-webgame-p25.pantheonsite.io/wp-json/wp/v2/pages?slug=${slug}`)
+        fetch(`https://dev-webgame-p25.pantheonsite.io/wp-json/wp/v2/pages?slug=${slug}&_=${Date.now()}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);

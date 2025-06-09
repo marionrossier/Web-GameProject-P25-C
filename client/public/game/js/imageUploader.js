@@ -1,3 +1,8 @@
+/**
+ * A class to handle image uploading, resizing, and validation.
+ * This class provides functionality for users to select an image file,
+ * resize it to a specific dimension, and validate the file type and size.
+ */
 class imageUploader {
     constructor() {
         this.fileInput = document.createElement("input");
@@ -11,13 +16,26 @@ class imageUploader {
         return new Promise((resolve) => {
             this.fileInput.onchange = async (event) => {
                 const file = event.target.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    const resizedImage = await this.resizeImage(file);
-                    resolve(resizedImage);
-                } else {
-                    resolve(null);
+                if (!file) return resolve(null);
+
+                // Vérifier le type MIME et la taille (max 2 Mo)
+                const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+                const maxSizeMB = 2;
+
+                if (!allowedTypes.includes(file.type)) {
+                    alert("Seuls les fichiers JPEG, PNG et WEBP sont autorisés.");
+                    return resolve(null);
                 }
+
+                if (file.size > maxSizeMB * 1024 * 1024) {
+                    alert("Image trop volumineuse (max 2 Mo).");
+                    return resolve(null);
+                }
+
+                const resizedImage = await this.resizeImage(file);
+                resolve(resizedImage);
             };
+
             this.fileInput.click();
         });
     }
@@ -28,14 +46,13 @@ class imageUploader {
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
-                    // Créer un canvas pour redimensionner
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    const size = 150; // Taille cible
-                    canvas.width = size;
-                    canvas.height = size;
+                    const canvasImage = document.createElement('canvas');
+                    const size = 150;
+                    canvasImage.width = size;
+                    canvasImage.height = size;
 
-                    // Calculer le recadrage pour garder le ratio
+                    const ctx = canvasImage.getContext('2d');
+
                     const scale = Math.max(size / img.width, size / img.height);
                     const width = img.width * scale;
                     const height = img.height * scale;
@@ -43,7 +60,7 @@ class imageUploader {
                     const y = (size - height) / 2;
 
                     ctx.drawImage(img, x, y, width, height);
-                    resolve(canvas.toDataURL('image/jpeg', 0.8));
+                    resolve(canvasImage.toDataURL('image/jpeg', 0.8));
                 };
                 img.src = e.target.result;
             };

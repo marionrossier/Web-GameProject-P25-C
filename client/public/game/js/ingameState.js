@@ -1,9 +1,14 @@
+/**
+ * The `ingameState` class represents the state of the game during gameplay.
+ * It is responsible for managing and displaying different game-related screens like
+ * the 'Game Over' screen, 'Level Complete' screen, and 'Game Complete' screen.
+ * It also ensures to preserve the original canvas size during specific actions.
+ */
 class ingameState {
     constructor(motor) {
-        this.motor = motor; // Référence à l'instance de Motor pour accéder à gameState
+        this.motor = motor;
 
-        const canvas = document.getElementById("gameCanvas");
-        if (canvas) {
+        if (window.canvas) {
             this.originalWidth = canvas.width;
             this.originalHeight = canvas.height;
         }
@@ -13,10 +18,8 @@ class ingameState {
     preserveCanvasSize() {
         const canvas = document.getElementById("gameCanvas");
         if (canvas && this.originalWidth && this.originalHeight) {
-            // Vérifier si la taille a changé
             if (canvas.width !== this.originalWidth || canvas.height !== this.originalHeight) {
 
-                // Restaurer les dimensions originales
                 canvas.width = this.originalWidth;
                 canvas.height = this.originalHeight;
             }
@@ -24,37 +27,29 @@ class ingameState {
     }
 
     drawGameOverScreen() {
-        // S'assurer que le canvas a la bonne taille avant d'afficher l'écran Game Over
         this.preserveCanvasSize();
-        currentLevel = 1;
-        // Vérifier si la classe gameOverScreen est disponible
+        window.currentLevel = 1;
         if (typeof window.gameOverScreen === 'function') {
-            // Créer une instance de la classe gameOverScreen
             const screen = new window.gameOverScreen(this.motor);
             screen.show();
         }
     }
 
     drawEndLevelScreen() {
-        // Vérifier si la classe levelCompleteScreen est disponible
         if (typeof window.levelCompleteScreen === 'function') {
-            // Créer une instance de la classe levelCompleteScreen
             const screen = new window.levelCompleteScreen(this.motor);
             screen.show();
         }
     }
 
     drawEndGameScreen() {
-        // S'assurer que le canvas a les bonnes dimensions
         const canvas = document.getElementById("gameCanvas");
         if (canvas.width !== 1000 || canvas.height !== 700) {
             canvas.width = 1000;
             canvas.height = 700;
         }
 
-        // Vérifier si la classe gameCompleteScreen est disponible
         if (typeof window.gameCompleteScreen === 'function') {
-            // Créer une instance de la classe gameCompleteScreen
             const screen = new window.gameCompleteScreen(this.motor);
             screen.show();
         }

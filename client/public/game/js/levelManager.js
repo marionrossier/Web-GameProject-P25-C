@@ -1,59 +1,83 @@
+/**
+ * Retrieves detailed data for a specified game level based on the provided level number.
+ *
+ * @param {number} level - The level number for which data should be retrieved.
+ * @return {Object|null} An object containing the `map`, `gameEntities`, and `world` for the specified level, or null if the level is not found.
+ */
 function getLevelData(level) {
     switch (level) {
-        case 1:
+        case 1: {
+            const level = new SummerLevel1();
             return {
-                map: summerLevel1Map,
-                gameEntities: summerLevel1Entities,
-                world: summerLevel1World
+                map: level.summerLevel1Map,
+                gameEntities: level.summerLevel1Entities,
+                world: level.summerLevel1World
             };
-        case 2:
+        }
+        case 2: {
+            const level = new AutumnLevel1();
             return {
-                map: autumnLevel1Map,
-                gameEntities: autumnLevel1Entities,
-                world: autumnLevel1World
+                map: level.autumnLevel1Map,
+                gameEntities: level.autumnLevel1Entities,
+                world: level.autumnLevel1World
             };
-        case 3:
+        }
+        case 3: {
+            const level = new WinterLevel1();
             return {
-                map: winterLevel1Map,
-                gameEntities: winterLevel1Entities,
-                world: winterLevel1World
+                map: level.winterLevel1Map,
+                gameEntities: level.winterLevel1Entities,
+                world: level.winterLevel1World
             };
-        case 4:
+        }
+        case 4: {
+            const level = new SummerLevel2();
             return {
-                map: summerLevel2Map,
-                gameEntities: summerLevel2Entities,
-                world: summerLevel2World
+                map: level.summerLevel2Map,
+                gameEntities: level.summerLevel2Entities,
+                world: level.summerLevel2World
             };
-        case 5:
+        }
+        case 5: {
+            const level = new AutumnLevel2();
             return {
-                map: autumnLevel2Map,
-                gameEntities: autumnLevel2Entities,
-                world: autumnLevel2World
+                map: level.autumnLevel2Map,
+                gameEntities: level.autumnLevel2Entities,
+                world: level.autumnLevel2World
             };
-        case 6:
+        }
+        case 6: {
+            const level = new WinterLevel2();
             return {
-                map: winterLevel2Map,
-                gameEntities: winterLevel2Entities,
-                world: winterLevel2World
+                map: level.winterLevel2Map,
+                gameEntities: level.winterLevel2Entities,
+                world: level.winterLevel2World
             };
-        case 7:
+        }
+        case 7: {
+            const level = new SummerLevel3();
             return {
-                map: summerLevel3Map,
-                gameEntities: summerLevel3Entities,
-                world: summerLevel3World
+                map: level.summerLevel3Map,
+                gameEntities: level.summerLevel3Entities,
+                world: level.summerLevel3World
             };
-        case 8:
+        }
+        case 8: {
+            const level = new AutumnLevel3();
             return {
-                map: autumnLevel3Map,
-                gameEntities: autumnLevel3Entities,
-                world: autumnLevel3World
+                map: level.autumnLevel3Map,
+                gameEntities: level.autumnLevel3Entities,
+                world: level.autumnLevel3World
             };
-        case 9:
+        }
+        case 9: {
+            const level = new WinterLevel3();
             return {
-                map: winterLevel3Map,
-                gameEntities: winterLevel3Entities,
-                world: winterLevel3World
+                map: level.winterLevel3Map,
+                gameEntities: level.winterLevel3Entities,
+                world: level.winterLevel3World
             };
+        }
         default:
             console.error("Level not found:", level);
             return null;

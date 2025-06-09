@@ -1,21 +1,16 @@
-const WidthTable = [25, 1000];
-const HeightTable = [17, 700];
-const pixelSizeTable = [16, 1];
-
+/**
+ * DrawMap class provides functionality to render a game map onto a canvas.
+ * It utilizes different skins to draw various elements such as outside areas,
+ * pathways, and randomly placed trees based on the provided map structure.
+ */
 class DrawMap {
-    constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities, Size) {
-        this.canvas = document.getElementById("gameCanvas");
-        if (!this.canvas) {
-            throw new Error("Canvas 'gameCanvas' introuvable !");
+    constructor(mapTable, outsideSkin, waySkin, treeSkin, gameEntities) {
+        if (!window.canvas) {
+            throw new Error("Canvas 'gameCanvas' not found !");
         }
 
-        this.ctx = this.canvas.getContext("2d");
-
-        this.mapWidth = WidthTable[Size];
-        this.mapHeight = HeightTable[Size];
-        this.pixelSize = pixelSizeTable[Size];
-        this.canvas.width = this.mapWidth * this.pixelSize;
-        this.canvas.height = this.mapHeight * this.pixelSize;
+        window.canvas.width = MAP.width * MAP.pixelSize;
+        window.canvas.height = MAP.height * MAP.pixelSize;
 
         this.mapTable = mapTable;
         this.outsideSkin = outsideSkin;
@@ -26,26 +21,25 @@ class DrawMap {
         this.treePositions = this.generateTreePositions();
 
         this.draw();
-        console.log("Éléments dessinés !");
     }
 
     drawOutsideSkin() {
-        for (let y = 0; y < this.mapHeight; y++) {
-            for (let x = 0; x < this.mapWidth; x++) {
-                const index = y * this.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 1) {
-                    this.outsideSkin.draw(this.ctx, x, y);
+                    this.outsideSkin.draw(x, y);
                 }
             }
         }
     }
 
     drawWaySkin() {
-        for (let y = 0; y < this.mapHeight; y++) {
-            for (let x = 0; x < this.mapWidth; x++) {
-                const index = y * this.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 0) {
-                    this.waySkin.drawCenter(this.ctx, x, y);
+                    this.waySkin.drawCenter(x, y);
                 }
             }
         }
@@ -53,23 +47,21 @@ class DrawMap {
 
     drawTreeSkinOnRandomCells() {
         for (const { x, y } of this.treePositions) {
-            this.treeSkin.draw(this.ctx, x, y);
+            this.treeSkin.draw(x, y);
         }
     }
-
 
     generateTreePositions() {
         const eligibleCells = [];
 
-        for (let y = 0; y < this.mapHeight; y++) {
-            for (let x = 0; x < this.mapWidth; x++) {
-                const index = y * this.mapWidth + x;
+        for (let y = 0; y < MAP.height; y++) {
+            for (let x = 0; x < MAP.width; x++) {
+                const index = y * MAP.width + x;
                 if (this.mapTable[index] === 1) {
                     eligibleCells.push({ x, y });
                 }
             }
         }
-
         const numberOfTrees = Math.floor(eligibleCells.length * 0.2);
         const selected = [];
 
@@ -81,9 +73,8 @@ class DrawMap {
         return selected;
     }
 
-
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
         this.drawOutsideSkin();
         this.drawWaySkin();
         this.drawTreeSkinOnRandomCells();

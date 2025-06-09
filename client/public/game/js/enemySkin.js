@@ -1,9 +1,12 @@
+/**
+ * Represents the visual appearance of an enemy in the game.
+ * Responsible for loading and drawing the enemy's sprite.
+ */
 class EnemySkin {
     constructor() {
-        const canvas = document.getElementById("gameCanvas");
-        this.ctx = canvas.getContext("2d");
         this.image = new Image();
-        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Characters.png`;
+        this.image.src = `${window.PUBLIC_URL}/game/images/Characters.png`;
+
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;
@@ -12,7 +15,7 @@ class EnemySkin {
 
     draw(x, y) {
         if (this.imageLoaded) {
-            this.ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 16 * 16, // Image source x 16
                 16 * 16, // Image source y 16
@@ -20,8 +23,8 @@ class EnemySkin {
                 16, // Image source height
                 x * 16, // Destination x
                 y * 16, // Destination y
-                16, // Destination width
-                16 // Destination height
+                ENEMY.destinationWidth, // Destination width
+                ENEMY.destinationHeight // Destination height
             );
         }
     }
