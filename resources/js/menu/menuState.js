@@ -27,7 +27,6 @@ function renderMenu(heartImage, backButtonImage, instructionsImage, app) {
 
     } else if (currentScreen === "stats") {
         displayStats();
-
     } else if (currentScreen === "rules") {
         if (app) app.stopTimer();
         drawScreen(currentScreen, heartImage, backButtonImage, instructionsImage);
