@@ -1,3 +1,7 @@
+/**
+ * Provides services for retrieving the user's current location
+ * and obtaining location information using reverse geocoding.
+ */
 class locationService {
     async getLocation() {
         if (!("geolocation" in navigator)) {
@@ -9,8 +13,8 @@ class locationService {
             const locationName = await this.reverseGeocode(position.coords.latitude, position.coords.longitude);
             return locationName;
         } catch (error) {
-            console.error("Erreur de géolocalisation:", error);
-            return "Position non disponible";
+            console.error("Geolocalisation error:", error);
+            return "Position not available";
         }
     }
 

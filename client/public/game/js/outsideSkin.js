@@ -1,18 +1,21 @@
+/**
+ * Represents an outside skin that can be displayed based on different seasons.
+ * Handles the loading and selection of texture images for different skins.
+ */
 class OutsideSkin {
     constructor(skinNbr) {
         this.image = new Image();
-        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Ground.png`;
+        this.image.src = `${window.PUBLIC_URL}/game/images/Ground.png`;
         this.imageLoaded = false;
-
         this.image.onload = () => {
             this.imageLoaded = true;
         };
         this.selectSkin(skinNbr);
     }
 
-    draw(ctx, x, y) {
+    draw(x, y) {
         if (this.imageLoaded) {
-            ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
                 this.skinY * 16, // Image source y
@@ -20,8 +23,8 @@ class OutsideSkin {
                 16, // Image source height
                 x * 16, // Destination x
                 y * 16, // Destination y
-                16, // Destination width
-                16 // Destination height
+                OUTSIDE.destinationWidth, // Destination width
+                OUTSIDE.destinationHeight // Destination height
             );
         }
     }
@@ -38,7 +41,7 @@ class OutsideSkin {
                 break;
             case 3: // winter
                 this.skinX = 5;
-                this.skinY = 10;
+                this.skinY = 9;
                 break;
         }
     }

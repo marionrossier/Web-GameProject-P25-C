@@ -1,18 +1,20 @@
+/**
+ * Represents a visual skin for a game element, allowing customization of its appearance.
+ */
 class WaySkin {
     constructor(skinNbr) {
         this.image = new Image();
-        this.image.src = `${window.PUBLIC_URL || ""}/game/images/Ground.png`;
+        this.image.src = `${window.PUBLIC_URL}/game/images/Ground.png`;
         this.imageLoaded = false;
-
         this.image.onload = () => {
             this.imageLoaded = true;
         };
         this.selectSkin(skinNbr);
     }
 
-    drawCenter(ctx, x, y) {
+    drawCenter(x, y) {
         if (this.imageLoaded) {
-            ctx.drawImage(
+            window.ctx.drawImage(
                 this.image, // Image source
                 this.skinX * 16, // Image source x
                 this.skinY * 16, // Image source y
@@ -20,8 +22,8 @@ class WaySkin {
                 16, // Image source height
                 x * 16, // Destination x
                 y * 16, // Destination y
-                16, // Destination width
-                16 // Destination height
+                WAY.destinationWidth, // Destination width
+                WAY.destinationHeight // Destination height
             );
         }
     }

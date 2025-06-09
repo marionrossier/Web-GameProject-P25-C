@@ -1,3 +1,6 @@
+/**
+ * Represents a utility class for loading and accessing JSON data from a file.
+ */
 class JsonReach {
     constructor(path) {
         this.path = path;
@@ -6,31 +9,31 @@ class JsonReach {
 
     loadSync() {
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", this.path, false); // ⚠️ false = mode synchrone
+        xhr.open("GET", this.path, false);
         try {
             xhr.send(null);
             if (xhr.status === 200) {
                 return JSON.parse(xhr.responseText);
             } else {
-                console.error("Erreur HTTP :", xhr.status);
+                console.error("HTTP error :", xhr.status);
                 return null;
             }
         } catch (e) {
-            console.error("Erreur de chargement synchrone :", e);
+            console.error("Synchon chargment error :", e);
             return null;
         }
     }
 
-    get(father, child, number = null) {
+    get(father, child) {
         try {
-            let result = this.data[father][child];
-            if (number !== null) {
-                result = result[number];
-            }
-            return result;
+            return this.data[father][child];
         } catch (e) {
-            console.error("Erreur d'accès JSON :", e);
+            console.error("JSON access error :", e);
             return null;
         }
+    }
+
+    getObject(){
+        return this.data;
     }
 }
