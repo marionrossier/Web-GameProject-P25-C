@@ -5,7 +5,7 @@
 class locationService {
     async getLocation() {
         if (!("geolocation" in navigator)) {
-            return "Géolocalisation non supportée";
+            return "Geolocalisation not supported.";
         }
 
         try {

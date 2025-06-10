@@ -14,7 +14,6 @@ class ingameState {
         }
     }
 
-    // Méthode pour préserver la taille originale du canvas
     preserveCanvasSize() {
         const canvas = document.getElementById("gameCanvas");
         if (canvas && this.originalWidth && this.originalHeight) {

@@ -1,11 +1,11 @@
 {
   "ScoreBoard": {
     "players": [
-      { "name": "Mégane", "score": 650 },
-      { "name": "Eric", "score": 635 },
-      { "name": "Marion", "score": 600 },
-      { "name": "Valentin", "score": 450 },
-      { "name": "Marion", "score": 300 }
+      { "name": "Mégane", "score": 175 },
+      { "name": "Eric", "score": 160 },
+      { "name": "Marion", "score": 120 },
+      { "name": "Valentin", "score": 115 },
+      { "name": "Marion", "score": 65 }
     ]
   }
 }

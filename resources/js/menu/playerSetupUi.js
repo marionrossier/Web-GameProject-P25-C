@@ -74,7 +74,7 @@ class playerSetupUi {
 
         const inputWidth = 300;
         const centerX = (window.canvas.width - inputWidth) / 2;
-        const inputY = 280; // Position Y dans le canvas
+        const inputY = 280;
 
         this.nameInput.style.position = "absolute";
         this.nameInput.style.left = `${centerX}px`;
