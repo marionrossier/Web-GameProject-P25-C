@@ -4,6 +4,7 @@ const Game = () => {
     useEffect(() => {
         const base = process.env.PUBLIC_URL;
         const scriptPaths = [
+
             `${base}/game/js/autumnLevel1.js`,
             `${base}/game/js/autumnLevel2.js`,
             `${base}/game/js/autumnLevel3.js`,
@@ -37,10 +38,10 @@ const Game = () => {
             `${base}/game/js/playerDataManager.js`,
             `${base}/game/js/playerSetupScreen.js`,
             `${base}/game/js/playerSetupUi.js`,
-            `${base}/game/js/randomMap.js`,
-            `${base}/game/js/score.js`,
-            `${base}/game/js/script.js`,
-            `${base}/game/js/state.js`,
+            // `${base}/game/js/randomMap.js`,
+            // `${base}/game/js/score.js`,
+            // `${base}/game/js/script.js`,
+            // `${base}/game/js/state.js`,
             `${base}/game/js/summerLevel1.js`,
             `${base}/game/js/summerLevel2.js`,
             `${base}/game/js/summerLevel3.js`,
