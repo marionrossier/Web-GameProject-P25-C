@@ -37,9 +37,9 @@ function displayStatsScreen() {
         const text = `${index + 1}. ${p.name} : ${p.score}`;
 
         if (p.name === currentPlayerName) {
-            window.ctx.fillStyle = "#00ff00"; // Vert
+            window.ctx.fillStyle = "#00ff00";
         } else {
-            window.ctx.fillStyle = "#ffffff"; // Blanc
+            window.ctx.fillStyle = "#ffffff";
         }
 
         window.ctx.fillText(text, window.canvas.width / 2, y);

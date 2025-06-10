@@ -1,4 +1,3 @@
-// Function de debug pour vérifier le chargement du script
 /**
  * Represents the level complete screen in the game.
  * This screen displays the details of the completed level, including the score, time, and remaining lives.
@@ -22,7 +21,6 @@ class levelCompleteScreen {
             { id: "menu", text: "Menu", x: 400, y: 530, width: 200, height: 60 }
         ];
 
-        // Chargement des images
         this.heartImage = window.heartImage ? window.heartImage : heartImage();
     }
 

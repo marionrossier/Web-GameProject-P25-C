@@ -7,8 +7,8 @@ class gameOverScreen {
         this.motor = motor;
         this.activeListener = null;
 
-        const buttonY1 = window.canvas.height * 0.6; // ~420px sur un canvas de 700px
-        const buttonY2 = buttonY1 + 80; // ~500px, espacement comme dans menuConstants.js
+        const buttonY1 = window.canvas.height * 0.6; // ~420px
+        const buttonY2 = buttonY1 + 80; // ~500px
 
         this.gameOverButtons = [
             { id: "retry", text: "Try Again", x: 400, y: buttonY1, width: 200, height: 60 },
@@ -19,7 +19,6 @@ class gameOverScreen {
     }
 
     show() {
-                // Stopper le jeu
         this.motor.stopTimer();
 
         const gameMusic = document.getElementById("gameMusic");

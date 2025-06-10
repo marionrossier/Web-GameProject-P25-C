@@ -14,7 +14,6 @@
  */
 let currentPlayer = null;
 
-// Fonction globale pour obtenir le nom du joueur
 /**
  * Retrieves the name of the current player. If no player is set, a default
  * value of "Anonymous Player" is returned.

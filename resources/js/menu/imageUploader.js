@@ -18,7 +18,6 @@ class imageUploader {
                 const file = event.target.files[0];
                 if (!file) return resolve(null);
 
-                // Vérifier le type MIME et la taille (max 2 Mo)
                 const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
                 const maxSizeMB = 2;
 

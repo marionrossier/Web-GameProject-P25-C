@@ -59,20 +59,16 @@ function newScoreBoard(name, score) {
 
     let players = scoreboard.players;
 
-    // Vérifie si le joueur existe déjà
     const existing = players.find(p => p.name === name);
 
     if (existing) {
-        // Mise a jour du score si le score est meilleur
         if (score > existing.score) {
             existing.score = score;
         }
     } else {
-        // ajout du score si le joueur n'existe pas
         players.push({ name, score });
     }
 
-    // Trie du tableau par score décroissant et on garde les 5 meilleurs
     players.sort((a, b) => b.score - a.score);
     players = players.slice(0, 5);
     localStorage.setItem(key, JSON.stringify({ players }));

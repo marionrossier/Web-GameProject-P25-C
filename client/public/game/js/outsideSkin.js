@@ -7,6 +7,7 @@ class OutsideSkin {
         this.image = new Image();
         this.image.src = `${window.PUBLIC_URL}/game/images/Ground.png`;
         this.imageLoaded = false;
+
         this.image.onload = () => {
             this.imageLoaded = true;
         };

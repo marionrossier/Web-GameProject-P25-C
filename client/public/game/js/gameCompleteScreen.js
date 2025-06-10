@@ -48,8 +48,8 @@ class gameCompleteScreen {
         window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
         const gradient = window.ctx.createLinearGradient(0, 0, 0, window.canvas.height);
-        gradient.addColorStop(0, "#4A148C"); // Violet foncé
-        gradient.addColorStop(1, "#311B92"); // Indigo foncé
+        gradient.addColorStop(0, "#4A148C");
+        gradient.addColorStop(1, "#311B92");
         window.ctx.fillStyle = gradient;
         window.ctx.fillRect(0, 0, window.canvas.width, window.canvas.height);
 
@@ -109,7 +109,7 @@ class gameCompleteScreen {
         }
 
         this.gameCompleteButtons.forEach(button => {
-            window.ctx.fillStyle = button.id === "restart" ? "#4CAF50" : "#ff5722"; // Vert ou orange
+            window.ctx.fillStyle = button.id === "restart" ? "#4CAF50" : "#ff5722";
             window.ctx.fillRect(button.x, button.y, button.width, button.height);
 
             window.ctx.strokeStyle = "white";
