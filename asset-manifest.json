@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Web-GameProject-P25-C/static/css/main.7360c9bc.css",
+    "main.js": "/Web-GameProject-P25-C/static/js/main.cb51cae6.js",
+    "index.html": "/Web-GameProject-P25-C/index.html",
+    "main.7360c9bc.css.map": "/Web-GameProject-P25-C/static/css/main.7360c9bc.css.map",
+    "main.cb51cae6.js.map": "/Web-GameProject-P25-C/static/js/main.cb51cae6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7360c9bc.css",
+    "static/js/main.cb51cae6.js"
+  ]
+}

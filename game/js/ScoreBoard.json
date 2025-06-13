@@ -1,0 +1,11 @@
+{
+  "ScoreBoard": {
+    "players": [
+      { "name": "Mégane", "score": 175 },
+      { "name": "Eric", "score": 160},
+      { "name": "Marion", "score": 120 },
+      { "name": "Valentin", "score": 115 },
+      { "name": "Marion", "score": 65 }
+    ]
+  }
+}
