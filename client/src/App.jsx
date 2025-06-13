@@ -10,8 +10,13 @@ import './styles/responsive.css';
 
 const App = () => {
     return (
+
         <Router>
-            <Navbar />
+            <header>
+                <h1 className="main-title">HES-SO Vs - 64-31 - Web Development</h1>
+                <Navbar />
+            </header>
+
             <Routes>
                 <Route path="/" element={<WPPage slug="description" />} />
                 <Route path="/flux" element={<WPPage slug="flux" />} />
