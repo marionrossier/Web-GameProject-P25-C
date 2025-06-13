@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information">
+    <list default="true" id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Game.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +123,7 @@
       <updated>1749721301111</updated>
       <workItem from="1749721302906" duration="850000" />
       <workItem from="1749722193442" duration="1467000" />
-      <workItem from="1749807390218" duration="11834000" />
+      <workItem from="1749807390218" duration="12542000" />
     </task>
     <task id="LOCAL-00003" summary="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information">
       <option name="closed" value="true" />
@@ -136,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749819318939</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness">
+      <option name="closed" value="true" />
+      <created>1749822050649</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749822050649</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +161,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add journal entry" />
     <MESSAGE value="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information" />
+    <MESSAGE value="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness" />
   </component>
 </project>

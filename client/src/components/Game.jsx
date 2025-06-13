@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 const Game = () => {
     useEffect(() => {
         const base = process.env.PUBLIC_URL;
-        const scriptPaths = [
 
+        const scriptPaths = [
             `${base}/game/js/autumnLevel1.js`,
             `${base}/game/js/autumnLevel2.js`,
             `${base}/game/js/autumnLevel3.js`,
@@ -38,10 +38,6 @@ const Game = () => {
             `${base}/game/js/playerDataManager.js`,
             `${base}/game/js/playerSetupScreen.js`,
             `${base}/game/js/playerSetupUi.js`,
-            // `${base}/game/js/randomMap.js`,
-            // `${base}/game/js/score.js`,
-            // `${base}/game/js/script.js`,
-            // `${base}/game/js/state.js`,
             `${base}/game/js/summerLevel1.js`,
             `${base}/game/js/summerLevel2.js`,
             `${base}/game/js/summerLevel3.js`,
@@ -53,10 +49,13 @@ const Game = () => {
             `${base}/game/js/winterLevel3.js`
         ];
 
-        const addedScripts = [];
+        const loadScripts = async () => {
+            if (window.__mouseRushScriptsLoaded) return;
 
-        const loadScriptsSequentially = async () => {
             for (const src of scriptPaths) {
+                const alreadyExists = [...document.scripts].some(s => s.src.includes(src));
+                if (alreadyExists) continue;
+
                 await new Promise((resolve) => {
                     const script = document.createElement("script");
                     script.src = src;
@@ -64,65 +63,55 @@ const Game = () => {
                     script.onload = resolve;
                     script.onerror = () => {
                         console.error(`Erreur de chargement pour : ${src}`);
-                        resolve(); // continuer même en cas d'erreur
+                        resolve();
                     };
                     document.body.appendChild(script);
-                    addedScripts.push(script);
                 });
             }
 
-            // Simuler DOMContentLoaded pour déclencher les scripts du jeu
-            const event = new Event("DOMContentLoaded", {
-                bubbles: true,
-                cancelable: true,
-            });
+            const event = new Event("DOMContentLoaded", { bubbles: true, cancelable: true });
             document.dispatchEvent(event);
 
-            // Supprimer les écrans (start/end/gameover) si présents
-            setTimeout(() => {
-                ["startScreen", "endScreen", "gameOverScreen"].forEach((id) => {
-                    const el = document.getElementById(id);
-                    if (el) el.remove();
-                });
-            }, 200);
+            window.__mouseRushScriptsLoaded = true;
         };
 
-        loadScriptsSequentially();
-
-        return () => {
-            addedScripts.forEach((s) => s.remove());
-        };
+        loadScripts();
     }, []);
 
     const base = process.env.PUBLIC_URL;
 
     return (
-        <main>
-            <section id="articles">
-                <article>
-                    <header>
-                        <h2>Play Mouse Rush</h2>
-                        <p>By Eric, the 01.04.2025</p>
-                    </header>
+        <>
+            <main>
+                <section id="articles">
+                    <article>
+                        <header>
+                            <h2>Play Mouse Rush</h2>
+                            <p>By Eric, the 01.04.2025</p>
+                        </header>
 
-                    <p>
-                        Move your mouse through the maze without touching the edges. The game starts below!
-                    </p>
+                        <p>
+                            Move your mouse through the maze without touching the edges. The game starts below!
+                        </p>
 
-                    <div id="gameWrapper" style={{ position: "relative" }}>
-                        <canvas id="gameCanvas" width="1000" height="700"></canvas>
-                    </div>
+                        <div id="gameWrapper" style={{ position: "relative" }}>
+                            <canvas id="gameCanvas" width="1000" height="700"></canvas>
+                        </div>
 
-                    <audio id="menuMusic" loop>
-                        <source src={`${base}/game/audio/Menu_Theme.mp3`} type="audio/mpeg" />
-                    </audio>
+                        <audio id="menuMusic" loop>
+                            <source src={`${base}/game/audio/Menu_Theme.mp3`} type="audio/mpeg" />
+                        </audio>
 
-                    <audio id="gameMusic" loop>
-                        <source src={`${base}/game/audio/Forest_Theme.mp3`} type="audio/mpeg" />
-                    </audio>
-                </article>
-            </section>
-        </main>
+                        <audio id="gameMusic" loop>
+                            <source src={`${base}/game/audio/Forest_Theme.mp3`} type="audio/mpeg" />
+                        </audio>
+                    </article>
+                </section>
+            </main>
+        <footer>
+            <img id="logo" src={process.env.PUBLIC_URL + "/website/logo.png"} alt="logo" />
+        </footer>
+    </>
     );
 };
 
