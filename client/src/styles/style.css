@@ -17,6 +17,13 @@ a {
     color: rgb(0, 191, 255);
     text-decoration: none;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /*End of default values*/
 
 /*HEADER*/
@@ -47,7 +54,7 @@ header nav a.active {
     color: rgb(0, 191, 255);
     font-weight: 700;
     background-color: white;
-    padding: 16px 15px;
+    padding: 10px 15px;
     height: 100%;
 }
 
@@ -67,11 +74,13 @@ header h2{
     border-bottom: 1px solid rgb(170, 170, 170);
 }
 
-header p:first-of-type{
+article header p {
     font-style: italic;
     color: grey;
     text-align: right;
     padding: 0.5em 0em 1em 0em;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 main h3{
