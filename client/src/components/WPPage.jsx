@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 const WPPage = ({ slug }) => {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
@@ -29,17 +27,37 @@ const WPPage = ({ slug }) => {
     }, [slug]);
 
     return (
-        <main style={{ padding: "2rem" }}>
-            {error ? (
-                <p style={{ color: "red" }}>{error}</p>
-            ) : (
-                <>
-                    <h1 dangerouslySetInnerHTML={{ __html: title }} />
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
-                </>
-            )}
-        </main>
+        <>
+            <main id="description">
+                <section id="articles">
+                    <article>
+                        <div dangerouslySetInnerHTML={{ __html: content }} />
+                    </article>
+                </section>
+
+                {slug === "description" && (
+                    <aside>
+                        <div>
+                            <h3>Information sheet</h3>
+                            <ul>
+                                <li><p><strong>Donnet-Monay Mégane</strong> : Project member</p></li>
+                                <li><p><strong>Sierro Eric</strong> : Project member</p></li>
+                                <li><p><strong>Valentin Guiraud</strong> : Project member</p></li>
+                                <li><p><strong>Rossier Marion</strong> : Project member</p></li>
+                            </ul>
+                        </div>
+                    </aside>
+                )}
+            </main>
+
+            <footer>
+                <img id="logo" src={process.env.PUBLIC_URL + "/website/logo.png"} alt="logo" />
+            </footer>
+        </>
     );
+
 };
+
+import React, { useEffect, useState } from "react";
 
 export default WPPage;

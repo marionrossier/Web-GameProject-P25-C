@@ -4,30 +4,97 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="add journal entry" />
+    <list default="true" id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="Refactor Game component: streamline script loading and enhance structure for better readability" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="restoreScoreAndButton" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/marionrossier/Web-GameProject-P25-C.git",
-    "accountId": "742683a6-cba7-4826-9565-dab44869889a"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;marionrossier&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/marionrossier/Web-GameProject-P25-C.git&quot;,
+    &quot;accountId&quot;: &quot;742683a6-cba7-4826-9565-dab44869889a&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2yP1Gb8Pm5Qc9prF5kT0YKCpXb3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JavaScript Debug.game.html.executor": "Run",
-    "git-widget-placeholder": "restoreScoreAndButton",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "saveReactWebSiteLook",
+    "last_opened_file_path": "C:/Users/mario/IdeaProjects/Web-GameProject-P25-C/client/public/website",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "ts.external.directory.path": "C:\\Users\\mario\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external"
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\mario\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mario\IdeaProjects\Web-GameProject-P25-C\client\public\website" />
+      <recent name="C:\Users\mario\IdeaProjects\Web-GameProject-P25-C\client\src\components\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mario\IdeaProjects\Web-GameProject-P25-C\client\public" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-WS-251.26094.131" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="add journal entry">
       <option name="closed" value="true" />
@@ -37,8 +104,61 @@
       <option name="project" value="LOCAL" />
       <updated>1749562129068</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add journal entry">
+      <option name="closed" value="true" />
+      <created>1749562252790</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749562252790</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="add journal entry" />
+      <created>1749721301111</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749721301111</updated>
+      <workItem from="1749721302906" duration="850000" />
+      <workItem from="1749722193442" duration="1467000" />
+      <workItem from="1749807390218" duration="12863000" />
+    </task>
+    <task id="LOCAL-00003" summary="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information">
+      <option name="closed" value="true" />
+      <created>1749819318939</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1749819318939</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness">
+      <option name="closed" value="true" />
+      <created>1749822050649</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749822050649</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update styles: modify header paragraph to italicize and align text to the right">
+      <option name="closed" value="true" />
+      <created>1749823015705</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749823015705</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Refactor Game component: streamline script loading and enhance structure for better readability">
+      <option name="closed" value="true" />
+      <created>1749823023913</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749823023913</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -53,6 +173,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add journal entry" />
-    <option name="LAST_COMMIT_MESSAGE" value="add journal entry" />
+    <MESSAGE value="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information" />
+    <MESSAGE value="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness" />
+    <MESSAGE value="Update styles: modify header paragraph to italicize and align text to the right" />
+    <MESSAGE value="Refactor Game component: streamline script loading and enhance structure for better readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Game component: streamline script loading and enhance structure for better readability" />
   </component>
 </project>

@@ -90,9 +90,9 @@
         justify-content: center;
     }
 
-    header nav [class="active"] a {
+    header nav a.active {
         background-color: white;
-        width: 100vw;
+        width: 100%;
         display: block;
         text-align: center;
     }
