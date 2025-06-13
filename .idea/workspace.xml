@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Game.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="fb011835-d79a-43bb-b104-fb1ae30cccbb" name="Changes" comment="Refactor Game component: streamline script loading and enhance structure for better readability" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +120,7 @@
       <updated>1749721301111</updated>
       <workItem from="1749721302906" duration="850000" />
       <workItem from="1749722193442" duration="1467000" />
-      <workItem from="1749807390218" duration="12542000" />
+      <workItem from="1749807390218" duration="12863000" />
     </task>
     <task id="LOCAL-00003" summary="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information">
       <option name="closed" value="true" />
@@ -141,7 +138,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749822050649</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update styles: modify header paragraph to italicize and align text to the right">
+      <option name="closed" value="true" />
+      <created>1749823015705</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749823015705</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Refactor Game component: streamline script loading and enhance structure for better readability">
+      <option name="closed" value="true" />
+      <created>1749823023913</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749823023913</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +175,8 @@
     <MESSAGE value="add journal entry" />
     <MESSAGE value="Enhance layout and navigation: add header to App, replace Link with NavLink in Navbar, and improve WPPage structure with additional information" />
     <MESSAGE value="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhance routing and layout: implement redirects in App, improve Navbar structure, and update styles for better responsiveness" />
+    <MESSAGE value="Update styles: modify header paragraph to italicize and align text to the right" />
+    <MESSAGE value="Refactor Game component: streamline script loading and enhance structure for better readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Game component: streamline script loading and enhance structure for better readability" />
   </component>
 </project>
