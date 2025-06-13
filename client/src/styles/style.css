@@ -74,7 +74,7 @@ header h2{
     border-bottom: 1px solid rgb(170, 170, 170);
 }
 
-article header p {
+header p:first-of-type{
     font-style: italic;
     color: grey;
     text-align: right;
